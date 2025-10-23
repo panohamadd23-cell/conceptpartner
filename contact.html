@@ -2,26 +2,28 @@
 <html lang="de"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kontakt • ConceptPartner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="%23F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="%23000">CP</text></svg>'/>
 <style>
-  :root{--bg:#0B0C10;--card:#111218;--muted:#A7B0BE;--text:#E9EDF3;--gold:#F1C40F}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-  header{position:sticky;top:0;background:rgba(11,12,16,.92);padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
-  .logo{font-weight:900;color:var(--gold);text-decoration:none}
-  nav a{margin-left:18px;color:var(--text);text-decoration:none;font-weight:700}
-  nav a:hover{color:var(--gold)}
-  .wrap{max-width:900px;margin:0 auto;padding:60px 20px}
-  label{display:block;margin:10px 0 6px;color:var(--muted)}
-  input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#0F1116;color:#fff}
-  button{background:var(--gold);color:#000;padding:12px 18px;border-radius:10px;font-weight:900;border:0;cursor:pointer}
-  .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px}
-  footer{background:var(--card);border-top:1px solid rgba(255,255,255,.08);color:var(--muted);text-align:center;padding:30px 20px;margin-top:40px}
+:root{--bg:#0B0C10;--card:#111218;--muted:#A7B0BE;--text:#E9EDF3;--gold:#F1C40F}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+header{position:sticky;top:0;background:rgba(11,12,16,.92);padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gold)}
+nav a{margin-left:18px;color:var(--text);text-decoration:none;font-weight:700} nav a:hover{color:var(--gold)}
+.wrap{max-width:900px;margin:0 auto;padding:60px 20px}
+label{display:block;margin:10px 0 6px;color:var(--muted)} input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#0F1116;color:#fff}
+button{background:var(--gold);color:#000;padding:12px 18px;border-radius:10px;font-weight:900;border:0;cursor:pointer}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px}
+footer{background:var(--card);border-top:1px solid rgba(255,255,255,.08);color:var(--muted);text-align:center;padding:30px 20px;margin-top:40px}
 </style>
 </head><body>
 <header>
-  <a class="logo" href="index.html">ConceptPartner</a>
-  <nav>
-    <a href="index.html">Startseite</a><a href="services.html">Dienstleistungen</a><a href="careers.html">Karriere</a><a href="contact.html">Kontakt</a>
-  </nav>
+  <a class="brand" href="index.html" aria-label="ConceptPartner">
+    <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="12" fill="#F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="#000">CP</text></svg>
+    <span style="font-weight:900">ConceptPartner</span>
+  </a>
+  <nav><a href="index.html">Startseite</a><a href="services.html">Dienstleistungen</a><a href="careers.html">Karriere</a><a href="contact.html">Kontakt</a></nav>
 </header>
 
 <main class="wrap">
@@ -39,6 +41,11 @@
       <p style="color:var(--muted);font-size:13px;margin-top:8px">Mit dem Absenden erklärst du dich mit unserer <a href="privacy.html" style="color:var(--muted)">Datenschutz</a> einverstanden.</p>
     </form>
   </section>
+
+  <div style="margin-top:18px;text-align:center">
+    <!-- Calendly-Link (später echten Link einsetzen) -->
+    <a class="brand" href="https://calendly.com/" target="_blank" rel="noopener" style="gap:6px"><span style="color:#F1C40F;font-weight:900">Oder direkt Termin bei uns buchen →</span></a>
+  </div>
 </main>
 
 <footer>© ConceptPartner – Marktführer für digitale Neukundengewinnung</footer>
