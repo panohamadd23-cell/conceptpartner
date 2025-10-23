@@ -1,176 +1,164 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ConceptPartner – Digitale Marktführer Systeme</title>
-<meta name="description" content="ConceptPartner liefert B2B-Leads & Bewerbungen für Unternehmen, die wachsen wollen – planbar, messbar, dominierend.">
-
-<!-- Font & Favicon -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ConceptPartner – Neukunden & Mitarbeiter gewinnen</title>
+<meta name="description" content="ConceptPartner: Planbare B2B-Leads & qualifizierte Bewerbungen. Messbare Systeme statt Zufall – Strategie, Funnel, Ads & Tracking aus einer Hand.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="%23F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="%23000">CP</text></svg>'/>
-
 <style>
-:root{
-  --bg1:#0B0C10; --bg2:#111218;
-  --text:#E9EDF3; --muted:#A7B0BE;
-  --gold:#F1C40F; --gold2:#D4AC0D;
-  --card:rgba(255,255,255,.04);
-}
-
-/* ===== Base & No-Copy ===== */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,Arial,Helvetica,sans-serif;
-  color:var(--text);
-  background: radial-gradient(circle at top, var(--bg2), var(--bg1));
-  user-select:none;                /* Text nicht kopierbar */
-  -webkit-user-select:none;
-}
-a, button { user-select:none; }
-input, textarea, select { user-select:text !important; -webkit-user-select:text !important; }
-img, svg { -webkit-user-drag:none; user-drag:none; }
-
-/* ===== Header / Nav ===== */
-header{
-  position:sticky; top:0; z-index:999;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:16px 28px; background:rgba(11,12,16,.9);
-  backdrop-filter: blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
+:root{--bg1:#0B0C10;--bg2:#111218;--text:#E9EDF3;--muted:#A7B0BE;--gold:#F1C40F;--gold2:#D4AC0D;--card:rgba(255,255,255,.04)}
+*{box-sizing:border-box} html,body{height:100%}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--text);background:radial-gradient(circle at top,var(--bg2),var(--bg1));user-select:none}
+a,button{user-select:none} input,textarea,select{user-select:text !important}
+header{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:rgba(11,12,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gold)}
-nav a{
-  position:relative;
-  margin-left:22px; text-decoration:none; font-weight:700;
-  color:var(--text); transition:color .2s ease;
-}
-nav a:hover{color:var(--gold)}
-nav a::after{
-  content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0;
-  background:linear-gradient(90deg,var(--gold),#fff);
-  transition:width .25s ease;
-}
+nav a{position:relative;margin-left:22px;text-decoration:none;font-weight:700;color:var(--text);transition:.2s}
+nav a:hover{color:var(--gold)} nav a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:linear-gradient(90deg,var(--gold),#fff);transition:width .25s}
 nav a:hover::after{width:100%}
-
-/* ===== Hero mit Glow ===== */
-.hero{
-  position:relative; text-align:center; padding:140px 20px 110px;
-}
-.hero::before{
-  content:""; position:absolute; inset:-10% -20% auto -20%; height:60%;
-  background:radial-gradient(900px 320px at 50% -10%, rgba(241,196,15,.18), transparent 60%);
-  animation:glow 6s ease-in-out infinite;
-  pointer-events:none;
-}
-@keyframes glow{
-  0%,100%{opacity:.9} 50%{opacity:1}
-}
-.hero h1{
-  font-size:52px; margin:0 0 16px; font-weight:900;
-  background:linear-gradient(90deg,var(--gold),#fff);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.hero p{max-width:760px;margin:0 auto 28px;color:var(--muted);font-size:20px;line-height:1.5}
-.cta-main{
-  display:inline-block; padding:16px 28px; border-radius:12px;
-  background:var(--gold); color:#000; font-weight:900; text-decoration:none; font-size:18px;
-  box-shadow:0 10px 30px rgba(241,196,15,.25);
-  transition:.2s ease;
-}
-.cta-main:hover{background:var(--gold2); transform:translateY(-1px)}
-
-/* ===== Sections / Cards ===== */
-section{padding:100px 20px}
-.wrap{max-width:1200px;margin:auto}
-h2{font-size:36px;margin:0 0 50px;text-align:center}
-
-.cards{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.card{
-  padding:28px;border-radius:18px;background:var(--card);
-  border:1px solid rgba(255,255,255,.06); position:relative; overflow:hidden;
-  transition:.3s ease; isolation:isolate;
-}
-.card::before{
-  content:""; position:absolute; inset:-1px; border-radius:18px;
-  padding:1px; background:linear-gradient(120deg, rgba(241,196,15,.8), rgba(255,255,255,.25));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude; opacity:.35; pointer-events:none;
-}
-.card:hover{transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.35)}
-.card h3{color:var(--gold);margin:0 0 8px}
-.card p{color:var(--muted);margin:0}
-
-/* ===== Footer ===== */
+.hero{position:relative;text-align:center;padding:140px 20px 110px}
+.hero::before{content:"";position:absolute;inset:-10% -20% auto -20%;height:60%;background:radial-gradient(900px 320px at 50% -10%,rgba(241,196,15,.18),transparent 60%);animation:glow 6s ease-in-out infinite;pointer-events:none}
+@keyframes glow{0%,100%{opacity:.9}50%{opacity:1}}
+.hero h1{font-size:50px;margin:0 0 16px;font-weight:900;background:linear-gradient(90deg,var(--gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{max-width:820px;margin:0 auto 28px;color:var(--muted);font-size:20px;line-height:1.5}
+.cta-main{display:inline-block;padding:16px 28px;border-radius:12px;background:var(--gold);color:#000;font-weight:900;text-decoration:none;font-size:18px;box-shadow:0 10px 30px rgba(241,196,15,.25);transition:.2s}
+.cta-main:hover{background:var(--gold2);transform:translateY(-1px)}
+section{padding:90px 20px} .wrap{max-width:1200px;margin:auto} h2{font-size:36px;margin:0 0 42px;text-align:center}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{position:relative;padding:26px;border-radius:18px;background:var(--card);border:1px solid rgba(255,255,255,.06);transition:.3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.card h3{color:var(--gold);margin:0 0 8px} .card p{color:var(--muted);margin:0}
+.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));text-align:center}
+.kpis .box{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:16px}
+.kpis .n{font-size:28px;font-weight:900;color:var(--gold)} .kpis .l{color:var(--muted)}
+.process{counter-reset:step} .step{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+.step:before{counter-increment:step;content:counter(step);display:inline-grid;place-content:center;width:34px;height:34px;border-radius:8px;background:var(--gold);color:#000;font-weight:900}
 footer{padding:30px;text-align:center;color:var(--muted);background:#0A0B0E;margin-top:60px}
-
-/* ===== Scroll-Reveal (WOW) ===== */
-.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
-.reveal.show{opacity:1; transform:none}
-
-/* ===== Cookie-Banner ===== */
-.cookie-banner{
-  position:fixed; left:20px; right:20px; bottom:20px; z-index:9999;
-  background:#111218; border:1px solid rgba(255,255,255,.12);
-  border-radius:12px; padding:16px 18px;
-  display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:14px;
-}
-.cookie-banner button{
-  background:var(--gold); color:#000; border:0; border-radius:8px;
-  padding:10px 16px; font-weight:800; cursor:pointer; margin-left:8px;
-}
-.cookie-banner .btn-secondary{background:#333; color:#fff}
-@media (max-width:700px){
-  .hero h1{font-size:36px}
-  .cookie-banner{flex-direction:column; align-items:stretch}
-}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s} .reveal.show{opacity:1;transform:none}
+.cookie-banner{position:fixed;left:20px;right:20px;bottom:20px;z-index:9999;background:#111218;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px}
+.cookie-banner button{background:var(--gold);color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;margin-left:8px}
+.cookie-banner .btn-secondary{background:#333;color:#fff}
+@media(max-width:700px){.hero h1{font-size:36px}.cookie-banner{flex-direction:column;align-items:stretch}}
 </style>
 </head>
-<body oncontextmenu="return false;"> <!-- Rechtsklick deaktiviert (Basis) -->
+<body oncontextmenu="return false;">
 
 <header class="reveal">
-  <a href="index.html" class="brand">
-    <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
-      <rect x="6" y="6" width="52" height="52" rx="12" fill="#F1C40F"/>
-      <text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="#000">CP</text>
-    </svg>
+  <a href="index.html" class="brand" aria-label="ConceptPartner">
+    <svg width="34" height="34" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="#F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="#000">CP</text></svg>
     <span style="font-size:22px;font-weight:900;">ConceptPartner</span>
   </a>
   <nav>
     <a class="reveal" data-delay="0" href="index.html">Start</a>
-    <a class="reveal" data-delay="50" href="services.html">Leistungen</a>
-    <a class="reveal" data-delay="100" href="careers.html">Karriere</a>
-    <a class="reveal" data-delay="150" href="contact.html">Kontakt</a>
+    <a class="reveal" data-delay="60" href="services.html">Leistungen</a>
+    <a class="reveal" data-delay="120" href="careers.html">Karriere</a>
+    <a class="reveal" data-delay="180" href="contact.html">Kontakt</a>
   </nav>
 </header>
 
+<!-- HERO: Neukunden & Mitarbeiter -->
 <section class="hero reveal" data-delay="0">
-  <h1 class="reveal" data-delay="80">Digitale Systeme, die <br>Marktführer erschaffen</h1>
-  <p class="reveal" data-delay="140">Wir helfen B2B-Unternehmen dabei, jeden Monat planbar neue Kundenanfragen und qualifizierte Bewerbungen zu bekommen – ohne Abhängigkeit von Empfehlungen oder Zufall.</p>
+  <h1 class="reveal" data-delay="80">Gewinnen Sie Neukunden & qualifizierte Mitarbeiter – planbar & messbar</h1>
+  <p class="reveal" data-delay="140">Unternehmen auf Wachstumskurs brauchen einen stetigen Strom aus **Anfragen** und **Bewerbungen**. Wir schließen diese Lücke mit klarer Positionierung, performanten Funnels und bezahlten Kampagnen – alles sauber getrackt.</p>
   <a href="contact.html" class="cta-main reveal" data-delay="220">Kostenloses Erstgespräch buchen</a>
 </section>
 
+<!-- KPI-Block (Social Proof) -->
+<section class="reveal" data-delay="0" style="padding-top:20px">
+  <div class="wrap kpis">
+    <div class="box"><div class="n">+312</div><div class="l">qualifizierte B2B-Leads in 90 Tagen</div></div>
+    <div class="box"><div class="n">–38%</div><div class="l">Cost-per-Lead nach 6 Wochen</div></div>
+    <div class="box"><div class="n">4.9★</div><div class="l">Kundenzufriedenheit</div></div>
+    <div class="box"><div class="n">30 Tage</div><div class="l">time-to-hire in Projekten</div></div>
+  </div>
+</section>
+
+<!-- Leistungen (2 Säulen wie Push: Leads & Recruiting) -->
 <section class="reveal" data-delay="0">
   <div class="wrap">
-    <h2 class="reveal" data-delay="0">Was Sie mit ConceptPartner erreichen</h2>
-    <div class="cards">
+    <h2 class="reveal" data-delay="0">Zwei Wachstumssäulen</h2>
+    <div class="grid">
       <article class="card reveal" data-delay="80">
-        <h3>Planbare B2B-Leads</h3>
-        <p>Kundenanfragen von Entscheidern, keine „Klicks“.</p>
+        <h3>Neukunden-Systeme (B2B)</h3>
+        <p>Such- & Social-Kampagnen, die Entscheider erreichen – keine Klicks, sondern Anfragen.</p>
+        <ul style="margin:10px 0 0 18px">
+          <li>ICP & Angebot schärfen</li><li>Funnel & Landingpages</li><li>Google & Meta Ads</li><li>GA4/Tag Manager Tracking</li>
+        </ul>
       </article>
       <article class="card reveal" data-delay="140">
-        <h3>Qualifizierte Bewerbungen</h3>
-        <p>Fachkräfte & Talente über digitale Recruiting-Systeme gewinnen.</p>
+        <h3>Recruiting-Funnel</h3>
+        <p>Digitale Bewerberstrecken, die qualifizieren und konvertieren – von Ad bis Interview.</p>
+        <ul style="margin:10px 0 0 18px">
+          <li>Karriereseite & One-Click-Formular</li><li>Creatives & Hooks</li><li>ATS/CRM-Anbindung</li><li>KPIs: Cost-per-Apply, time-to-hire</li>
+        </ul>
       </article>
       <article class="card reveal" data-delay="200">
-        <h3>Marktdominanz</h3>
-        <p>Ihr Unternehmen wird sichtbar als Nr. 1 in Ihrer Branche.</p>
+        <h3>Conversion & Skalierung</h3>
+        <p>Wir steuern nach Zahlen: Dashboards, Tests & klare Skalierlogik.</p>
+        <ul style="margin:10px 0 0 18px">
+          <li>CRO & Einwandbehandlung</li><li>A/B-Tests & Speed</li><li>Budgetsteuerung nach ROAS</li>
+        </ul>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- Prozess -->
+<section class="reveal" data-delay="0">
+  <div class="wrap">
+    <h2 class="reveal" data-delay="0">Unser Prozess – schnell & umsetzungsstark</h2>
+    <div class="grid process">
+      <div class="step reveal" data-delay="80"><div><strong>Strategie-Workshop</strong><br><span style="color:var(--muted)">ICP, Angebot, Botschaft, Ziele.</span></div></div>
+      <div class="step reveal" data-delay="140"><div><strong>Funnel & Creatives</strong><br><span style="color:var(--muted)">Landingpages, Ads, Formulare.</span></div></div>
+      <div class="step reveal" data-delay="200"><div><strong>Launch & Tracking</strong><br><span style="color:var(--muted)">GA4/Tag Manager, Dashboards.</span></div></div>
+      <div class="step reveal" data-delay="260"><div><strong>Optimization & Scale</strong><br><span style="color:var(--muted)">A/B-Tests, CPL runter, Volumen rauf.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Case-Studies (angelehnt an PushPartner Case-Blocks) -->
+<section class="reveal" data-delay="0">
+  <div class="wrap">
+    <h2 class="reveal" data-delay="0">Ausgewählte Ergebnisse</h2>
+    <div class="grid">
+      <article class="card reveal" data-delay="80">
+        <h3>Industrie (B2B)</h3>
+        <p>+186 qualifizierte Anfragen in 60 Tagen, Sales-Pipeline stabil gefüllt.</p>
+        <ul style="margin:10px 0 0 18px"><li>CPL –42%</li><li>Terminrate 31%</li></ul>
+      </article>
+      <article class="card reveal" data-delay="140">
+        <h3>Handwerk (Recruiting)</h3>
+        <p>2 Fachkräfte in 30 Tagen eingestellt, 10 qualifizierte Bewerbungen.</p>
+      </article>
+      <article class="card reveal" data-delay="200">
+        <h3>IT-Dienstleister</h3>
+        <p>Positionierung + Funnel: 3× mehr passende Leads bei gleich. Budget.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Branchen -->
+<section class="reveal" data-delay="0">
+  <div class="wrap">
+    <h2>Wir funktionieren besonders gut für</h2>
+    <div class="grid">
+      <div class="card reveal" data-delay="80"><strong>Maschinenbau & Industrie</strong><br><span style="color:var(--muted)">Lange Zyklen, mehrere Stakeholder.</span></div>
+      <div class="card reveal" data-delay="140"><strong>Bau & Handwerk</strong><br><span style="color:var(--muted)">Projektanfragen & Fachkräfte.</span></div>
+      <div class="card reveal" data-delay="200"><strong>IT & Software</strong><br><span style="color:var(--muted)">Lead-Qualität statt Volumen.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Abschluss-CTA -->
+<section class="reveal" data-delay="0" style="text-align:center">
+  <div class="wrap">
+    <h2 class="reveal" data-delay="0">Lassen Sie uns Ihr Wachstum planbar machen</h2>
+    <p class="reveal" data-delay="80" style="color:var(--muted);max-width:780px;margin:0 auto 20px">
+      Ob Neukunden-Gewinnung im B2B oder Recruiting – wir bauen Systeme, die verlässlich liefern.
+    </p>
+    <a href="contact.html" class="cta-main reveal" data-delay="160">Erstgespräch buchen</a>
   </div>
 </section>
 
@@ -180,7 +168,7 @@ footer{padding:30px;text-align:center;color:var(--muted);background:#0A0B0E;marg
   <a href="privacy.html" style="color:#A7B0BE;text-decoration:none;">Datenschutz</a>
 </footer>
 
-<!-- Cookie-Banner -->
+<!-- Cookie -->
 <div id="cookie" class="cookie-banner">
   <div>Wir nutzen Cookies für ein besseres Erlebnis.</div>
   <div>
@@ -190,27 +178,12 @@ footer{padding:30px;text-align:center;color:var(--muted);background:#0A0B0E;marg
 </div>
 
 <script>
-/* Scroll-Reveal mit Stagger */
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    const el=e.target;
-    const delay=Number(el.dataset.delay||0);
-    setTimeout(()=>el.classList.add('show'), delay);
-    io.unobserve(el);
-  });
-},{threshold:.12});
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;const d=Number(el.dataset.delay||0);setTimeout(()=>el.classList.add('show'),d);io.unobserve(el)}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* Cookie-Banner */
-function acceptCookies(){localStorage.setItem('cookiesAccepted','yes');document.getElementById('cookie').style.display='none';}
-function declineCookies(){localStorage.setItem('cookiesAccepted','no');document.getElementById('cookie').style.display='none';}
-if(localStorage.getItem('cookiesAccepted')){document.getElementById('cookie').style.display='none';}
-
-/* Basis-Blocker für Copy (leicht zu umgehen, aber hält Casuals ab) */
-document.addEventListener('keydown',e=>{
-  if((e.ctrlKey||e.metaKey) && ['c','a','x','s','p'].includes(e.key.toLowerCase())){ e.preventDefault(); }
-});
+function acceptCookies(){localStorage.setItem('cookiesAccepted','yes');document.getElementById('cookie').style.display='none'}
+function declineCookies(){localStorage.setItem('cookiesAccepted','no');document.getElementById('cookie').style.display='none'}
+if(localStorage.getItem('cookiesAccepted'))document.getElementById('cookie').style.display='none';
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['c','a','x','s','p'].includes(e.key.toLowerCase()))e.preventDefault()});
 </script>
 </body>
 </html>
