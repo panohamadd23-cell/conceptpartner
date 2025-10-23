@@ -3,25 +3,28 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dienstleistungen • ConceptPartner</title>
 <meta name="description" content="Leads, Recruiting, Landingpages & Tracking – Systeme statt Zufall.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="%23F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="%23000">CP</text></svg>'/>
 <style>
-  :root{--bg:#0B0C10;--card:#111218;--muted:#A7B0BE;--text:#E9EDF3;--gold:#F1C40F}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-  header{position:sticky;top:0;background:rgba(11,12,16,.92);padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
-  .logo{font-weight:900;color:var(--gold);text-decoration:none}
-  nav a{margin-left:18px;color:var(--text);text-decoration:none;font-weight:700}
-  nav a:hover{color:var(--gold)}
-  .wrap{max-width:1100px;margin:0 auto;padding:60px 20px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-  .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px}
-  .cta{display:inline-block;background:var(--gold);color:#000;padding:12px 18px;border-radius:10px;font-weight:900;text-decoration:none}
-  footer{background:var(--card);border-top:1px solid rgba(255,255,255,.08);color:var(--muted);text-align:center;padding:30px 20px;margin-top:40px}
+:root{--bg:#0B0C10;--card:#111218;--muted:#A7B0BE;--text:#E9EDF3;--gold:#F1C40F}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+header{position:sticky;top:0;background:rgba(11,12,16,.92);padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gold)}
+nav a{margin-left:18px;color:var(--text);text-decoration:none;font-weight:700} nav a:hover{color:var(--gold)}
+.wrap{max-width:1100px;margin:0 auto;padding:60px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px}
+.cta{display:inline-block;background:var(--gold);color:#000;padding:12px 18px;border-radius:10px;font-weight:900;text-decoration:none}
+footer{background:var(--card);border-top:1px solid rgba(255,255,255,.08);color:var(--muted);text-align:center;padding:30px 20px;margin-top:40px}
 </style>
 </head><body>
 <header>
-  <a class="logo" href="index.html">ConceptPartner</a>
-  <nav>
-    <a href="index.html">Startseite</a><a href="services.html">Dienstleistungen</a><a href="careers.html">Karriere</a><a href="contact.html">Kontakt</a>
-  </nav>
+  <a class="brand" href="index.html" aria-label="ConceptPartner">
+    <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="12" fill="#F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="#000">CP</text></svg>
+    <span style="font-weight:900">ConceptPartner</span>
+  </a>
+  <nav><a href="index.html">Startseite</a><a href="services.html">Dienstleistungen</a><a href="careers.html">Karriere</a><a href="contact.html">Kontakt</a></nav>
 </header>
 
 <main class="wrap">
@@ -29,18 +32,9 @@
   <p style="color:var(--muted);margin:0 0 24px">Wir liefern keine „Klicks“, sondern Anfragen & Bewerbungen – messbar, skalierbar, B2B-fokussiert.</p>
 
   <section class="grid">
-    <article class="card">
-      <h3 style="color:var(--gold)">B2B-Leads (Google & Meta)</h3>
-      <ul><li>Intent-Mapping & Struktur</li><li>Anzeigentests</li><li>Conversion-Tracking</li></ul>
-    </article>
-    <article class="card">
-      <h3 style="color:var(--gold)">Recruiting-Funnel</h3>
-      <ul><li>Creatives & Hooks</li><li>One-Click-Bewerbung</li><li>ATS/CRM-Anbindung</li></ul>
-    </article>
-    <article class="card">
-      <h3 style="color:var(--gold)">Landingpages (CRO)</h3>
-      <ul><li>Value-Proposition & Trust</li><li>Einwandbehandlung</li><li>Speed & Core Web Vitals</li></ul>
-    </article>
+    <article class="card"><h3 style="color:var(--gold)">B2B-Leads (Google & Meta)</h3><ul><li>Intent-Mapping & Struktur</li><li>Anzeigentests</li><li>Conversion-Tracking</li></ul></article>
+    <article class="card"><h3 style="color:var(--gold)">Recruiting-Funnel</h3><ul><li>Creatives & Hooks</li><li>One-Click-Bewerbung</li><li>ATS/CRM-Anbindung</li></ul></article>
+    <article class="card"><h3 style="color:var(--gold)">Landingpages (CRO)</h3><ul><li>Value-Proposition & Trust</li><li>Einwandbehandlung</li><li>Speed & Core Web Vitals</li></ul></article>
   </section>
 
   <div style="margin-top:24px"><a class="cta" href="contact.html">Projekt anfragen</a></div>
