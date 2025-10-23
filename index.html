@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ConceptPartner – B2B-Leads & Recruiting</title>
-<meta name="description" content="Digitale Vermarktung für B2B: planbare Leads & qualifizierte Bewerbungen über Google, Instagram & Facebook – sauber getrackt, skalierbar, messbar.">
+<title>ConceptPartner – B2B-Leads & Recruiting, messbar skaliert</title>
+<meta name="description" content="Wir liefern planbare B2B-Leads & qualifizierte Bewerbungen über Google, Instagram & Facebook – mit Funnels, die konvertieren, und Tracking, das jeden Euro rechtfertigt.">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,131 +14,134 @@
 <style>
 :root{
   --bg1:#0B0C10; --bg2:#111218;
-  --text:#F3F6FA; --muted:#BDC6D2;
+  --text:#F3F6FA; --muted:#C2CBD7;
   --gold:#F1C40F; --gold2:#D4AC0D;
   --card:rgba(255,255,255,.06);
 }
-
-/* ===== Base ===== */
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,var(--bg2),var(--bg1));color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body{margin:0;background:radial-gradient(1200px 420px at 50% -80px,#151724 0%,#0B0C10 55%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
 img,svg{max-width:100%;height:auto;display:block;-webkit-user-drag:none;user-drag:none}
 
-/* ===== Gold TEXT FLOW (flüssig, kein Flicker) ===== */
+/* Gold text flow – smooth, no flicker */
 .gold-flow{
-  background:linear-gradient(90deg,#ffffff 0%, var(--gold) 25%, #ffffff 50%, var(--gold) 75%, #ffffff 100%);
+  background:linear-gradient(90deg,#fff 0%,var(--gold) 25%,#fff 50%,var(--gold) 75%,#fff 100%);
   background-size:260% 100%;
-  -webkit-background-clip:text; background-clip:text;
-  -webkit-text-fill-color:transparent; color:transparent;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
   animation:textflow 12s linear infinite alternate;
-  will-change: background-position;
+  will-change:background-position;
 }
-@keyframes textflow{0%{background-position:0% 0}100%{background-position:100% 0}}
+@keyframes textflow{from{background-position:0% 0}to{background-position:100% 0}}
 
-/* ===== Global Light Sweep über Seite ===== */
-.light-sweep{
-  position:fixed; inset:-40% -20% -40% -20%; pointer-events:none; z-index:1;
-  animation:sweep 10s linear infinite alternate; mix-blend-mode:screen; opacity:.55;
-  background:
-    radial-gradient(320px 140px at 50% 0%, rgba(255,255,255,.08), transparent 60%),
-    radial-gradient(220px 120px at 60% 20%, rgba(241,196,15,.10), transparent 65%),
-    radial-gradient(320px 140px at 40% 80%, rgba(255,255,255,.07), transparent 60%);
-}
-@keyframes sweep{0%{transform:translateY(-20%)}100%{transform:translateY(20%)}}
+.light-sweep{position:fixed;inset:-40% -20% -40% -20%;pointer-events:none;z-index:1;opacity:.55;mix-blend-mode:screen;
+  animation:sweep 10s linear infinite alternate;
+  background:radial-gradient(320px 120px at 55% 0,rgba(255,255,255,.08),transparent 65%),radial-gradient(220px 120px at 60% 22%,rgba(241,196,15,.10),transparent 70%),radial-gradient(320px 140px at 40% 78%,rgba(255,255,255,.07),transparent 65%)}
+@keyframes sweep{from{transform:translateY(-18%)}to{transform:translateY(18%)}}
 
-/* ===== Header / Nav ===== */
-header{
-  position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;
-  padding:16px 26px;background:rgba(11,12,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)
-}
-.brand{display:flex;align-items:center;gap:10px;color:var(--gold);font-family:Manrope,Inter,sans-serif;font-weight:800}
+/* Header */
+header{position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:16px 26px;background:rgba(12,14,19,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--gold);font-family:Manrope;font-weight:800}
 nav a{position:relative;margin-left:22px;font-weight:800;letter-spacing:.2px}
 nav a:hover{color:var(--gold)}
 nav a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:linear-gradient(90deg,var(--gold),#fff);transition:width .25s}
 nav a:hover::after{width:100%}
 
-/* ===== Layout / Typo ===== */
+/* Layout */
 main{position:relative;z-index:2}
-section{padding:86px 20px}
+section{padding:90px 20px}
 .wrap{max-width:1200px;margin:auto}
 h1,h2,h3{font-family:Manrope,Inter,sans-serif;letter-spacing:.2px}
-h1{font-size:48px;line-height:1.08;margin:0 0 16px;font-weight:800}
-h2{font-size:34px;line-height:1.12;margin:0 0 16px;font-weight:800;text-align:center}
+h1{font-size:50px;line-height:1.08;margin:0 0 16px;font-weight:800}
+h2{font-size:40px;line-height:1.12;margin:0 0 18px;font-weight:800;text-align:center}
 h3{font-size:22px;margin:0 0 8px;color:var(--gold)}
-p{line-height:1.65}
+p{line-height:1.7}
 
-/* ===== Hero ===== */
-.hero{position:relative;overflow:hidden;text-align:center;padding:130px 20px 60px}
-.hero::before{
-  content:"";position:absolute;left:-20%;right:-20%;top:-20%;height:80%;
-  background:radial-gradient(900px 320px at 50% -10%, rgba(241,196,15,.18), transparent 60%);
-  animation:glow 6s ease-in-out infinite;pointer-events:none;z-index:-1;
-}
+/* Hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding:140px 20px 70px}
+.hero::before{content:"";position:absolute;left:-20%;right:-20%;top:-20%;height:80%;background:radial-gradient(900px 320px at 50% -10%,rgba(241,196,15,.18),transparent 60%);animation:glow 6s ease-in-out infinite;pointer-events:none;z-index:-1}
 @keyframes glow{0%,100%{opacity:.85}50%{opacity:1}}
-.hero .lead{max-width:860px;margin:0 auto 26px;color:var(--muted);font-size:19px}
+.hero .lead{max-width:880px;margin:0 auto 26px;color:var(--muted);font-size:19px}
 .cta{display:inline-block;padding:16px 26px;border-radius:12px;background:var(--gold);color:#000;font-weight:900;box-shadow:0 10px 30px rgba(241,196,15,.25)}
 .cta:hover{background:var(--gold2);transform:translateY(-1px)}
-/* CTA & Bilder nicht markierbar */
 .cta, img{user-select:none;-webkit-user-select:none}
 
-/* ===== Media Blocks (Bild + Text) ===== */
-.split{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:center}
-.figure{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 26px rgba(0,0,0,.35)}
+/* Reel */
+.logo-reel{padding-top:0}
+.reel-mask{mask-image:linear-gradient(to right, transparent, black 8%, black 92%, transparent);-webkit-mask-image:linear-gradient(to right, transparent, black 8%, black 92%, transparent)}
+.logo-track{display:flex;gap:18px;align-items:center;will-change:transform}
+.logo{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.logo .txt{font-weight:800;letter-spacing:.2px;color:#EDEFF5;font-size:14px}
 
-/* ===== Cards ===== */
+/* KPI */
+.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));text-align:center}
+.kpis .box{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;user-select:none;-webkit-user-select:none}
+.kpis .n{font-size:30px;font-weight:900;color:var(--gold);font-family:Manrope}
+.kpis .l{color:var(--muted)}
+
+/* Cards / Split */
 .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:26px;box-shadow:0 6px 20px rgba(0,0,0,.22);transition:.3s}
 .card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.35)}
 .card p{color:var(--muted);margin:0}
 ul{margin:10px 0 0 18px;color:var(--muted)}
+.split{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));align-items:center}
+.figure{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 26px rgba(0,0,0,.35)}
 
-/* ===== KPI Strip ===== */
-.kpis{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));text-align:center}
-.kpis .box{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;user-select:none;-webkit-user-select:none}
-.kpis .n{font-size:28px;font-weight:900;color:var(--gold);font-family:Manrope}
-.kpis .l{color:var(--muted)}
+/* Prozess – groß & lebendig wie Screenshot */
+.process-wrap{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);padding:34px 22px;box-shadow:0 12px 32px rgba(0,0,0,.34)}
+.process-title{font-size:30px;text-align:center;margin:0 0 10px}
+.steps{counter-reset:step;display:grid;gap:18px}
+.step{display:block}
+.step h4{font-size:22px;margin:0 0 6px}
+.step p{margin:0;color:#d7dde7}
+.step h4::before{counter-increment:step;content:counter(step) ". ";color:#fff}
+.step strong{font-weight:800}
+.process-illu{margin:16px auto 0;max-width:900px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.process-illu img{display:block;width:100%;height:auto;object-fit:cover}
 
-/* ===== Process ===== */
-.process{counter-reset:step}
-.step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;user-select:none;-webkit-user-select:none}
-.step:before{counter-increment:step;content:counter(step);display:inline-grid;place-content:center;width:34px;height:34px;border-radius:8px;background:var(--gold);color:#000;font-weight:900;font-family:Manrope}
-
-/* ===== Testimonials (mit Bild) ===== */
+/* Testimonials */
 .testi{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .tcard{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 26px rgba(0,0,0,.35);user-select:none;-webkit-user-select:none}
 .tcard img.bg{width:100%;height:220px;object-fit:cover;filter:brightness(.55)}
 .tcontent{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px}
-.tquote{font-family:Manrope;font-size:20px;font-weight:800;margin:0 0 6px}
-.tline{color:var(--muted);margin:0 0 10px}
+.tquote{font-family:Manrope;font-size:22px;font-weight:800;margin:0 0 6px}
+.tline{color:#C7D0DC;margin:0 0 10px}
 .tperson{display:flex;align-items:center;gap:10px}
-.tperson img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.18);user-select:none;-webkit-user-select:none}
+.tperson img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.18)}
 
-/* ===== Logo Reel (erscheint Stück für Stück) ===== */
-.logo-reel{overflow:hidden}
-.logo-track{display:flex;gap:28px;flex-wrap:nowrap}
-.logo{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);user-select:none;-webkit-user-select:none}
-.logo svg{opacity:.9}
-.logo .txt{font-weight:800;letter-spacing:.4px;color:#EDEFF5}
+/* Big info cards (Über uns) mit dekorierten Ecken */
+.card.big{position:relative;padding:30px;border-radius:22px;background:var(--card);border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 32px rgba(0,0,0,.34)}
+.card.big h3{font-size:24px;margin:0 0 10px}
+.card.big p,.card.big li{font-size:17px}
+.card.big .accent{position:absolute;width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,var(--gold),#fff)}
+.card.big .a1{top:-1px;left:-1px}.card.big .a2{top:-1px;right:-1px}.card.big .a3{bottom:-1px;left:-1px}.card.big .a4{bottom:-1px;right:-1px}
 
-/* ===== Reveal (Stagger) ===== */
+/* Reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
 .reveal.show{opacity:1;transform:none}
 
-/* ===== Cookie ===== */
+/* Cookie */
 .cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:2000;background:#111218;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px}
-.cookie button{background:var(--gold);color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;margin-left:8px;user-select:none;-webkit-user-select:none}
+.cookie button{background:var(--gold);color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;margin-left:8px}
 .cookie .btn-secondary{background:#333;color:#fff}
 
-/* ===== Nicht markierbar: Fließtext + Bilder/Avatare/CTA/KPIs/Process/Testi ===== */
+/* Non-select */
 .no-copy h1,.no-copy h2,.no-copy h3,.no-copy p,.no-copy li{user-select:none;-webkit-user-select:none}
-img, .cta{user-select:none;-webkit-user-select:none}
+img,.cta{user-select:none;-webkit-user-select:none}
 
-@media(max-width:700px){h1{font-size:36px}}
+/* Responsive tweaks */
+@media(max-width:900px){h1{font-size:42px}}
+@media(max-width:700px){
+  h1{font-size:36px}
+  h2{font-size:34px}
+  .logo .txt{font-size:13px}
+  .process-title{font-size:26px}
+  .step h4{font-size:20px}
+}
 </style>
 </head>
 <body>
-
 <div class="light-sweep" aria-hidden="true"></div>
 
 <header class="reveal">
@@ -162,21 +165,38 @@ img, .cta{user-select:none;-webkit-user-select:none}
     <a href="contact.html" class="cta">Kostenloses Erstgespräch buchen</a>
   </section>
 
-  <!-- LOGO REEL (erscheint nacheinander) -->
-  <section class="reveal logo-reel" data-delay="0" style="padding-top:0">
-    <div class="wrap">
+  <!-- BRANCHEN-REEL (auto scroll) -->
+  <section class="reveal logo-reel" data-delay="0">
+    <div class="wrap reel-mask">
       <div id="logos" class="logo-track">
-        <div class="logo reveal" data-delay="0"><svg width="22" height="22"><circle cx="11" cy="11" r="10" fill="#F1C40F"/></svg><div class="txt">INDUSTRIE+</div></div>
-        <div class="logo reveal" data-delay="80"><svg width="22" height="22"><rect x="3" y="3" width="16" height="16" rx="4" fill="#F1C40F"/></svg><div class="txt">HANDWERK PRO</div></div>
-        <div class="logo reveal" data-delay="160"><svg width="22" height="22"><polygon points="11,2 20,20 2,20" fill="#F1C40F"/></svg><div class="txt">IT & SOFTWARE</div></div>
-        <div class="logo reveal" data-delay="240"><svg width="22" height="22"><circle cx="7" cy="7" r="5" fill="#F1C40F"/><circle cx="15" cy="15" r="5" fill="#F1C40F"/></svg><div class="txt">LOGISTIK</div></div>
-        <div class="logo reveal" data-delay="320"><svg width="22" height="22"><rect x="2" y="8" width="18" height="6" fill="#F1C40F"/></svg><div class="txt">CONSULTING</div></div>
+        <!-- Runde 1 -->
+        <div class="logo"><svg width="18" height="18"><circle cx="9" cy="9" r="8" fill="#F1C40F"/></svg><div class="txt">Industrie</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="3" y="3" width="12" height="12" rx="3" fill="#F1C40F"/></svg><div class="txt">Handwerk</div></div>
+        <div class="logo"><svg width="18" height="18"><polygon points="9,2 16,16 2,16" fill="#F1C40F"/></svg><div class="txt">IT & Software</div></div>
+        <div class="logo"><svg width="18" height="18"><circle cx="6" cy="6" r="4" fill="#F1C40F"/><circle cx="12" cy="12" r="4" fill="#F1C40F"/></svg><div class="txt">Logistik</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="2" y="8" width="14" height="4" fill="#F1C40F"/></svg><div class="txt">Consulting</div></div>
+        <div class="logo"><svg width="18" height="18"><path d="M2 9h14" stroke="#F1C40F" stroke-width="3"/></svg><div class="txt">Energie</div></div>
+        <div class="logo"><svg width="18" height="18"><path d="M3 14 L9 4 L15 14 Z" fill="#F1C40F"/></svg><div class="txt">Maschinenbau</div></div>
+        <div class="logo"><svg width="18" height="18"><circle cx="9" cy="9" r="5" fill="#F1C40F"/></svg><div class="txt">Gesundheit</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="2" y="5" width="14" height="8" fill="#F1C40F"/></svg><div class="txt">SaaS</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="2" y="2" width="14" height="14" fill="#F1C40F"/></svg><div class="txt">E-Commerce B2B</div></div>
+        <!-- Runde 2 (Duplikate für Endlos-Scroll) -->
+        <div class="logo"><svg width="18" height="18"><circle cx="9" cy="9" r="8" fill="#F1C40F"/></svg><div class="txt">Industrie</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="3" y="3" width="12" height="12" rx="3" fill="#F1C40F"/></svg><div class="txt">Handwerk</div></div>
+        <div class="logo"><svg width="18" height="18"><polygon points="9,2 16,16 2,16" fill="#F1C40F"/></svg><div class="txt">IT & Software</div></div>
+        <div class="logo"><svg width="18" height="18"><circle cx="6" cy="6" r="4" fill="#F1C40F"/><circle cx="12" cy="12" r="4" fill="#F1C40F"/></svg><div class="txt">Logistik</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="2" y="8" width="14" height="4" fill="#F1C40F"/></svg><div class="txt">Consulting</div></div>
+        <div class="logo"><svg width="18" height="18"><path d="M2 9h14" stroke="#F1C40F" stroke-width="3"/></svg><div class="txt">Energie</div></div>
+        <div class="logo"><svg width="18" height="18"><path d="M3 14 L9 4 L15 14 Z" fill="#F1C40F"/></svg><div class="txt">Maschinenbau</div></div>
+        <div class="logo"><svg width="18" height="18"><circle cx="9" cy="9" r="5" fill="#F1C40F"/></svg><div class="txt">Gesundheit</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="2" y="5" width="14" height="8" fill="#F1C40F"/></svg><div class="txt">SaaS</div></div>
+        <div class="logo"><svg width="18" height="18"><rect x="2" y="2" width="14" height="14" fill="#F1C40F"/></svg><div class="txt">E-Commerce B2B</div></div>
       </div>
     </div>
   </section>
 
-  <!-- KPI STRIP -->
-  <section class="reveal" data-delay="0" style="padding-top:12px">
+  <!-- KPIs -->
+  <section class="reveal" data-delay="0" style="padding-top:10px">
     <div class="wrap kpis">
       <div class="box"><div class="n gold-flow">+312</div><div class="l">qualifizierte B2B-Leads / 90 Tage</div></div>
       <div class="box"><div class="n gold-flow">–38%</div><div class="l">Cost-per-Lead nach 6 Wochen</div></div>
@@ -185,10 +205,10 @@ img, .cta{user-select:none;-webkit-user-select:none}
     </div>
   </section>
 
-  <!-- VISUAL INTRO -->
+  <!-- Intro Visual -->
   <section class="wrap reveal" data-delay="0">
     <div class="split">
-      <div class="figure"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Konzentriertes Team in Workshop"></div>
+      <div class="figure"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Team & Kennzahlen"></div>
       <div class="no-copy">
         <h2 class="gold-flow">Absolute Skalierbarkeit</h2>
         <p>Wir drehen an den Hebeln, die Umsatz bewegen: Message-Market-Fit, High-Conv Landingpages, Creative-Iterationen und ein Tracking, das jeden Euro rechtfertigt.</p>
@@ -197,7 +217,7 @@ img, .cta{user-select:none;-webkit-user-select:none}
     </div>
   </section>
 
-  <!-- LEISTUNGEN (mehr Substanz) -->
+  <!-- Leistungen -->
   <section class="reveal" data-delay="0">
     <div class="wrap">
       <h2 class="gold-flow">Was wir liefern</h2>
@@ -205,52 +225,58 @@ img, .cta{user-select:none;-webkit-user-select:none}
         <article class="card no-copy">
           <h3>Neukunden-Systeme (B2B)</h3>
           <p>Entscheider erreichen, Pipeline füllen. Keine Klicks – Anfragen.</p>
-          <ul>
-            <li>ICP & Value Proposition schärfen</li>
-            <li>Funnel & Landingpages (Speed, Trust, CRO)</li>
-            <li>Google & Meta Ads inkl. Retargeting</li>
-            <li>GA4 / Tag-Manager · UTM-Standards</li>
-          </ul>
+          <ul><li>ICP & Value Proposition</li><li>Funnel & Landingpages (Speed, Trust, CRO)</li><li>Google & Meta Ads inkl. Retargeting</li><li>GA4 / Tag-Manager · UTM-Standards</li></ul>
         </article>
         <article class="card no-copy">
           <h3>Recruiting-Funnel</h3>
           <p>Qualifizierte Bewerbungen, sauber vorqualifiziert – time-to-hire runter.</p>
-          <ul>
-            <li>Karriereseite & One-Click-Formulare</li>
-            <li>Creatives & Hooks für Fachkräfte</li>
-            <li>ATS/CRM-Anbindung · Datenschutz ready</li>
-            <li>KPIs: Cost-per-Apply, Time-to-Hire</li>
-          </ul>
+          <ul><li>Karriereseite & One-Click-Formulare</li><li>Creatives & Hooks für Fachkräfte</li><li>ATS/CRM-Anbindung · Datenschutz ready</li><li>KPIs: Cost-per-Apply, Time-to-Hire</li></ul>
         </article>
         <article class="card no-copy">
           <h3>Conversion & Skalierung</h3>
           <p>Zahlen statt Bauchgefühl: testen, lernen, skalieren.</p>
-          <ul>
-            <li>Einwandbehandlung, Social Proof, UX</li>
-            <li>A/B-Tests · Heatmaps · Session-Review</li>
-            <li>Budgetsteuerung nach ROAS/LTV</li>
-          </ul>
+          <ul><li>Einwandbehandlung, Social Proof, UX</li><li>A/B-Tests · Heatmaps · Session-Review</li><li>Budgetsteuerung nach ROAS/LTV</li></ul>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- PROZESS (lebendigere Texte) -->
+  <!-- Prozess 1–6 wie auf Bildern -->
   <section class="reveal" data-delay="0">
-    <div class="wrap">
-      <h2 class="gold-flow">Unser Prozess – schnell, sauber, skalierbar</h2>
-      <div class="grid process">
-        <div class="step"><div><strong>Angebot & Positionierung</strong><br><span style="color:var(--muted)">Botschaft, die triggert. ICP, Nutzen, Einwände – scharf & klar.</span></div></div>
-        <div class="step"><div><strong>Funnel & Creatives</strong><br><span style="color:var(--muted)">High-Conv Landingpages, Trust-Assets, Visuals mit Hook & Proof.</span></div></div>
-        <div class="step"><div><strong>Launch & Tracking</strong><br><span style="color:var(--muted)">GA4/Tag-Manager, Consent, Dashboards. Kampagnen gehen live.</span></div></div>
-        <div class="step"><div><strong>Optimization & Scale</strong><br><span style="color:var(--muted)">CPL runter, Volumen rauf: A/B-Tests, Budget-Shifts, Creative-Loops.</span></div></div>
-        <div class="step"><div><strong>Handover an Vertrieb/HR</strong><br><span style="color:var(--muted)">Terminfluss & Auswahlprozess anschlussfähig – keine Lücken.</span></div></div>
-        <div class="step"><div><strong>Reporting</strong><br><span style="color:var(--muted)">KPI-Transparenz wöchentlich. Entscheidungen faktenbasiert.</span></div></div>
+    <div class="wrap process-wrap no-copy">
+      <h2 class="process-title gold-flow">So gehen wir bei dir vor:</h2>
+      <div class="steps">
+        <div class="step">
+          <h4><strong>Angebot & Positionierung</strong></h4>
+          <p>Lass dich von uns begleiten, ein unwiderstehliches Angebot zu entwickeln und Traumkunden zu definieren – echte Entscheider mit Kaufinteresse.</p>
+        </div>
+        <div class="step">
+          <h4><strong>Verkauf & Vertrieb</strong></h4>
+          <p>Mit Templates & individueller Betreuung entsteht ein magnetischer Prozess zur Kundenabwicklung, replizierbar & angenehm.</p>
+        </div>
+        <div class="step">
+          <h4><strong>Fulfillment</strong></h4>
+          <p>Deine Kunden erzielen bessere Resultate – bei gleichzeitig mehr Zeit für dich durch klare SOPs und Prozess-Qualität.</p>
+        </div>
+        <div class="step">
+          <h4><strong>Digitale Prozesse</strong></h4>
+          <p>Wir zeigen, wie du mit moderner Software Abläufe reibungsloser & weniger fehleranfällig gestaltest.</p>
+        </div>
+        <div class="step">
+          <h4><strong>Management</strong></h4>
+          <p>Strategie für Teamaufbau, Führung & KPIs – damit du dich aus dem operativen Tagesgeschäft zurückziehen kannst.</p>
+        </div>
+        <div class="step">
+          <h4><strong>Marketing</strong></h4>
+          <p>Schritt-für-Schritt-Playbooks für digitale Marketingprozesse – Anfragen am Fließband, Umsätze stetig steigern.</p>
+        </div>
       </div>
+      <!-- illustrative Grafik -->
+      <div class="process-illu"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1600&auto=format&fit=crop" alt="Flow & Prozesse"></div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS (neue Bilder/keine Dopplung) -->
+  <!-- Testimonials -->
   <section class="reveal" data-delay="0">
     <div class="wrap">
       <h2 class="gold-flow">Das sagen unsere Kunden</h2>
@@ -259,7 +285,7 @@ img, .cta{user-select:none;-webkit-user-select:none}
           <img class="bg" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1200&auto=format&fit=crop" alt="">
           <div class="tcontent">
             <p class="tquote">„Ab wann stelle ich den ersten Vertriebler ein?“</p>
-            <p class="tline">„Ab 5-stellig – Terminfluss hält, Prozesse sind sauber.“</p>
+            <p class="tline">„Ab 5-stellig – Terminfluss hält, Prozesse sauber.“</p>
             <div class="tperson"><img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=200&auto=format&fit=crop" alt=""><div><strong>Marc H.</strong><br><span style="color:#C6CED9;font-size:12px">Geschäftsführer, Industrie</span></div></div>
           </div>
         </article>
@@ -267,7 +293,7 @@ img, .cta{user-select:none;-webkit-user-select:none}
           <img class="bg" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt="">
           <div class="tcontent">
             <p class="tquote">„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</p>
-            <p class="tline">„Mit Qualifizierungsfragen & Retargeting – Time-to-Hire 30 Tage.“</p>
+            <p class="tline">„Qualifizierung & Retargeting – Time-to-Hire 30 Tage.“</p>
             <div class="tperson"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=200&auto=format&fit=crop" alt=""><div><strong>Sarah M.</strong><br><span style="color:#C6CED9;font-size:12px">HR-Leitung, Bau</span></div></div>
           </div>
         </article>
@@ -283,7 +309,7 @@ img, .cta{user-select:none;-webkit-user-select:none}
     </div>
   </section>
 
-  <!-- ANGEBOTE-TEASER -->
+  <!-- Angebote-Teaser -->
   <section class="reveal" data-delay="0">
     <div class="wrap no-copy">
       <h2 class="gold-flow">Mehr zu unseren Angeboten</h2>
@@ -310,12 +336,13 @@ img, .cta{user-select:none;-webkit-user-select:none}
     </div>
   </section>
 
-  <!-- ÜBER UNS -->
+  <!-- Über uns – große Karten -->
   <section class="reveal" data-delay="0">
     <div class="wrap no-copy">
       <h2 class="gold-flow">Mehr über ConceptPartner GmbH</h2>
       <div class="split">
-        <div class="card">
+        <div class="card big">
+          <span class="accent a1"></span><span class="accent a2"></span><span class="accent a3"></span><span class="accent a4"></span>
           <h3>Mission</h3>
           <p>Wir bauen digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
           <h3 style="margin-top:16px">Werte</h3>
@@ -325,7 +352,8 @@ img, .cta{user-select:none;-webkit-user-select:none}
             <li><b>Qualität:</b> weniger Rauschen, mehr passende Anfragen.</li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card big">
+          <span class="accent a1"></span><span class="accent a2"></span><span class="accent a3"></span><span class="accent a4"></span>
           <h3>Warum wir?</h3>
           <ul>
             <li>Full-Funnel aus einer Hand (Strategie → Funnel → Ads → CRO).</li>
@@ -340,7 +368,7 @@ img, .cta{user-select:none;-webkit-user-select:none}
   </section>
 </main>
 
-<!-- Footer (erweitert) -->
+<!-- Footer -->
 <footer class="reveal" data-delay="0">
   <div class="wrap" style="display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));text-align:left">
     <div>
@@ -373,8 +401,8 @@ img, .cta{user-select:none;-webkit-user-select:none}
 </div>
 
 <script>
-/* Scroll-Reveal (Stagger) */
-const io=new IntersectionObserver((es)=>es.forEach(e=>{
+/* Reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting) return;
   const d=Number(e.target.dataset.delay||0);
   setTimeout(()=>e.target.classList.add('show'),d);
@@ -386,6 +414,17 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 function acceptCookies(){localStorage.setItem('cp_cookies','yes');document.getElementById('cookie').style.display='none'}
 function declineCookies(){localStorage.setItem('cp_cookies','no');document.getElementById('cookie').style.display='none'}
 if(localStorage.getItem('cp_cookies')) document.getElementById('cookie').style.display='none';
+
+/* Auto-scroll Reel (auch Mobil sichtbar) */
+const track=document.getElementById('logos');
+let pos=0;function tick(){
+  pos-=0.5; // Speed
+  const w=track.scrollWidth/2; // wegen Duplikaten
+  if(Math.abs(pos)>=w) pos=0;
+  track.style.transform=`translateX(${pos}px)`;
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
 </script>
 </body>
 </html>
