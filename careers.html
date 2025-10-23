@@ -1,42 +1,57 @@
 <!doctype html>
-<html lang="de"><head>
+<html lang="de">
+<head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Karriere • ConceptPartner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="%23F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="%23000">CP</text></svg>'/>
 <style>
-:root{--bg:#0B0C10;--card:#111218;--muted:#A7B0BE;--text:#E9EDF3;--gold:#F1C40F}
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-header{position:sticky;top:0;background:rgba(11,12,16,.92);padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+:root{--bg1:#0B0C10;--bg2:#111218;--gold:#F1C40F;--text:#E9EDF3;--muted:#A7B0BE;--card:rgba(255,255,255,.03)}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:radial-gradient(circle at top, var(--bg2), var(--bg1));color:var(--text)}
+header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:rgba(11,12,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);z-index:999}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gold)}
-nav a{margin-left:18px;color:var(--text);text-decoration:none;font-weight:700} nav a:hover{color:var(--gold)}
-.wrap{max-width:1100px;margin:0 auto;padding:60px 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px}
-label{display:block;margin:10px 0 6px;color:var(--muted)} input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#0F1116;color:#fff}
-button{background:var(--gold);color:#000;padding:12px 18px;border-radius:10px;font-weight:900;border:0;cursor:pointer}
-footer{background:var(--card);border-top:1px solid rgba(255,255,255,.08);color:var(--muted);text-align:center;padding:30px 20px;margin-top:40px}
+nav a{margin-left:22px;text-decoration:none;font-weight:600;color:var(--text)} nav a:hover{color:var(--gold)}
+.wrap{max-width:1100px;margin:auto;padding:80px 20px}
+h1{font-size:44px;margin:0 0 10px;font-weight:900}
+.sub{color:var(--muted);margin:0 0 32px}
+.grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);padding:28px;border-radius:18px;border:1px solid rgba(255,255,255,.06)}
+.card h3{color:var(--gold);margin:0 0 8px}
+label{display:block;margin:10px 0 6px;color:var(--muted)}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#0F1116;color:#fff}
+button{background:var(--gold);color:#000;padding:12px 18px;border-radius:12px;font-weight:900;border:0;cursor:pointer}
+footer{text-align:center;padding:30px;background:#0A0B0E;color:var(--muted);margin-top:60px}
+.cookie-banner{position:fixed;bottom:20px;left:20px;right:20px;background:#111218;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;display:flex;justify-content:space-between;align-items:center;font-size:14px;z-index:9999}
+.cookie-banner button{background:var(--gold);border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:700;color:#000;margin-left:8px}
+.cookie-banner .btn-secondary{background:#333;color:#fff}
 </style>
-</head><body>
+</head>
+<body>
 <header>
-  <a class="brand" href="index.html" aria-label="ConceptPartner">
-    <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect x="6" y="6" width="52" height="52" rx="12" fill="#F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="#000">CP</text></svg>
-    <span style="font-weight:900">ConceptPartner</span>
+  <a href="index.html" class="brand">
+    <svg width="34" height="34" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="#F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Inter" font-size="26" font-weight="900" fill="#000">CP</text></svg>
+    <span style="font-size:22px;font-weight:900;">ConceptPartner</span>
   </a>
-  <nav><a href="index.html">Startseite</a><a href="services.html">Dienstleistungen</a><a href="careers.html">Karriere</a><a href="contact.html">Kontakt</a></nav>
+  <nav><a href="index.html">Start</a><a href="services.html">Leistungen</a><a href="careers.html">Karriere</a><a href="contact.html">Kontakt</a></nav>
 </header>
 
 <main class="wrap">
-  <h1 style="font-size:40px;margin:0 0 14px">Karriere</h1>
-  <p style="color:var(--muted);margin:0 0 24px">Wir suchen Macher mit Performance-Mindset. Bewirb dich in 60 Sekunden – ohne Anschreiben.</p>
+  <h1>Karriere</h1>
+  <p class="sub">Wir suchen Macher mit Performance-Mindset. Bewirb dich in 60 Sekunden – ohne Anschreiben.</p>
 
   <section class="grid">
-    <article class="card"><h3 style="color:var(--gold)">Performance Marketing Manager (m/w/d)</h3><ul><li>Google & Meta Ads steuern</li><li>Landingpages & CRO</li><li>Reporting (GA4)</li></ul></article>
-    <article class="card"><h3 style="color:var(--gold)">Content & Creatives (Werkstudent)</h3><ul><li>Ad-Copy & Hooks</li><li>Short-Form-Assets</li><li>Research & Benchmarks</li></ul></article>
+    <article class="card">
+      <h3>Performance Marketing Manager (m/w/d)</h3>
+      <ul><li>Google & Meta Ads steuern</li><li>Landingpages & CRO</li><li>Reporting (GA4)</li></ul>
+    </article>
+    <article class="card">
+      <h3>Content & Creatives (Werkstudent)</h3>
+      <ul><li>Ad-Copy & Hooks</li><li>Short-Form-Assets</li><li>Research & Benchmarks</li></ul>
+    </article>
   </section>
 
-  <section class="card" style="margin-top:24px">
+  <section class="card" style="margin-top:28px">
     <h3 style="margin:0 0 8px">Kurzbewerbung</h3>
     <form onsubmit="event.preventDefault();alert('Danke! Wir melden uns kurzfristig.');this.reset();">
       <label>Name</label><input required placeholder="Dein Name">
@@ -47,5 +62,19 @@ footer{background:var(--card);border-top:1px solid rgba(255,255,255,.08);color:v
   </section>
 </main>
 
-<footer>© ConceptPartner – Marktführer für digitale Neukundengewinnung</footer>
-</body></html>
+<footer>© ConceptPartner – Digitale Marktführer Systeme · <a href="imprint.html" style="color:#A7B0BE;text-decoration:none;">Impressum</a> · <a href="privacy.html" style="color:#A7B0BE;text-decoration:none;">Datenschutz</a></footer>
+
+<div id="cookie" class="cookie-banner">
+  <div>Wir nutzen Cookies für ein besseres Erlebnis.</div>
+  <div>
+    <button onclick="acceptCookies()">Annehmen</button>
+    <button class="btn-secondary" onclick="declineCookies()">Ablehnen</button>
+  </div>
+</div>
+<script>
+function acceptCookies(){localStorage.setItem('cookiesAccepted','yes');document.getElementById('cookie').style.display='none';}
+function declineCookies(){localStorage.setItem('cookiesAccepted','no');document.getElementById('cookie').style.display='none';}
+if(localStorage.getItem('cookiesAccepted')){document.getElementById('cookie').style.display='none';}
+</script>
+</body>
+</html>
