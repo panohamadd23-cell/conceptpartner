@@ -2,296 +2,331 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>ConceptPartner – B2B-Leads & Recruiting</title>
-<meta name="description" content="Planbare B2B-Anfragen & Bewerbungen ohne Streuverluste. Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking – ideal für KMU.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@800;900&display=swap" rel="stylesheet">
+<meta name="description" content="Planbare B2B-Anfragen & Bewerbungen über Google/Instagram/Facebook – mit Funnel, klarer Positionierung und sauberem Tracking. Für kleine & mittlere Unternehmen.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--ring:#e7eaef;--ink:#101319;--muted:#5b6473;--gold:#C9A227;--gold2:#b79118}
-*{box-sizing:border-box}html,body{height:100%}
-body{margin:0;background:#fff;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
-
-/* ===== Header ===== */
-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--ring)}
-.nav{max-width:1200px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:10px;font-family:Manrope;font-weight:900}
-.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
-nav a{margin-left:20px;font-weight:800}
-nav a:hover{color:var(--gold)}
-
-section{padding:80px 20px}.wrap{max-width:1200px;margin:auto}
-
-/* ===== GOLD FLOW (robust, iOS safe) ===== */
-.flow{
-  background:linear-gradient(90deg,#1a2430 0%,var(--gold) 25%,#1a2430 50%,var(--gold) 75%,#1a2430 100%);
-  background-size:300% 100%;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent!important;color:transparent;
-  animation:flow 10s linear infinite;will-change:background-position;
+:root{
+  --bg:#ffffff;
+  --ink:#0f1720;
+  --muted:#475466;
+  --gold:#C8A43A;
+  --gold-2:#B8941F;
+  --line:#E8ECF2;
+  --soft:#F7F9FC;
+  --shadow: 0 10px 30px rgba(16,24,40,.08);
 }
-@keyframes flow{0%{background-position:0 0}100%{background-position:100% 0}}
 
-/* ===== Hero ===== */
-.hero h1{font-family:Manrope;font-weight:900;letter-spacing:.2px;font-size:clamp(28px,6vw,56px);line-height:1.08;margin:0 0 14px}
-.hero .lead{max-width:760px;color:var(--muted);font-size:clamp(16px,2.6vw,20px)}
-.cta{display:inline-block;margin-top:18px;padding:16px 24px;border-radius:14px;background:var(--gold);color:#000;font-weight:900;box-shadow:0 14px 30px rgba(201,162,39,.25);user-select:none}
-.cta:hover{background:var(--gold2);transform:translateY(-1px)}
+/* RESET */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
 
-/* ===== Chips Marquee ===== */
-.marquee{overflow:hidden;margin-top:18px}
-.track{display:flex;gap:12px;white-space:nowrap;animation:marq 24s linear infinite}
-@keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.chip{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--ring);box-shadow:0 6px 16px rgba(0,0,0,.04)}
-.chip .dot{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+/* LAYOUT */
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+h1,h2,h3{font-family:Manrope,Inter,sans-serif;letter-spacing:.2px}
+h1{font-size:48px;line-height:1.08;margin:0 0 18px}
+h2{font-size:36px;margin:0 0 8px}
+h3{font-size:22px;margin:0 0 6px}
+p{line-height:1.7;color:var(--muted)}
+@media(max-width:720px){ h1{font-size:36px} h2{font-size:28px} }
 
-/* ===== KPIs ===== */
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:16px;margin-top:26px}
-.kpi{background:#fff;border:1px solid var(--ring);border-radius:14px;padding:16px;display:flex;gap:10px;align-items:center;min-height:74px;box-shadow:0 6px 16px rgba(0,0,0,.04);user-select:none}
-.kpi .num{font-family:Manrope;font-weight:900;font-size:22px;line-height:1}
-.kpi .minus{font-family:Manrope;font-weight:900;font-size:22px;color:#d04040;margin-right:6px;line-height:1}
-.kpi small{display:block;color:var(--muted);line-height:1.35}
-@media(max-width:820px){.kpis{grid-template-columns:1fr 1fr}}
+/* HEADER */
+header{
+  position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(1.2) blur(10px); border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand .dot{width:12px;height:12px;background:var(--gold);border-radius:50%}
+.links a{margin-left:22px;font-weight:800}
+.links a:hover{color:var(--gold-2)}
 
-/* ===== Titles / blocks ===== */
-h2{font-family:Manrope;font-weight:900;font-size:clamp(24px,3.8vw,36px);margin:0 0 22px;letter-spacing:.2px}
-.process{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:16px}
-.proc{padding:18px 4px 18px 0;border-bottom:1px dashed #e6e9ee;display:flex;gap:14px;align-items:flex-start}
-.proc .n{flex:0 0 34px;height:34px;border-radius:9px;background:var(--gold);color:#000;font-weight:900;display:grid;place-items:center;font-family:Manrope}
-.proc b{font-size:18px}.proc p{margin:6px 0 0;color:var(--muted)}
-@media(max-width:820px){.process{grid-template-columns:1fr}}
+/* HERO */
+.hero{padding:90px 0 40px;position:relative;overflow:hidden}
+.hero .glow{
+  position:absolute;right:-120px;top:40%;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle, rgba(200,164,58,.18), transparent 60%);
+  filter:blur(8px);pointer-events:none;animation:float 9s ease-in-out infinite alternate;
+}
+@keyframes float{from{transform:translateY(-12px)}to{transform:translateY(12px)}}
+.lead{max-width:740px;margin:0 0 20px}
+.cta{display:inline-block;padding:16px 26px;border-radius:14px;background:var(--gold);color:#111;
+     font-weight:900;box-shadow:0 14px 36px rgba(200,164,58,.25)}
+.cta:hover{background:var(--gold-2);transform:translateY(-1px)}
 
-.services{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:30px}
-.s-block h3{font-family:Manrope;font-size:28px;margin:0 0 6px}
-.s-block p{margin:0 0 8px;color:var(--muted)}.s-block ul{margin:8px 0 0 18px}.s-block li{margin:6px 0}
-@media(max-width:900px){.services{grid-template-columns:1fr}}
+/* TAGS RAIL */
+.tags{display:flex;gap:12px;overflow:auto;padding:14px 0 4px;margin:14px 0 0}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:30px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+.tag i{width:8px;height:8px;background:var(--gold);border-radius:50%}
 
-.testi{display:grid;gap:28px}
-.trow{display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center}
-.timg{width:180px;height:180px;border-radius:28px;overflow:hidden;border:1px solid var(--ring)}
-.timg img{width:100%;height:100%;object-fit:cover}
-.trow h3{font-family:Manrope;font-size:24px;margin:0 0 8px}
-.trow p{margin:0 0 6px;color:var(--muted)}
-@media(max-width:700px){.trow{grid-template-columns:1fr;gap:12px}.timg{width:120px;height:120px}}
+/* KPIs */
+.kpi-grid{display:grid;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:22px}
+.kpi{border:1px solid var(--line);background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.knum{display:flex;align-items:center;gap:8px}
+.knum .minus{font-family:Manrope;font-weight:900;font-size:22px;color:var(--ink);opacity:.7;line-height:1}
+.knum .num{font-size:32px;font-weight:900;font-family:Manrope}
+.klabel{margin-top:4px;color:var(--muted);font-size:14px}
+@media(max-width:980px){ .kpi-grid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:620px){ .kpi-grid{grid-template-columns:1fr 1fr} }
 
-footer{padding:40px 20px;border-top:1px solid var(--ring);background:#fff}
-.foot{max-width:1200px;margin:auto;display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center}
-.logoCP{display:flex;align-items:center;gap:12px;font-family:Manrope;font-weight:900}
-.logoCP svg{width:44px;height:44px}
+/* SECTIONS */
+.split{display:grid;gap:26px;grid-template-columns:1.1fr .9fr;align-items:center}
+@media(max-width:900px){.split{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow)}
+.list{margin:12px 0 0 18px}
+.list li{color:var(--muted);margin:6px 0}
 
-/* ===== Reveal in/out ===== */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}
+/* WHAT WE DELIVER – ohne harte Kästen, große Typo links */
+.wl{display:grid;gap:26px;grid-template-columns:1fr 1fr}
+.wl .item{padding:10px 0;border-bottom:1px dashed var(--line)}
+.wl .title{font-weight:900;font-size:22px;color:var(--ink);margin:0 0 8px}
+@media(max-width:900px){ .wl{grid-template-columns:1fr} }
+
+/* PROCESS – große Steps links eingerückt */
+.steps{display:grid;gap:16px}
+.step{display:flex;gap:14px;align-items:flex-start}
+.ico{flex:0 0 34px;height:34px;border-radius:10px;background:var(--gold);display:grid;place-content:center;font-weight:900}
+
+/* TESTIMONIALS – ohne Box, soft background */
+.testi{display:grid;gap:26px}
+.trow{display:grid;grid-template-columns:160px 1fr;align-items:center;gap:22px;padding:18px;border-radius:18px;background:var(--soft);border:1px solid var(--line)}
+.timg{width:140px;height:140px;border-radius:26px;overflow:hidden}
+.tcopy .quote{font-family:Manrope;font-weight:800;font-size:22px;margin:0 0 6px}
+.tcopy .sub{color:var(--muted);margin:0 0 6px}
+@media(max-width:700px){ .trow{grid-template-columns:1fr;gap:10px} .timg{width:110px;height:110px} }
+
+/* REVEAL (einblenden & wieder ausblenden) */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease;will-change:opacity,transform}
 .reveal.show{opacity:1;transform:none}
+.reveal.hide{opacity:0;transform:translateY(8px)}
 
-/* ===== Lights & bubbles ===== */
-.light{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(240px 240px at var(--mx,50%) var(--my,40%),rgba(201,162,39,.12),transparent 60%)}
-.bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.bubbles::before,.bubbles::after{content:"";position:absolute;left:10%;right:10%;bottom:-20%;height:140%;
-  background:radial-gradient(12px 12px at 20% 90%,rgba(201,162,39,.08),transparent 70%),
-             radial-gradient(10px 10px at 60% 60%,rgba(201,162,39,.05),transparent 70%),
-             radial-gradient(8px 8px at 80% 80%,rgba(201,162,39,.06),transparent 70%);animation:float 26s linear infinite}
-.bubbles::after{animation-duration:32s;opacity:.7}
-@keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-30%)}}
+/* GOLD TEXT FLOW – stabil */
+.flow{position:relative;color:transparent;-webkit-text-fill-color:transparent}
+.flow::before{
+  content:attr(data-text);
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,#1a2430 0%, var(--gold) 20%, #1a2430 40%, var(--gold) 60%, #1a2430 80%, var(--gold) 100%);
+  background-size:300% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  animation:flowSweep 12s linear infinite;
+  will-change:background-position,transform;
+  transform:translateZ(0);
+}
+@keyframes flowSweep{from{background-position:0 0}to{background-position:100% 0}}
 
-/* ===== Cookie (opacity/visibility for reliable closing) ===== */
-.cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;background:#fff;border:1px solid var(--ring);
-  border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;
-  box-shadow:0 18px 40px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(12px);
-  transition:opacity .25s ease,transform .25s ease,visibility 0s linear .25s}
-.cookie.show{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-.cookie p{margin:0;color:var(--muted)}.cookie .btns{display:flex;gap:10px}
-.cookie button{border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
-.cookie .ok{background:var(--gold);color:#000}.cookie .no{background:#eef1f6;color:#111}
-
-/* no-select on key elements */
-.cta,.chip,.kpi,.timg,h1,h2,h3{user-select:none}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){.track,.flow{animation:none}.reveal{transition:none}}
+/* COOKIE BANNER */
+.cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:2000;background:#fff;border:1px solid var(--line);
+  border-radius:14px;box-shadow:var(--shadow);padding:16px 18px;display:flex;gap:12px;justify-content:space-between;align-items:center}
+.cookie p{margin:0;color:var(--muted)}
+.cookie .actions{display:flex;gap:10px}
+.cookie button{border:0;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer}
+.cookie .ghost{background:#f1f5f9}
+.cookie .ok{background:var(--gold);color:#111}
+.cookie.hide{animation:slideOut .35s ease forwards}
+@keyframes slideOut{to{transform:translateY(12px);opacity:0;visibility:hidden}}
 </style>
 </head>
 <body>
 
-<div class="light" aria-hidden="true"></div>
-<div class="bubbles" aria-hidden="true"></div>
-
 <header>
-  <div class="nav">
+  <div class="container nav">
     <div class="brand"><span class="dot"></span> ConceptPartner</div>
-    <nav><a href="#start">Start</a><a href="#leistungen">Leistungen</a><a href="#karriere">Karriere</a><a href="#landing">Landingpage</a><a href="#kontakt">Kontakt</a></nav>
+    <nav class="links">
+      <a href="#top">Start</a>
+      <a href="#services">Leistungen</a>
+      <a href="#careers">Karriere</a>
+      <a href="#lp">Landingpage</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
   </div>
 </header>
 
-<main>
+<main id="top">
   <!-- HERO -->
-  <section id="start" class="hero wrap reveal">
-    <h1 class="flow">Mehr B2B-Anfragen & Bewerbungen<br>– ohne Streuverluste</h1>
-    <p class="lead">Wir bauen für dich ein planbares System aus Funnel + Google/Instagram/Facebook-Ads inklusive sauberem Tracking. Perfekt für kleine & mittlere Unternehmen.</p>
-    <a class="cta" href="#kontakt">Kostenloses Erstgespräch buchen</a>
+  <section class="hero">
+    <div class="container">
+      <h1 class="flow" data-text="Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste">Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste</h1>
+      <p class="lead">Wir bauen für dich ein planbares System aus Funnel + Google/Instagram/Facebook-Ads inklusive sauberem Tracking. Perfekt für kleine & mittlere Unternehmen.</p>
+      <a class="cta" href="#contact">Kostenloses Erstgespräch buchen</a>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="track">
-        <span class="chip"><span class="dot"></span> SaaS</span>
-        <span class="chip"><span class="dot"></span> E-Commerce B2B</span>
-        <span class="chip"><span class="dot"></span> Industrie</span>
-        <span class="chip"><span class="dot"></span> Maschinenbau</span>
-        <span class="chip"><span class="dot"></span> IT & Software</span>
-        <span class="chip"><span class="dot"></span> Logistik</span>
-        <span class="chip"><span class="dot"></span> Consulting</span>
-        <!-- duplicate for endless loop -->
-        <span class="chip"><span class="dot"></span> SaaS</span>
-        <span class="chip"><span class="dot"></span> E-Commerce B2B</span>
-        <span class="chip"><span class="dot"></span> Industrie</span>
-        <span class="chip"><span class="dot"></span> Maschinenbau</span>
-        <span class="chip"><span class="dot"></span> IT & Software</span>
-        <span class="chip"><span class="dot"></span> Logistik</span>
-        <span class="chip"><span class="dot"></span> Consulting</span>
+      <div class="tags">
+        <span class="tag"><i></i>SaaS</span>
+        <span class="tag"><i></i>E-Commerce B2B</span>
+        <span class="tag"><i></i>Industrie</span>
+        <span class="tag"><i></i>Maschinenbau</span>
+        <span class="tag"><i></i>IT & Software</span>
+        <span class="tag"><i></i>Logistik</span>
+        <span class="tag"><i></i>Consulting</span>
       </div>
-    </div>
 
-    <!-- KPIs (mit Gold-Flow) -->
-    <div class="kpis">
-      <div class="kpi"><span class="num flow">+312</span><small>qualifizierte Anfragen / 90 Tage</small></div>
-      <div class="kpi"><span class="minus">−</span><span class="num flow">38%</span><small>Cost-per-Lead nach 6 Wochen</small></div>
-      <div class="kpi"><span class="num flow">4,9★</span><small>Kundenzufriedenheit</small></div>
-      <div class="kpi"><span class="num flow">30 Tage</span><small>Time-to-Hire (Recruiting)</small></div>
-    </div>
-  </section>
-
-  <!-- Über Zahlen hinaus -->
-  <section class="wrap reveal">
-    <h2 class="flow">Weit über Zahlen hinaus</h2>
-    <div class="process">
-      <div class="proc"><div class="n">1</div><div><b>Angebot & Positionierung</b><p>ICP & Value-Proposition schärfen – Entscheider aktivieren.</p></div></div>
-      <div class="proc"><div class="n">2</div><div><b>Vertrieb & Terminfluss</b><p>Vorlagen + Coaching → replizierbarer, angenehmer Sales-Prozess.</p></div></div>
-      <div class="proc"><div class="n">3</div><div><b>Fulfillment</b><p>Ergebnisse rauf, Zeitaufwand runter – mit SOPs.</p></div></div>
-      <div class="proc"><div class="n">4</div><div><b>Digitale Prozesse</b><p>Moderne Tools machen Abläufe glatt & fehlerarm.</p></div></div>
-      <div class="proc"><div class="n">5</div><div><b>Management</b><p>Teamaufbau, Führung & KPIs – raus aus dem Tagesgeschäft.</p></div></div>
-      <div class="proc"><div class="n">6</div><div><b>Marketing</b><p>Playbooks → Anfragen am Fließband, Umsatz wächst.</p></div></div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="leistungen" class="wrap reveal">
-    <h2 class="flow">Was wir liefern</h2>
-    <div class="services">
-      <div class="s-block">
-        <h3>Neukunden-Systeme (B2B)</h3>
-        <p>Entscheider erreichen, Pipeline füllen – keine Klicks, <b>Anfragen</b>.</p>
-        <ul>
-          <li>ICP & Value-Proposition</li>
-          <li>Funnel & Landingpages (Speed, Trust, CRO)</li>
-          <li>Google & Meta Ads inkl. Retargeting</li>
-          <li>GA4 / Tag-Manager · UTM-Standards</li>
-        </ul>
-      </div>
-      <div class="s-block">
-        <h3>Recruiting-Funnel</h3>
-        <p>Qualifizierte Bewerbungen – sauber vorqualifiziert, Time-to-Hire runter.</p>
-        <ul>
-          <li>Karriereseite & One-Click-Formulare</li>
-          <li>Creatives & Hooks für Fachkräfte</li>
-          <li>ATS/CRM-Anbindung · Datenschutz ready</li>
-          <li>KPIs: Cost-per-Apply, Time-to-Hire</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="wrap reveal">
-    <h2 class="flow">Das sagen unsere Kunden</h2>
-    <div class="testi">
-      <div class="trow">
-        <div class="timg"><img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=800&auto=format&fit=crop" alt=""></div>
-        <div>
-          <h3>„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</h3>
-          <p>Mit Qualifizierungsfragen & Retargeting – Time-to-Hire ~30 Tage, Qualität bleibt hoch.</p>
-          <p class="muted">Sarah M. – HR-Leitung, Bau</p>
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi reveal">
+          <div class="knum"><span class="num flow" data-text="+312">+312</span></div>
+          <div class="klabel">qualifizierte Anfragen / 90 Tage</div>
+        </div>
+        <div class="kpi reveal">
+          <div class="knum">
+            <span class="minus">−</span>
+            <span class="num flow" data-text="38%">38%</span>
+          </div>
+          <div class="klabel">Cost-per-Lead nach 6 Wochen</div>
+        </div>
+        <div class="kpi reveal">
+          <div class="knum"><span class="num flow" data-text="4,9★">4,9★</span></div>
+          <div class="klabel">Kundenzufriedenheit</div>
+        </div>
+        <div class="kpi reveal">
+          <div class="knum"><span class="num flow" data-text="30">30</span> <span style="font-weight:900;margin-left:6px">Tage</span></div>
+          <div class="klabel">Time-to-Hire (Recruiting)</div>
         </div>
       </div>
-      <div class="trow">
-        <div class="timg"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt=""></div>
-        <div>
-          <h3>„Wann erhöhe ich meinen Preis?“</h3>
-          <p>Sobald Ergebnisse stabil laufen – Argumente liefert das Tracking statt Bauchgefühl.</p>
-          <p class="muted">Daniel K. – COO, IT</p>
+    </div>
+    <div class="glow" aria-hidden="true"></div>
+  </section>
+
+  <!-- „WEIT ÜBER ZAHLEN HINAUS“ -->
+  <section class="reveal">
+    <div class="container split">
+      <div>
+        <h2 class="flow" data-text="Weit über Zahlen hinaus">Weit über Zahlen hinaus</h2>
+        <p>Umsatzsteigerung ist gut – aber entscheidend ist, was es für dein Geschäft bedeutet: planbarer Terminfluss, saubere Prozesse und Entlastung im Alltag.</p>
+        <div class="steps" style="margin-top:18px">
+          <div class="step"><div class="ico">1</div><div><strong>Angebot & Positionierung</strong><br><span class="muted">ICP & Value Proposition schärfen – Entscheider aktivieren.</span></div></div>
+          <div class="step"><div class="ico">2</div><div><strong>Vertrieb & Terminfluss</strong><br><span class="muted">Vorlagen + Coaching → replizierbare, angenehme Abwicklung.</span></div></div>
+          <div class="step"><div class="ico">3</div><div><strong>Fulfillment</strong><br><span class="muted">Bessere Resultate – mit klaren SOPs & hoher Qualität.</span></div></div>
+          <div class="step"><div class="ico">4</div><div><strong>Digitale Prozesse</strong><br><span class="muted">Moderne Tools machen Abläufe glatt & fehlerarm.</span></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="flow" data-text="Was wir liefern">Was wir liefern</h3>
+        <div class="wl" id="services">
+          <div class="item">
+            <div class="title">Neukunden-Systeme (B2B)</div>
+            <ul class="list">
+              <li>ICP & Value Proposition</li>
+              <li>Funnel & Landingpages (Speed, Trust, CRO)</li>
+              <li>Google & Meta Ads inkl. Retargeting</li>
+              <li>GA4/Tag-Manager · UTM-Standards</li>
+            </ul>
+          </div>
+          <div class="item">
+            <div class="title">Recruiting-Funnel</div>
+            <ul class="list">
+              <li>Karriereseite & One-Click-Formulare</li>
+              <li>Creatives & Hooks für Fachkräfte</li>
+              <li>ATS/CRM-Anbindung · Datenschutz ready</li>
+              <li>KPIs: Cost-per-Apply, Time-to-Hire</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section id="kontakt" class="wrap reveal">
-    <h2 class="flow">Bereit loszulegen?</h2>
-    <p class="muted">Wir bauen dein System für planbares Wachstum.</p>
-    <a class="cta" href="#kontakt">Erstgespräch buchen</a>
+  <!-- TESTIMONIALS -->
+  <section class="reveal">
+    <div class="container">
+      <h2 class="flow" data-text="Das sagen unsere Kunden">Das sagen unsere Kunden</h2>
+      <div class="testi" style="margin-top:18px">
+        <div class="trow reveal">
+          <div class="timg">
+            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+          <div class="tcopy">
+            <p class="quote">„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</p>
+            <p class="sub">Mit Qualifizierungsfragen & Retargeting – Time-to-Hire ~30 Tage, Qualität bleibt hoch.</p>
+            <p class="sub"><strong>Sarah M.</strong> – HR-Leitung, Bau</p>
+          </div>
+        </div>
+        <div class="trow reveal">
+          <div class="timg">
+            <img src="https://images.unsplash.com/photo-1540903510-6f24f04e26f6?q=80&w=800&auto=format&fit=crop" alt="">
+          </div>
+          <div class="tcopy">
+            <p class="quote">„Wann erhöhe ich meinen Preis?“</p>
+            <p class="sub">Sobald Ergebnisse stabil laufen – die Argumente kommen aus dem Tracking, nicht aus dem Bauchgefühl.</p>
+            <p class="sub"><strong>Daniel K.</strong> – COO, IT</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="reveal" id="contact">
+    <div class="container split">
+      <div>
+        <h2 class="flow" data-text="Bereit für planbares Wachstum?">Bereit für planbares Wachstum?</h2>
+        <p>Wir kombinieren Positionierung, performante Funnels und bezahlte Kampagnen – alles sauber getrackt. Lass uns in 15 Minuten prüfen, ob und wie wir helfen können.</p>
+        <a class="cta" href="contact.html">Erstgespräch buchen</a>
+      </div>
+      <div class="card">
+        <h3>Mehr über ConceptPartner GmbH</h3>
+        <p><strong>Mission:</strong> Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
+        <p><strong>Warum wir?</strong> Full-Funnel aus einer Hand (Strategie → Funnel → Ads → CRO) · Playbooks für Vertrieb & Recruiting · transparente KPIs (CPL, CPA, TtH, ROAS, LTV).</p>
+      </div>
+    </div>
   </section>
 </main>
 
-<footer>
-  <div class="foot">
-    <div class="logoCP">
-      <!-- Pinky-Promise Logo -->
-      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="6" y="6" width="52" height="52" rx="14" fill="#C9A227"/>
-        <path d="M17 36c6-6 10-6 16 0 6-6 10-6 16 0" fill="none" stroke="#101319" stroke-width="4" stroke-linecap="round"/>
-        <path d="M25 40c3 0 3 5 0 5m14-5c3 0 3 5 0 5" fill="none" stroke="#101319" stroke-width="4" stroke-linecap="round"/>
-      </svg>
-      ConceptPartner
-    </div>
-    <div class="muted">© ConceptPartner · <a href="imprint.html">Impressum</a> · <a href="privacy.html">Datenschutz</a></div>
-  </div>
-</footer>
-
-<!-- Cookie -->
+<!-- COOKIE -->
 <div id="cookie" class="cookie" role="dialog" aria-live="polite" aria-label="Cookie Hinweis">
-  <p>Wir nutzen Cookies für ein besseres Erlebnis. Speicherdauer: 90 Tage.</p>
-  <div class="btns">
-    <button id="ck-no" class="no" type="button">Ablehnen</button>
-    <button id="ck-ok" class="ok" type="button">Annehmen</button>
+  <p>Wir nutzen Cookies für ein besseres Erlebnis. Speicherdauer: <strong>90 Tage</strong>.</p>
+  <div class="actions">
+    <button class="ghost" onclick="declineCookies()">Ablehnen</button>
+    <button class="ok" onclick="acceptCookies()">Annehmen</button>
   </div>
 </div>
 
 <script>
-/* mouse light follows pointer */
-const lightEl=document.querySelector('.light');
-addEventListener('pointermove',e=>{
-  lightEl.style.setProperty('--mx',(e.clientX/innerWidth*100)+'%');
-  lightEl.style.setProperty('--my',(e.clientY/innerHeight*100)+'%');
+/* ------ Gold Flow init (Textinhalt ins ::before spiegeln) ------ */
+document.querySelectorAll('.flow').forEach(el=>{
+  el.setAttribute('data-text', el.textContent.trim());
 });
 
-/* reveal in/out */
-const io=new IntersectionObserver((es)=>es.forEach(e=>{
-  if(e.isIntersecting) e.target.classList.add('show'); else e.target.classList.remove('show');
-}),{threshold:.12});
+/* ------ Reveal (ein/aus je nach Sichtbarkeit) ------ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('show'); e.target.classList.remove('hide'); }
+    else { e.target.classList.add('hide'); e.target.classList.remove('show'); }
+  });
+},{threshold:.18});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* COOKIE – robust with opacity/visibility and 90-day TTL */
-const KEY='cp_cookie_until_v2';
-const banner=document.getElementById('cookie');
-function ttl(days){return Date.now()+days*24*60*60*1000}
-function closeCookie(){banner.classList.remove('show')}
-function accept(){localStorage.setItem(KEY,ttl(90));closeCookie()}
-function decline(){localStorage.setItem(KEY,ttl(90));closeCookie()}
-document.getElementById('ck-ok').addEventListener('click',accept);
-document.getElementById('ck-no').addEventListener('click',decline);
-(function initCookie(){
-  const until=Number(localStorage.getItem(KEY)||0);
-  if(!until || Date.now()>until){banner.classList.add('show')}
+/* ------ Cookie Banner 90 Tage ------ */
+const CK_KEY = 'cp_cookie_choice_until';
+function hideCookie(){ const c=document.getElementById('cookie'); if(!c) return; c.classList.add('hide'); setTimeout(()=>c.style.display='none', 380); }
+function acceptCookies(){
+  const until = Date.now()+90*24*60*60*1000;
+  localStorage.setItem(CK_KEY, String(until));
+  hideCookie();
+}
+function declineCookies(){
+  const until = Date.now()+90*24*60*60*1000;
+  localStorage.setItem(CK_KEY, String(until));
+  hideCookie();
+}
+(function(){
+  const until = Number(localStorage.getItem(CK_KEY)||0);
+  if(until && Date.now()<until){ hideCookie(); }
 })();
 
-/* Stop zoom (wheel + keys) */
-addEventListener('wheel',e=>{ if(e.ctrlKey) e.preventDefault() },{passive:false});
-addEventListener('keydown',e=>{
-  if((e.ctrlKey||e.metaKey)&&['=','-','+','_','0'].includes(e.key)) e.preventDefault()
+/* ------ Safeguard: fix iOS font flicker on gradient text ------ */
+window.addEventListener('load', ()=> {
+  document.querySelectorAll('.flow').forEach(el=>{
+    const t = el.getAttribute('data-text') || el.textContent.trim();
+    el.setAttribute('data-text', t); // re-apply to ensure WebKit paints once
+  });
 });
-
-/* guard for gradient text painting on iOS */
-document.querySelectorAll('.flow').forEach(el=>el.style.webkitTextFillColor='transparent');
 </script>
 </body>
 </html>
