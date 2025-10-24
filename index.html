@@ -17,7 +17,7 @@ body{margin:0;background:radial-gradient(1200px 420px at 50% -80px,#151724 0%,#0
 a{color:inherit;text-decoration:none}
 img,svg{max-width:100%;height:auto;display:block;-webkit-user-drag:none;user-drag:none}
 
-/* Gold text flow – glitchfrei */
+/* Gold text flow */
 .gold-flow{display:inline-block;padding-bottom:4px;background:linear-gradient(90deg,#fff 0%,var(--gold) 25%,#fff 50%,var(--gold) 75%,#fff 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:textflow 12s linear infinite alternate}
 @keyframes textflow{from{background-position:0% 0}to{background-position:100% 0}}
 
@@ -42,7 +42,7 @@ section{padding:90px 20px}
 .wrap{max-width:1200px;margin:auto}
 h1,h2,h3{font-family:Manrope,Inter,sans-serif;letter-spacing:.2px}
 h1{font-size:50px;line-height:1.08;margin:0 0 16px;font-weight:800}
-h2{font-size:40px;line-height:1.12;margin:0 0 18px;font-weight:800;text-align:center;text-shadow:0 8px 28px rgba(241,196,15,.08)}
+h2{font-size:40px;line-height:1.12;margin:0 0 18px;font-weight:800;text-align:center;text-shadow:0 8px 28px rgba(241,196,15,.08);padding-bottom:6px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h3{font-size:22px;margin:0 0 8px;color:var(--gold)}
 p{line-height:1.7}
 
@@ -71,7 +71,7 @@ p{line-height:1.7}
 .point strong{color:#fff;font-size:20px}
 .point p{margin:8px 0 0;color:var(--muted);font-size:19px}
 
-/* Features – GROSS */
+/* Features – groß */
 .features{max-width:1100px;margin:0 auto;display:grid;gap:54px}
 .feature{display:grid;grid-template-columns:1fr;gap:12px}
 .feature h3{font-size:36px;line-height:1.14;margin:0;color:var(--gold)}
@@ -80,11 +80,12 @@ p{line-height:1.7}
 .feature li{position:relative;padding-left:32px;margin:14px 0;font-size:19px;line-height:1.7}
 .feature li::before{content:"";position:absolute;left:0;top:.55em;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0%,#fff 35%,rgba(255,255,255,0) 70%);box-shadow:0 0 16px rgba(241,196,15,.35)}
 
-/* KPI – Stil B (volle Breite, nacheinander) */
+/* KPI – Stil B */
 .kpi-stack{max-width:1100px;margin:0 auto;display:grid;gap:16px}
 .kpi{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 22px}
 .kpi .num{font-family:Manrope;font-weight:900;font-size:40px;line-height:1;color:var(--gold)}
-.kpi .label{font-size:20px;color:#E9EEF6}
+.kpi .label{font-size:20px;color:#E9EEF6;letter-spacing:.2px}
+.kpi .num,.kpi .label{user-select:none;-webkit-user-select:none}
 
 /* Prozess groß */
 .proc{max-width:1100px;margin:0 auto;display:grid;gap:30px}
@@ -102,7 +103,7 @@ p{line-height:1.7}
 .a{margin:0 0 10px;color:#d5dbe6;font-size:19px}
 .tmeta{font-size:13px;color:#aeb7c4}
 
-/* Reveal (rein & wieder raus) */
+/* Reveal (rein & raus) */
 .reveal,.reveal-left{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .reveal.show{opacity:1;transform:none}
 .reveal-left{transform:translateX(-28px)}
@@ -128,6 +129,7 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
   .proc-item h4{font-size:26px}
   .trow{grid-template-columns:1fr;gap:12px}
   .fgrid{grid-template-columns:1fr 1fr}
+  #track{will-change:transform}
 }
 </style>
 </head>
@@ -183,13 +185,25 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
     </div>
   </section>
 
-  <!-- KPI – Stil B -->
+  <!-- KPI – Stil B (mit Count-Up) -->
   <section class="reveal">
     <div class="wrap kpi-stack no-copy">
-      <div class="kpi reveal-left" data-delay="0"><div class="num gold-flow">+312</div><div class="label">qualifizierte Anfragen / 90 Tage</div></div>
-      <div class="kpi reveal-left" data-delay="90"><div class="num gold-flow">–38%</div><div class="label">Cost-per-Lead nach 6 Wochen</div></div>
-      <div class="kpi reveal-left" data-delay="180"><div class="num gold-flow">4.9★</div><div class="label">Kundenzufriedenheit</div></div>
-      <div class="kpi reveal-left" data-delay="270"><div class="num gold-flow">30 Tage</div><div class="label">Time-to-Hire (Recruiting)</div></div>
+      <div class="kpi reveal-left" data-delay="0">
+        <div class="num gold-flow kpi-num" data-target="312" data-duration="1400" data-prefix="+"></div>
+        <div class="label">qualifizierte Anfragen / 90 Tage</div>
+      </div>
+      <div class="kpi reveal-left" data-delay="90">
+        <div class="num gold-flow kpi-num" data-target="-38" data-duration="1400" data-suffix="%"></div>
+        <div class="label">Cost-per-Lead nach 6 Wochen</div>
+      </div>
+      <div class="kpi reveal-left" data-delay="180">
+        <div class="num gold-flow kpi-num" data-target="4.9" data-duration="1400" data-decimals="1" data-suffix="★"></div>
+        <div class="label">Kundenzufriedenheit</div>
+      </div>
+      <div class="kpi reveal-left" data-delay="270">
+        <div class="num gold-flow kpi-num" data-target="30" data-duration="1400" data-suffix=" Tage"></div>
+        <div class="label">Time-to-Hire (Recruiting)</div>
+      </div>
     </div>
   </section>
 
@@ -206,7 +220,7 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
     </div>
   </section>
 
-  <!-- Leistungen / Was wir liefern – GROSS -->
+  <!-- Leistungen -->
   <section class="reveal" id="leistungen">
     <div class="wrap">
       <h2 class="gold-flow">Was wir liefern</h2>
@@ -346,11 +360,11 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
 </footer>
 
 <!-- Cookie -->
-<div id="cookie" class="cookie">
+<div id="cookie" class="cookie" style="position:fixed;left:20px;right:20px;bottom:20px;z-index:2000;background:#111218;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px">
   <div>Wir nutzen Cookies für ein besseres Erlebnis.</div>
   <div>
-    <button onclick="acceptCookies()">Annehmen</button>
-    <button class="btn-secondary" onclick="declineCookies()">Ablehnen</button>
+    <button onclick="acceptCookies()" style="background:#F1C40F;color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;margin-left:8px">Annehmen</button>
+    <button class="btn-secondary" onclick="declineCookies()" style="background:#333;color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;margin-left:8px">Ablehnen</button>
   </div>
 </div>
 
@@ -370,7 +384,7 @@ function acceptCookies(){localStorage.setItem('cp_cookies','yes');document.getEl
 function declineCookies(){localStorage.setItem('cp_cookies','no');document.getElementById('cookie').style.display='none'}
 if(localStorage.getItem('cp_cookies')) document.getElementById('cookie').style.display='none';
 
-/* Branchen-Reel */
+/* Branchen-Reel (duplizieren + endlos laufen) */
 const track=document.getElementById('track');
 const tpl=document.getElementById('reel').content;
 track.append(tpl.cloneNode(true), tpl.cloneNode(true));
@@ -384,6 +398,43 @@ addEventListener('touchmove',e=>{const t=e.touches[0];if(!t)return;setGlow(t.cli
 /* Bubbles */
 const layer=document.getElementById('bubbles');
 (function bubbles(n=26){for(let i=0;i<n;i++){const b=document.createElement('div');b.className='bubble';const size=6+Math.random()*10,x=Math.random()*100,dur=12+Math.random()*16,delay=(-Math.random()*dur).toFixed(2)+'s';b.style.setProperty('--s',size+'px');b.style.setProperty('--x',x+'vw');b.style.setProperty('--dur',dur+'s');b.style.setProperty('--delay',delay);layer.appendChild(b)}})();
+
+/* ================= KPI Count-Up ================= */
+function animateNumber(el){
+  const target = parseFloat(el.dataset.target || "0");
+  const dur = parseInt(el.dataset.duration || "1200",10);
+  const decimals = parseInt(el.dataset.decimals || "0",10);
+  const prefix = el.dataset.prefix || "";
+  const suffix = el.dataset.suffix || "";
+  const start = 0;
+  const startTime = performance.now();
+
+  function frame(now){
+    const t = Math.min(1,(now - startTime)/dur);
+    const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+    let val = start + (target - start) * eased;
+    if (Math.abs(val) < 0.00001) val = 0; // keine -0
+    const factor = Math.pow(10, decimals);
+    val = Math.round(val*factor)/factor;
+    let txt = val.toLocaleString('de-DE', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
+    el.textContent = prefix + txt + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+// nur einmal starten, wenn sichtbar
+const kpiIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    animateNumber(e.target);
+    kpiIO.unobserve(e.target);
+  });
+},{threshold:.35});
+document.querySelectorAll('.kpi-num').forEach(el=>{
+  el.textContent = (el.dataset.prefix||"") + (el.dataset.suffix||""); // Start leer
+  kpiIO.observe(el);
+});
 </script>
 </body>
 </html>
