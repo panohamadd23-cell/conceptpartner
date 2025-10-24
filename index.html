@@ -5,41 +5,26 @@
 <title>ConceptPartner – B2B-Leads & Recruiting, planbar & messbar</title>
 <meta name="description" content="Digitale Vermarktung für B2B: planbare Neukunden & qualifizierte Bewerbungen über Google, Instagram & Facebook. Funnels, Ads, Tracking – sauber skaliert.">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
 
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="12" fill="%23F1C40F"/><text x="32" y="41" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="900" fill="%23000">CP</text></svg>'/>
 
 <style>
-:root{
-  --bg1:#0B0C10; --bg2:#111218;
-  --text:#F3F6FA; --muted:#C2CBD7;
-  --gold:#F1C40F; --gold2:#D4AC0D;
-  --card:rgba(255,255,255,.06);
-}
-/* Base */
+:root{--bg1:#0B0C10;--bg2:#111218;--text:#F3F6FA;--muted:#C2CBD7;--gold:#F1C40F;--gold2:#D4AC0D;--card:rgba(255,255,255,.06)}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(1200px 420px at 50% -80px,#151724 0%,#0B0C10 55%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
 img,svg{max-width:100%;height:auto;display:block;-webkit-user-drag:none;user-drag:none}
 
-/* Gold-Flow (fix: keine Unterlängen abgeschnitten) */
-.gold-flow{
-  display:inline-block; padding-bottom:4px;
-  background:linear-gradient(90deg,#fff 0%,var(--gold) 25%,#fff 50%,var(--gold) 75%,#fff 100%);
-  background-size:260% 100%;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
-  text-rendering:optimizeLegibility;
-  animation:textflow 12s linear infinite alternate;
-}
+/* Gold text flow – glitchfrei */
+.gold-flow{display:inline-block;padding-bottom:4px;background:linear-gradient(90deg,#fff 0%,var(--gold) 25%,#fff 50%,var(--gold) 75%,#fff 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:textflow 12s linear infinite alternate}
 @keyframes textflow{from{background-position:0% 0}to{background-position:100% 0}}
 
-/* Ambient Layers */
+/* Ambient */
 .light-sweep{position:fixed;inset:-40% -20% -40% -20%;pointer-events:none;z-index:1;opacity:.55;mix-blend-mode:screen;animation:sweep 10s linear infinite alternate;background:radial-gradient(320px 120px at 55% 0,rgba(255,255,255,.08),transparent 65%),radial-gradient(220px 120px at 60% 22%,rgba(241,196,15,.10),transparent 70%),radial-gradient(320px 140px at 40% 78%,rgba(255,255,255,.07),transparent 65%)}
 @keyframes sweep{from{transform:translateY(-18%)}to{transform:translateY(18%)}}
-.cursor-light{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(260px 260px at var(--x,50%) var(--y,50%), rgba(241,196,15,.09), rgba(255,255,255,0) 60%);mix-blend-mode:screen;opacity:.7;transition:background-position .1s linear}
+.cursor-light{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(260px 260px at var(--x,50%) var(--y,50%), rgba(241,196,15,.09), rgba(255,255,255,0) 60%);mix-blend-mode:screen;opacity:.7}
 #bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .bubble{position:absolute;left:var(--x);top:100%;width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle, rgba(241,196,15,.14), rgba(241,196,15,0) 65%);filter:blur(.4px);opacity:.12;animation:rise var(--dur) linear var(--delay) infinite}
 @keyframes rise {to{transform:translateY(-120vh);opacity:0}}
@@ -53,7 +38,6 @@ nav a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
 nav a:hover::after{width:100%}
 
 /* Layout */
-main{position:relative;z-index:2}
 section{padding:90px 20px}
 .wrap{max-width:1200px;margin:auto}
 h1,h2,h3{font-family:Manrope,Inter,sans-serif;letter-spacing:.2px}
@@ -63,7 +47,7 @@ h3{font-size:22px;margin:0 0 8px;color:var(--gold)}
 p{line-height:1.7}
 
 /* Hero */
-.hero{position:relative;overflow:hidden;text-align:center;padding:140px 20px 70px}
+.hero{position:relative;text-align:center;padding:140px 20px 70px;overflow:hidden}
 .hero::before{content:"";position:absolute;left:-20%;right:-20%;top:-20%;height:80%;background:radial-gradient(900px 320px at 50% -10%,rgba(241,196,15,.18),transparent 60%);animation:glow 6s ease-in-out infinite;pointer-events:none;z-index:-1}
 @keyframes glow{0%,100%{opacity:.85}50%{opacity:1}}
 .hero .lead{max-width:880px;margin:0 auto 26px;color:var(--muted);font-size:19px}
@@ -78,89 +62,83 @@ p{line-height:1.7}
 .logo{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
 .logo .txt{font-weight:800;letter-spacing:.2px;color:#EDEFF5;font-size:14px}
 
-/* Info-Block: Überschrift links, Punkte rechts */
+/* Info-Block */
 .info-block{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1.6fr;gap:28px;align-items:start}
 .info-block h2{text-align:left;margin-top:8px}
 .points{display:grid;gap:16px}
-.point{position:relative;padding:18px 20px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 26px rgba(0,0,0,.25)}
-.point::before{content:"";position:absolute;left:-8px;top:18px;width:3px;height:60%;background:linear-gradient(var(--gold), transparent);border-radius:2px}
-.point strong{color:#fff}
-.point p{margin:6px 0 0;color:var(--muted);font-size:18px}
+.point{position:relative;padding:22px 22px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 26px rgba(0,0,0,.25)}
+.point::before{content:"";position:absolute;left:-8px;top:22px;width:3px;height:60%;background:linear-gradient(var(--gold), transparent);border-radius:2px}
+.point strong{color:#fff;font-size:20px}
+.point p{margin:8px 0 0;color:var(--muted);font-size:19px}
 
-/* Features (statt Karten) */
-.features{max-width:1100px;margin:0 auto;display:grid;gap:42px}
+/* Features – GROSS */
+.features{max-width:1100px;margin:0 auto;display:grid;gap:54px}
 .feature{display:grid;grid-template-columns:1fr;gap:12px}
-.feature h3{font-family:Manrope,Inter,sans-serif;font-size:32px;line-height:1.15;margin:0;color:var(--gold);letter-spacing:.2px}
-.feature p{margin:2px 0 8px;font-size:18px;color:var(--muted)}
+.feature h3{font-size:36px;line-height:1.14;margin:0;color:var(--gold)}
+.feature p{margin:4px 0 6px;font-size:20px;color:#dfe5ef}
 .feature ul{margin:0;padding:0;list-style:none}
-.feature li{position:relative;padding-left:28px;margin:12px 0;font-size:18px;line-height:1.6}
-.feature li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0%,#fff 35%,rgba(255,255,255,0) 70%);box-shadow:0 0 16px rgba(241,196,15,.35)}
+.feature li{position:relative;padding-left:32px;margin:14px 0;font-size:19px;line-height:1.7}
+.feature li::before{content:"";position:absolute;left:0;top:.55em;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0%,#fff 35%,rgba(255,255,255,0) 70%);box-shadow:0 0 16px rgba(241,196,15,.35)}
 
-/* Prozess – große Steps */
+/* KPI – Stil B (volle Breite, nacheinander) */
+.kpi-stack{max-width:1100px;margin:0 auto;display:grid;gap:16px}
+.kpi{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px 22px}
+.kpi .num{font-family:Manrope;font-weight:900;font-size:40px;line-height:1;color:var(--gold)}
+.kpi .label{font-size:20px;color:#E9EEF6}
+
+/* Prozess groß */
 .proc{max-width:1100px;margin:0 auto;display:grid;gap:30px}
-.proc-item{display:grid;gap:10px}
-.proc-item h4{font-size:28px;margin:0;color:#fff}
-.proc-item h4 .nr{display:inline-grid;place-content:center;width:34px;height:34px;border-radius:9px;background:var(--gold);color:#000;font-weight:900;margin-right:10px}
-.proc-item p{color:var(--muted);font-size:18px;margin:0}
+.proc-item h4{font-size:30px;margin:0;color:#fff}
+.proc-item h4 .nr{display:inline-grid;place-content:center;width:36px;height:36px;border-radius:9px;background:var(--gold);color:#000;font-weight:900;margin-right:10px}
+.proc-item p{color:#cfd7e3;font-size:19px;margin:6px 0 0}
 
-/* Testimonials – Blob-Schnitt */
+/* Testimonials – Frage/Antwort groß */
 .test-wrap{max-width:1100px;margin:0 auto;display:grid;gap:28px}
-.trow{display:grid;grid-template-columns:320px 1fr;gap:22px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:18px}
-.cut{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;filter:drop-shadow(0 14px 26px rgba(0,0,0,.35));
-  clip-path:path("M26,10 C52,-2 88,8 98,40 106,64 96,94 70,102 46,110 14,96 9,68 4,42 12,18 26,10 Z");
-}
+.trow{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px}
+.cut{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;filter:drop-shadow(0 14px 26px rgba(0,0,0,.35));clip-path:path("M26,10 C52,-2 88,8 98,40 106,64 96,94 70,102 46,110 14,96 9,68 4,42 12,18 26,10 Z")}
 .cut img{width:100%;height:100%;object-fit:cover;transform:scale(1.04)}
 @supports not (clip-path: path("M0,0 L1,1")) {.cut{clip-path: ellipse(70% 60% at 50% 45%)}}
-.tcopy h5{font-size:22px;margin:0 0 6px}
-.tcopy p{margin:0 0 8px;color:#d5dbe6}
+.q{font-size:28px;font-weight:800;margin:0 0 8px;color:#fff}
+.a{margin:0 0 10px;color:#d5dbe6;font-size:19px}
 .tmeta{font-size:13px;color:#aeb7c4}
 
-/* Reveal (rein UND wieder raus) */
-.reveal,.reveal-left{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s;will-change:transform,opacity}
+/* Reveal (rein & wieder raus) */
+.reveal,.reveal-left{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
 .reveal.show{opacity:1;transform:none}
 .reveal-left{transform:translateX(-28px)}
 .reveal-left.show{opacity:1;transform:none}
-
-/* Cookie */
-.cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:2000;background:#111218;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px}
-.cookie button{background:var(--gold);color:#000;border:0;border-radius:8px;padding:10px 16px;font-weight:800;cursor:pointer;margin-left:8px}
-.cookie .btn-secondary{background:#333;color:#fff}
 
 /* Footer */
 footer{padding:46px 20px 30px;border-top:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01))}
 .fgrid{max-width:1200px;margin:0 auto;display:grid;gap:28px;grid-template-columns:1.4fr repeat(3,1fr);align-items:start}
 .flogo{display:flex;align-items:center;gap:14px}
-.flogo .tt{font-family:Manrope;font-weight:900;font-size:22px;letter-spacing:.3px}
+.flogo .tt{font-family:Manrope;font-weight:900;font-size:22px}
 footer a{color:#A7B0BE;display:block;margin:6px 0}
 .copy{margin-top:14px;text-align:center;color:var(--muted)}
 
-/* Non-select für bestimmte Inhalte */
 .no-copy h1,.no-copy h2,.no-copy h3,.no-copy p,.no-copy li{user-select:none;-webkit-user-select:none}
 
-/* Responsive */
 @media(max-width:900px){h1{font-size:42px}}
 @media(max-width:760px){
   h1{font-size:36px} h2{font-size:34px}
   .info-block{grid-template-columns:1fr}
   .info-block h2{text-align:center}
-  .feature h3{font-size:28px}
-  .feature li,.feature p{font-size:17px}
-  .proc-item h4{font-size:24px}
+  .feature h3{font-size:30px}
+  .feature li,.feature p{font-size:18px}
+  .proc-item h4{font-size:26px}
   .trow{grid-template-columns:1fr;gap:12px}
   .fgrid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
-
-<!-- Ambient -->
 <div class="light-sweep" aria-hidden="true"></div>
 <div class="cursor-light" aria-hidden="true"></div>
 <div id="bubbles" aria-hidden="true"></div>
 
 <header class="reveal">
   <a href="index.html" class="brand">
-    <!-- Neues Pinky-Promise Logo (clean) -->
+    <!-- Pinky-Promise Logo -->
     <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
       <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#F1C40F"/><stop offset="1" stop-color="#fff"/></linearGradient></defs>
       <rect x="6" y="6" width="52" height="52" rx="12" fill="url(#g1)" opacity=".22"/>
@@ -179,16 +157,16 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
 
 <main>
   <!-- HERO -->
-  <section class="hero reveal no-copy" data-delay="0">
+  <section class="hero reveal no-copy">
     <h1 class="gold-flow">Neukunden & qualifizierte Mitarbeiter gewinnen – planbar & messbar</h1>
-    <p class="lead">Wir bauen Systeme für <b>B2B-Leads</b> & <b>Recruiting</b> über <b>Google</b>, <b>Instagram</b> & <b>Facebook</b>. Klare Positionierung, performante Funnel, sauberes Tracking – alles skalierbar.</p>
-    <a href="contact.html" class="cta">Kostenloses Erstgespräch buchen</a>
+    <p class="lead">B2B-Vermarktung: Systeme für <b>Leads</b> & <b>Bewerbungen</b> über <b>Google</b>, <b>Instagram</b> & <b>Facebook</b>. Klare Positionierung, performante Funnel, sauberes Tracking – alles skalierbar.</p>
+    <a class="cta" href="contact.html">Kostenloses Erstgespräch buchen</a>
   </section>
 
-  <!-- BRANCHEN -->
-  <section class="reveal logo-reel" data-delay="0">
+  <!-- Branchen -->
+  <section class="reveal logo-reel" id="logos">
     <div class="wrap reel-mask">
-      <div id="logos" class="logo-track">
+      <div id="track" class="logo-track">
         <template id="reel">
           <div class="logo"><svg width="18" height="18"><circle cx="9" cy="9" r="8" fill="#F1C40F"/></svg><div class="txt">Industrie</div></div>
           <div class="logo"><svg width="18" height="18"><rect x="3" y="3" width="12" height="12" rx="3" fill="#F1C40F"/></svg><div class="txt">Handwerk</div></div>
@@ -205,31 +183,31 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
     </div>
   </section>
 
-  <!-- KPIs -->
-  <section class="reveal" data-delay="0" style="padding-top:10px">
-    <div class="wrap kpis">
-      <div class="box"><div class="n gold-flow">+312</div><div class="l">qualifizierte Anfragen / 90 Tage</div></div>
-      <div class="box"><div class="n gold-flow">–38%</div><div class="l">Cost-per-Lead nach 6 Wochen</div></div>
-      <div class="box"><div class="n gold-flow">4.9★</div><div class="l">Kundenzufriedenheit</div></div>
-      <div class="box"><div class="n gold-flow">30 Tage</div><div class="l">Time-to-Hire (Recruiting)</div></div>
+  <!-- KPI – Stil B -->
+  <section class="reveal">
+    <div class="wrap kpi-stack no-copy">
+      <div class="kpi reveal-left" data-delay="0"><div class="num gold-flow">+312</div><div class="label">qualifizierte Anfragen / 90 Tage</div></div>
+      <div class="kpi reveal-left" data-delay="90"><div class="num gold-flow">–38%</div><div class="label">Cost-per-Lead nach 6 Wochen</div></div>
+      <div class="kpi reveal-left" data-delay="180"><div class="num gold-flow">4.9★</div><div class="label">Kundenzufriedenheit</div></div>
+      <div class="kpi reveal-left" data-delay="270"><div class="num gold-flow">30 Tage</div><div class="label">Time-to-Hire (Recruiting)</div></div>
     </div>
   </section>
 
-  <!-- „Über Zahlen hinaus“ – wie besprochen -->
-  <section class="reveal" data-delay="0">
+  <!-- Über Zahlen hinaus -->
+  <section class="reveal">
     <div class="wrap info-block">
       <h2 class="gold-flow">Weit über Zahlen hinaus</h2>
       <div class="points">
         <div class="point reveal-left" data-delay="0"><strong>Angebot & Positionierung</strong><p>ICP & Value-Proposition schärfen – Entscheider aktivieren.</p></div>
-        <div class="point reveal-left" data-delay="80"><strong>Vertrieb & Terminfluss</strong><p>Vorlagen + Coaching → replizierbarer Sales-Prozess.</p></div>
-        <div class="point reveal-left" data-delay="160"><strong>Fulfillment</strong><p>Kundenergebnisse rauf, Zeitaufwand runter – mit SOPs.</p></div>
-        <div class="point reveal-left" data-delay="240"><strong>Digitale Prozesse</strong><p>Moderne Tools machen Abläufe glatt & fehlerarm.</p></div>
+        <div class="point reveal-left" data-delay="90"><strong>Vertrieb & Terminfluss</strong><p>Vorlagen + Coaching → replizierbarer Sales-Prozess.</p></div>
+        <div class="point reveal-left" data-delay="180"><strong>Fulfillment</strong><p>Ergebnisse rauf, Zeitaufwand runter – mit SOPs.</p></div>
+        <div class="point reveal-left" data-delay="270"><strong>Digitale Prozesse</strong><p>Moderne Tools machen Abläufe glatt & fehlerarm.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- LEISTUNGEN -->
-  <section class="reveal" data-delay="0" id="leistungen">
+  <!-- Leistungen / Was wir liefern – GROSS -->
+  <section class="reveal" id="leistungen">
     <div class="wrap">
       <h2 class="gold-flow">Was wir liefern</h2>
       <div class="features">
@@ -237,15 +215,15 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
           <h3>Neukunden-Systeme (B2B)</h3>
           <p>Entscheider erreichen, Pipeline füllen – keine Klicks, Anfragen.</p>
           <ul class="no-copy">
-            <li>ICP & Positionierung: Klarheit in Botschaft & Angebot</li>
+            <li>ICP & Positionierung: klare Botschaft & Angebot</li>
             <li>Funnel & Landingpages (Speed, Trust, CRO)</li>
             <li>Google & Meta Ads inkl. Retargeting</li>
             <li>GA4 / Tag-Manager · UTM-Standards</li>
           </ul>
         </article>
-        <article class="feature reveal-left" data-delay="120">
+        <article class="feature reveal-left" data-delay="140">
           <h3>Recruiting-Funnel</h3>
-          <p>Qualifizierte Bewerbungen, sauber vorqualifiziert – Time-to-Hire runter.</p>
+          <p>Qualifizierte Bewerbungen – sauber vorqualifiziert, Time-to-Hire runter.</p>
           <ul class="no-copy">
             <li>Karriereseite & One-Click-Formulare</li>
             <li>Creatives & Hooks für Fachkräfte</li>
@@ -253,7 +231,7 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
             <li>KPIs: Cost-per-Apply, Time-to-Hire</li>
           </ul>
         </article>
-        <article class="feature reveal-left" data-delay="240">
+        <article class="feature reveal-left" data-delay="280">
           <h3>Conversion & Skalierung</h3>
           <p>Zahlen statt Bauchgefühl: testen, lernen, skalieren.</p>
           <ul class="no-copy">
@@ -266,47 +244,47 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
     </div>
   </section>
 
-  <!-- PROZESS -->
-  <section class="reveal" data-delay="0">
+  <!-- Prozess -->
+  <section class="reveal">
     <div class="wrap">
       <h2 class="gold-flow">So gehen wir bei dir vor</h2>
       <div class="proc">
         <div class="proc-item reveal-left" data-delay="0"><h4><span class="nr">1</span>Angebot & Positionierung</h4><p>Unwiderstehliches Angebot + Traumkundenprofil – echte Entscheider mit Kaufinteresse.</p></div>
-        <div class="proc-item reveal-left" data-delay="80"><h4><span class="nr">2</span>Verkauf & Vertrieb</h4><p>Vorlagen + individuelle Betreuung → magnetischer Prozess zur Kundenabwicklung.</p></div>
-        <div class="proc-item reveal-left" data-delay="160"><h4><span class="nr">3</span>Fulfillment</h4><p>Bessere Resultate für Kunden – mehr Zeit durch klare SOPs und Prozess-Qualität.</p></div>
-        <div class="proc-item reveal-left" data-delay="240"><h4><span class="nr">4</span>Digitale Prozesse</h4><p>Moderne Software macht Abläufe reibungslos & weniger fehleranfällig.</p></div>
-        <div class="proc-item reveal-left" data-delay="320"><h4><span class="nr">5</span>Management</h4><p>Teamaufbau, Führung & KPIs – raus aus dem Tagesgeschäft.</p></div>
-        <div class="proc-item reveal-left" data-delay="400"><h4><span class="nr">6</span>Marketing</h4><p>Playbooks für skalierbare Marketingprozesse – Anfragen am Fließband.</p></div>
+        <div class="proc-item reveal-left" data-delay="90"><h4><span class="nr">2</span>Verkauf & Vertrieb</h4><p>Vorlagen + individuelle Betreuung → magnetischer Prozess zur Kundenabwicklung.</p></div>
+        <div class="proc-item reveal-left" data-delay="180"><h4><span class="nr">3</span>Fulfillment</h4><p>Bessere Resultate – mehr Zeit durch klare SOPs & Prozess-Qualität.</p></div>
+        <div class="proc-item reveal-left" data-delay="270"><h4><span class="nr">4</span>Digitale Prozesse</h4><p>Moderne Software macht Abläufe reibungslos & weniger fehleranfällig.</p></div>
+        <div class="proc-item reveal-left" data-delay="360"><h4><span class="nr">5</span>Management</h4><p>Teamaufbau, Führung & KPIs – raus aus dem Tagesgeschäft.</p></div>
+        <div class="proc-item reveal-left" data-delay="450"><h4><span class="nr">6</span>Marketing</h4><p>Playbooks für skalierbare Marketingprozesse – Anfragen am Fließband.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="reveal" data-delay="0">
+  <!-- Testimonials -->
+  <section class="reveal">
     <div class="wrap">
       <h2 class="gold-flow">Das sagen unsere Kunden</h2>
       <div class="test-wrap">
         <div class="trow reveal" data-delay="0">
           <div class="cut"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-          <div class="tcopy">
-            <h5>„Ab wann stelle ich den ersten Vertriebler ein?“</h5>
-            <p>„Als wir 5-stellig waren und der Terminfluss stabil lief. Prozesse heute sauber & reproduzierbar.“</p>
+          <div>
+            <p class="q">„Ab wann stelle ich den ersten Vertriebler ein?“</p>
+            <p class="a">Sobald 5-stellig und der Terminfluss stabil ist – Prozesse werden sauber & reproduzierbar.</p>
             <div class="tmeta">Marc H. – Geschäftsführer, Industrie</div>
           </div>
         </div>
-        <div class="trow reveal" data-delay="80">
+        <div class="trow reveal" data-delay="120">
           <div class="cut"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-          <div class="tcopy">
-            <h5>„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</h5>
-            <p>„Qualifizierungsfragen + Retargeting – Time-to-Hire 30 Tage, Qualität konstant hoch.“</p>
+          <div>
+            <p class="q">„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</p>
+            <p class="a">Mit Qualifizierungsfragen & Retargeting – Time-to-Hire ~30 Tage, Qualität bleibt hoch.</p>
             <div class="tmeta">Sarah M. – HR-Leitung, Bau</div>
           </div>
         </div>
-        <div class="trow reveal" data-delay="160">
+        <div class="trow reveal" data-delay="240">
           <div class="cut"><img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-          <div class="tcopy">
-            <h5>„Wann erhöhe ich meinen Preis?“</h5>
-            <p>„Sobald Ergebnisse stabil laufen – die Argumente liefern jetzt unsere Zahlen.“</p>
+          <div>
+            <p class="q">„Wann erhöhe ich meinen Preis?“</p>
+            <p class="a">Sobald Ergebnisse stabil laufen – Argumente liefert das Tracking statt Bauchgefühl.</p>
             <div class="tmeta">Daniel K. – COO, IT</div>
           </div>
         </div>
@@ -314,8 +292,8 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
     </div>
   </section>
 
-  <!-- ÜBER UNS -->
-  <section class="reveal" data-delay="0">
+  <!-- Über uns -->
+  <section class="reveal">
     <div class="wrap">
       <h2 class="gold-flow">Mehr über ConceptPartner GmbH</h2>
       <div class="info-block" style="grid-template-columns:1fr 1fr">
@@ -340,8 +318,7 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
   </section>
 </main>
 
-<!-- FOOTER -->
-<footer class="reveal" data-delay="0">
+<footer class="reveal">
   <div class="fgrid">
     <div>
       <div class="flogo">
@@ -355,21 +332,14 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
       </div>
       <p style="color:#A7B0BE;margin:10px 0 0">B2B-Leads & Recruiting über Google, Instagram & Facebook – Systeme, die liefern.</p>
     </div>
-    <div>
-      <div style="font-family:Manrope;font-weight:800;margin-bottom:8px">Angebote</div>
-      <a href="#leistungen">Leistungen</a>
-      <a href="careers.html">Recruiting</a>
-      <a href="services.html#conversion">Conversion & Skalierung</a>
+    <div><div style="font-family:Manrope;font-weight:800;margin-bottom:8px">Angebote</div>
+      <a href="#leistungen">Leistungen</a><a href="careers.html">Recruiting</a><a href="services.html#conversion">Conversion & Skalierung</a>
     </div>
-    <div>
-      <div style="font-family:Manrope;font-weight:800;margin-bottom:8px">Unternehmen</div>
-      <a href="#logos">Branchen</a>
-      <a href="contact.html">Kontakt</a>
+    <div><div style="font-family:Manrope;font-weight:800;margin-bottom:8px">Unternehmen</div>
+      <a href="#logos">Branchen</a><a href="contact.html">Kontakt</a>
     </div>
-    <div>
-      <div style="font-family:Manrope;font-weight:800;margin-bottom:8px">Recht & Datenschutz</div>
-      <a href="imprint.html">Impressum</a>
-      <a href="privacy.html">Datenschutz</a>
+    <div><div style="font-family:Manrope;font-weight:800;margin-bottom:8px">Recht & Datenschutz</div>
+      <a href="imprint.html">Impressum</a><a href="privacy.html">Datenschutz</a>
     </div>
   </div>
   <div class="copy">© ConceptPartner GmbH</div>
@@ -385,13 +355,13 @@ footer a{color:#A7B0BE;display:block;margin:6px 0}
 </div>
 
 <script>
-/* Reveal – rein UND raus (gleiche Motion) */
+/* Reveal rein & raus */
 const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
-    const el=e.target; const d=Number(el.dataset.delay||0);
-    if(e.isIntersecting){ setTimeout(()=>el.classList.add('show'), d); }
-    else{ el.classList.remove('show'); } // wieder ausblenden
-  });
+    const el=e.target;const d=Number(el.dataset.delay||0);
+    if(e.isIntersecting){setTimeout(()=>el.classList.add('show'),d)}
+    else{el.classList.remove('show')}
+  })
 },{threshold:.12, rootMargin:"0px 0px -10% 0px"});
 document.querySelectorAll('.reveal,.reveal-left').forEach(el=>io.observe(el));
 
@@ -400,28 +370,20 @@ function acceptCookies(){localStorage.setItem('cp_cookies','yes');document.getEl
 function declineCookies(){localStorage.setItem('cp_cookies','no');document.getElementById('cookie').style.display='none'}
 if(localStorage.getItem('cp_cookies')) document.getElementById('cookie').style.display='none';
 
-/* Branchen-Reel: duplizieren + Endloslauf */
-const track=document.getElementById('logos');
+/* Branchen-Reel */
+const track=document.getElementById('track');
 const tpl=document.getElementById('reel').content;
-track.append(tpl.cloneNode(true), tpl.cloneNode(true)); // verbreitern
-let pos=0; function tick(){pos-=0.5;const w=track.scrollWidth/2;if(Math.abs(pos)>=w) pos=0;track.style.transform=`translateX(${pos}px)`;requestAnimationFrame(tick)} requestAnimationFrame(tick);
+track.append(tpl.cloneNode(true), tpl.cloneNode(true));
+let pos=0; (function loop(){pos-=0.5;const w=track.scrollWidth/2;if(Math.abs(pos)>=w) pos=0;track.style.transform=`translateX(${pos}px)`;requestAnimationFrame(loop)})();
 
 /* Cursor Glow */
-function setGlow(x,y){document.documentElement.style.setProperty('--x', x+'px');document.documentElement.style.setProperty('--y', y+'px')}
-addEventListener('mousemove', e=> setGlow(e.clientX, e.clientY), {passive:true});
-addEventListener('touchmove', e=>{const t=e.touches[0]; if(!t) return; setGlow(t.clientX, t.clientY)}, {passive:true});
+function setGlow(x,y){document.documentElement.style.setProperty('--x',x+'px');document.documentElement.style.setProperty('--y',y+'px')}
+addEventListener('mousemove',e=>setGlow(e.clientX,e.clientY),{passive:true});
+addEventListener('touchmove',e=>{const t=e.touches[0];if(!t)return;setGlow(t.clientX,t.clientY)},{passive:true});
 
 /* Bubbles */
 const layer=document.getElementById('bubbles');
-(function bubbles(n=26){
-  for(let i=0;i<n;i++){
-    const b=document.createElement('div');
-    b.className='bubble';
-    const size=6+Math.random()*10, x=Math.random()*100, dur=12+Math.random()*16, delay=(-Math.random()*dur).toFixed(2)+'s';
-    b.style.setProperty('--s', size+'px'); b.style.setProperty('--x', x+'vw'); b.style.setProperty('--dur', dur+'s'); b.style.setProperty('--delay', delay);
-    layer.appendChild(b);
-  }
-})();
+(function bubbles(n=26){for(let i=0;i<n;i++){const b=document.createElement('div');b.className='bubble';const size=6+Math.random()*10,x=Math.random()*100,dur=12+Math.random()*16,delay=(-Math.random()*dur).toFixed(2)+'s';b.style.setProperty('--s',size+'px');b.style.setProperty('--x',x+'vw');b.style.setProperty('--dur',dur+'s');b.style.setProperty('--delay',delay);layer.appendChild(b)}})();
 </script>
 </body>
 </html>
