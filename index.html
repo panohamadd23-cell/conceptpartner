@@ -26,7 +26,7 @@
 html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+img,video{max-width:100%;display:block}
 
 /* Blue text flow */
 .flow{
@@ -38,9 +38,14 @@ img{max-width:100%;display:block}
 }
 @keyframes textflow{from{background-position:0 0}to{background-position:100% 0}}
 
-/* Layout */
+/* Reveal in/out */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* Layout + spacing */
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
-section{padding:72px 0}
+section{padding:88px 0}                 /* mehr Abstand überall */
+section + section{padding-top:98px}     /* Extra Abstand zwischen Blöcken */
 h1,h2,h3{font-family:Manrope,Inter,sans-serif;letter-spacing:.2px;margin:0 0 14px}
 h1{font-size:48px;line-height:1.1}
 h2{font-size:34px}
@@ -57,7 +62,7 @@ nav a{margin-left:22px;font-weight:700}
 nav a:hover{color:var(--blue)}
 
 /* Hero */
-.hero{padding:90px 0 40px}
+.hero{padding:96px 0 40px}
 .hero .lead{max-width:760px}
 .cta{display:inline-block;padding:14px 22px;border-radius:12px;border:2px solid var(--blue);background:var(--blue-weak);color:var(--blue);font-weight:800;box-shadow:var(--shadow)}
 .cta:hover{transform:translateY(-1px)}
@@ -71,24 +76,24 @@ nav a:hover{color:var(--blue)}
 @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
 /* KPIs */
-.kpis{display:grid;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px}
-.kcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
-.knum{font-size:28px;font-weight:900}
+.kpis{display:grid;gap:22px;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:28px}
+.kcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+.knum{font-size:30px;font-weight:900}
 .knum.flow{line-height:1}
 .klabel{color:var(--muted);font-size:14px;margin-top:6px}
-.kminus{display:inline-block;margin-right:6px;font-weight:900;font-size:28px}
+.kminus{display:inline-block;margin-right:6px;font-weight:900;font-size:30px}
 
-/* Weit über Zahlen hinaus (short cards) */
-.cards{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+/* Weit über Zahlen hinaus – short info cards */
+.cards{display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
 .card h3{margin-bottom:6px}
 .card p{margin:0}
 
 /* Was wir liefern */
-.features{display:grid;gap:28px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.features{display:grid;gap:34px;grid-template-columns:repeat(2,minmax(0,1fr))}
 .feature h3{margin-bottom:8px}
 .feature ul{margin:10px 0 0 18px;color:var(--muted)}
-.feature li{margin:4px 0}
+.feature li{margin:6px 0}
 
 /* Step-by-step */
 .steps{display:grid;gap:14px}
@@ -96,24 +101,24 @@ nav a:hover{color:var(--blue)}
 .badge{min-width:32px;height:32px;border-radius:10px;border:2px solid var(--blue);background:var(--blue-weak);color:var(--blue);
   font-weight:900;display:inline-grid;place-content:center}
 
-/* Testimonials big */
-.testi{display:grid;gap:24px}
-.trow{display:grid;gap:20px;grid-template-columns:100px 1fr;align-items:center}
-.trow img{width:100px;height:100px;border-radius:18px;object-fit:cover;border:2px solid var(--line);box-shadow:var(--shadow)}
-.trow h3{margin:0}
-.trow .meta{color:var(--muted);font-size:14px}
+/* Testimonials big + video */
+.testi{display:grid;gap:28px}
+.trow{display:grid;gap:20px;grid-template-columns:minmax(280px,420px) 1fr;align-items:start}
+.tvid{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#000}
+.tcopy h3{margin:0}
+.tcopy .meta{color:var(--muted);font-size:14px;margin-top:6px}
 
 /* FAQ */
-.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0;box-shadow:var(--shadow)}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;box-shadow:var(--shadow)}
 .faq summary{cursor:pointer;font-weight:700}
 .faq p{margin-top:8px}
 
 /* Bottom split */
-.bottom{display:grid;gap:20px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.bottom{display:grid;gap:24px;grid-template-columns:repeat(2,minmax(0,1fr))}
 .bottom .card .lead{color:var(--muted)}
 
 /* Footer */
-footer{border-top:1px solid var(--line);padding:30px 0;color:#6B7280}
+footer{border-top:1px solid var(--line);padding:36px 0;color:#6B7280}
 footer a{color:#6B7280;text-decoration:underline}
 
 /* Cookie */
@@ -123,12 +128,12 @@ footer a{color:#6B7280;text-decoration:underline}
 .cookie .ghost{background:#fff;border-color:#CBD5E1;color:#111}
 
 /* Responsive */
+@media (max-width:1000px){ .trow{grid-template-columns:1fr} }
 @media (max-width:900px){
   h1{font-size:36px}
   h2{font-size:28px}
   .kpis{grid-template-columns:repeat(2,1fr)}
   .cards,.features,.bottom{grid-template-columns:1fr}
-  .trow{grid-template-columns:72px 1fr}
 }
 </style>
 </head>
@@ -149,11 +154,11 @@ footer a{color:#6B7280;text-decoration:underline}
 
 <main id="start">
   <!-- HERO -->
-  <section class="hero wrap">
+  <section class="hero wrap reveal">
     <h1 class="flow">Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste</h1>
     <p class="lead">Wir bauen für dich ein planbares System aus Funnel + Google/Instagram/Facebook-Ads inklusive sauberem Tracking. Perfekt für kleine & mittlere Unternehmen.</p>
     <div style="margin:18px 0 6px">
-      <a href="#kalender" class="cta">Kostenloses Erstgespräch buchen</a>
+      <a href="#kalender" class="cta" data-cal>Kostenloses Erstgespräch buchen</a>
     </div>
 
     <!-- flowing tags -->
@@ -182,19 +187,19 @@ footer a{color:#6B7280;text-decoration:underline}
 
     <!-- KPIs -->
     <div class="kpis">
-      <div class="kcard">
+      <div class="kcard reveal">
         <div class="knum flow">+312</div>
         <div class="klabel">qualifizierte Anfragen / 90 Tage</div>
       </div>
-      <div class="kcard">
+      <div class="kcard reveal">
         <div class="knum"><span class="kminus">-</span><span class="flow">38%</span></div>
         <div class="klabel">Cost-per-Lead nach 6 Wochen</div>
       </div>
-      <div class="kcard">
+      <div class="kcard reveal">
         <div class="knum flow">4,9★</div>
         <div class="klabel">Kundenzufriedenheit</div>
       </div>
-      <div class="kcard">
+      <div class="kcard reveal">
         <div class="knum flow">30</div>
         <div class="klabel">Tage · Time-to-Hire (Recruiting)</div>
       </div>
@@ -202,30 +207,30 @@ footer a{color:#6B7280;text-decoration:underline}
   </section>
 
   <!-- WEIT ÜBER ZAHLEN HINAUS -->
-  <section class="wrap" id="beyond">
+  <section class="wrap reveal" id="beyond">
     <h2 class="flow">Weit über Zahlen hinaus</h2>
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <h3>Terminfluss</h3>
         <p>Planbare Pipeline statt Zufall – aus Anfragen werden Gespräche.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Saubere Prozesse</h3>
         <p>Checklisten & SOPs sorgen für gleichbleibende Qualität.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Entlastung im Alltag</h3>
         <p>Automatisierte Strecken nehmen dir Arbeit ab.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Tracking mit Antworten</h3>
         <p>Klarer Blick auf CPL, CPA, ROAS & LTV – Entscheidungen mit Zahlen.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Creatives mit Substanz</h3>
         <p>Hooks, die Fachzielgruppen wirklich abholen.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Digitale Skalierung</h3>
         <p>Budget nach ROAS/LTV steuern – Prozesse wachsen mit.</p>
       </div>
@@ -233,10 +238,10 @@ footer a{color:#6B7280;text-decoration:underline}
   </section>
 
   <!-- WAS WIR LIEFERN -->
-  <section class="wrap" id="leistungen">
+  <section class="wrap reveal" id="leistungen">
     <h2 class="flow">Was wir liefern</h2>
     <div class="features">
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Neukunden-Systeme (B2B)</h3>
         <ul>
           <li>ICP & Value Proposition schärfen</li>
@@ -245,7 +250,7 @@ footer a{color:#6B7280;text-decoration:underline}
           <li>GA4 / Tag-Manager · UTM-Standards</li>
         </ul>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Recruiting-Funnel</h3>
         <ul>
           <li>Karriereseite & One-Click-Formulare</li>
@@ -254,7 +259,7 @@ footer a{color:#6B7280;text-decoration:underline}
           <li>KPIs: Cost-per-Apply, Time-to-Hire</li>
         </ul>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Werkzeuge & Reporting</h3>
         <ul>
           <li>Live-Dashboards (CPL, CPA, ROAS, LTV)</li>
@@ -263,7 +268,7 @@ footer a{color:#6B7280;text-decoration:underline}
           <li>Standards für Naming & Tracking</li>
         </ul>
       </div>
-      <div class="feature">
+      <div class="feature reveal">
         <h3>Digitale Skalierung</h3>
         <ul>
           <li>Budgetsteuerung nach ROAS/LTV</li>
@@ -273,43 +278,55 @@ footer a{color:#6B7280;text-decoration:underline}
         </ul>
       </div>
     </div>
-    <div style="margin-top:22px">
-      <a class="cta" href="#kalender">Erstgespräch buchen</a>
+    <div style="margin-top:26px">
+      <a class="cta" href="#kalender" data-cal>Erstgespräch buchen</a>
     </div>
   </section>
 
   <!-- STEP BY STEP -->
-  <section class="wrap" id="kontakt">
+  <section class="wrap reveal" id="kontakt">
     <h2 class="flow">So läuft’s ab</h2>
     <div class="steps">
-      <div class="step"><span class="badge">1</span><div><b>Erstgespräch buchen</b> – in 15 Minuten Ziel & Status klären.</div></div>
-      <div class="step"><span class="badge">2</span><div><b>Quick-Check</b> – Angebot, Funnel & Ads kurz prüfen.</div></div>
-      <div class="step"><span class="badge">3</span><div><b>Vorschlag</b> – konkreter Plan mit Zeit & KPIs.</div></div>
-      <div class="step"><span class="badge">4</span><div><b>Start</b> – Setup, Tracking, Kampagnen live.</div></div>
+      <div class="step reveal"><span class="badge">1</span><div><b>Erstgespräch buchen</b> – in 15 Minuten Ziel & Status klären.</div></div>
+      <div class="step reveal"><span class="badge">2</span><div><b>Quick-Check</b> – Angebot, Funnel & Ads kurz prüfen.</div></div>
+      <div class="step reveal"><span class="badge">3</span><div><b>Vorschlag</b> – konkreter Plan mit Zeit & KPIs.</div></div>
+      <div class="step reveal"><span class="badge">4</span><div><b>Start</b> – Setup, Tracking, Kampagnen live.</div></div>
     </div>
     <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
-      <a class="cta" href="#kalender">Erstgespräch buchen</a>
-      <a class="cta" href="#kalender">Zum Online-Kalender</a>
+      <a class="cta" href="#kalender" data-cal>Erstgespräch buchen</a>
+      <a class="cta" href="#kalender" data-cal>Zum Online-Kalender</a>
     </div>
   </section>
 
-  <!-- TESTIMONIALS groß -->
-  <section class="wrap" id="kunden">
+  <!-- TESTIMONIALS: Video + Transkript -->
+  <section class="wrap reveal" id="kunden">
     <h2 class="flow">Das sagen unsere Kunden</h2>
+
     <div class="testi">
-      <div class="trow">
-        <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=300&auto=format&fit=crop" alt="Kundin">
-        <div>
+      <div class="trow reveal">
+        <div class="tvid">
+          <!-- Lege später assets/testimonial1.mp4 ins Repo -->
+          <video controls preload="none" poster="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=600&auto=format&fit=crop">
+            <source src="assets/testimonial1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="tcopy">
           <h3>„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</h3>
-          <p>Mit Qualifizierungsfragen & Retargeting – Time-to-Hire ~30 Tage, Qualität bleibt hoch.</p>
+          <p>„Mit Qualifizierungsfragen und Retargeting kamen mehr passende Bewerbungen – Time-to-Hire ~30 Tage. Ich würde ConceptPartner jederzeit empfehlen.“</p>
           <div class="meta">Sarah M. – HR-Leitung, Bau</div>
         </div>
       </div>
-      <div class="trow">
-        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=300&auto=format&fit=crop" alt="Kunde">
-        <div>
+
+      <div class="trow reveal">
+        <div class="tvid">
+          <!-- Lege später assets/testimonial2.mp4 ins Repo -->
+          <video controls preload="none" poster="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=600&auto=format&fit=crop">
+            <source src="assets/testimonial2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="tcopy">
           <h3>„Wann erhöhe ich meinen Preis?“</h3>
-          <p>Sobald Ergebnisse stabil laufen – Argumente kommen aus dem Tracking, nicht aus dem Bauchgefühl.</p>
+          <p>„Als die Ergebnisse stabil waren, hat uns das Tracking Argumente geliefert – nicht das Bauchgefühl. Preis rauf, Pipeline voll.“</p>
           <div class="meta">Daniel K. – COO, IT</div>
         </div>
       </div>
@@ -317,55 +334,56 @@ footer a{color:#6B7280;text-decoration:underline}
   </section>
 
   <!-- FAQ -->
-  <section class="wrap" id="faq">
+  <section class="wrap reveal" id="faq">
     <h2 class="flow">FAQ</h2>
     <div class="faq">
-      <details>
+      <details class="reveal">
         <summary>Für wen ist ConceptPartner geeignet?</summary>
         <p>B2B-KMU, die planbar Anfragen oder Bewerbungen generieren wollen.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Wie schnell sehe ich Ergebnisse?</summary>
         <p>Erste belastbare Daten i. d. R. in 2-4 Wochen (Traffic/Ticketgröße abhängig).</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Welche Kanäle nutzt ihr?</summary>
         <p>Google (Search/PMax), Instagram/Facebook, Retargeting, CRO & Tracking.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Wie messt ihr Erfolg?</summary>
         <p>KPIs: CPL/CPA, Time-to-Hire, ROAS/LTV – live im Dashboard.</p>
       </details>
     </div>
     <div style="margin-top:14px">
-      <a class="cta" href="#kalender">Erstgespräch buchen</a>
+      <a class="cta" href="#kalender" data-cal>Erstgespräch buchen</a>
     </div>
   </section>
 
   <!-- Zahlen / Fakten -->
-  <section class="wrap" id="facts">
+  <section class="wrap reveal" id="facts">
     <h2 class="flow">Zahlen & Fakten</h2>
     <div class="kpis">
-      <div class="kcard"><div class="knum flow">10+ Jahre</div><div class="klabel">Expertise im Performance-Marketing</div></div>
-      <div class="kcard"><div class="knum flow">600+</div><div class="klabel">erfolgreiche Kundenprojekte</div></div>
-      <div class="kcard"><div class="knum flow">€</div><div class="klabel">Budgetsteuerung nach ROAS/LTV</div></div>
-      <div class="kcard"><div class="knum flow">24/7</div><div class="klabel">Live-Dashboards & Tracking</div></div>
+      <div class="kcard reveal"><div class="knum flow">10+ Jahre</div><div class="klabel">Expertise im Performance-Marketing</div></div>
+      <div class="kcard reveal"><div class="knum flow">600+</div><div class="klabel">erfolgreiche Kundenprojekte</div></div>
+      <div class="kcard reveal"><div class="knum flow">ROAS/LTV</div><div class="klabel">Budgetsteuerung nach ROAS/LTV</div></div>
+      <div class="kcard reveal"><div class="knum flow">24/7</div><div class="klabel">Live-Dashboards & Tracking</div></div>
     </div>
   </section>
 
   <!-- BOTTOM: CTA + Mehr über CP -->
-  <section class="wrap">
+  <section class="wrap reveal">
     <div class="bottom">
-      <div class="card">
+      <div class="card reveal">
         <h2 class="flow">Bereit für planbares Wachstum?</h2>
         <p class="lead">Wir kombinieren Positionierung, performante Funnels und bezahlte Kampagnen – alles sauber getrackt. Lass uns in 15 Minuten prüfen, ob wir helfen können.</p>
-        <a class="cta" href="#kalender" style="margin-top:10px">Erstgespräch buchen</a>
+        <a class="cta" href="#kalender" data-cal>Erstgespräch buchen</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3 class="flow">Mehr über ConceptPartner GmbH</h3>
-        <p style="font-size:17px;line-height:1.65">💡 <b>Mission:</b> Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
-        <p style="font-size:17px;line-height:1.65"><b>Werte:</b> Klarheit, Tempo, Qualität. Dashboards statt Rauschen. Wachstum mit System, nicht Zufall.</p>
-        <a class="cta" href="#kalender" style="margin-top:10px">Erstgespräch buchen</a>
+        <p style="font-size:17px;line-height:1.65;margin-bottom:6px"><b>Mission:</b> Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
+        <p style="font-size:17px;line-height:1.65;margin-bottom:6px"><b>Werte:</b> Klarheit, Tempo, Qualität. Dashboards statt Rauschen. Wachstum mit System, nicht Zufall.</p>
+        <p style="font-size:17px;line-height:1.65;margin-bottom:0"><b>Warum wir?</b> Full-Funnel aus einer Hand (Strategie → Funnel → Ads → CRO) · Playbooks für Vertrieb & Recruiting · transparente KPIs (CPL, CPA, TtH, ROAS, LTV).</p>
+        <!-- kein CTA hier, wie gewünscht -->
       </div>
     </div>
   </section>
@@ -391,7 +409,14 @@ footer a{color:#6B7280;text-decoration:underline}
 </div>
 
 <script>
-/* Cookie 90 Tage */
+/* ===== Online-Kalender =====
+   Ersetze die URL unten durch euren echten Kalender-Link */
+const CAL_URL = 'https://cal.com/your-org/erstgespraech';
+document.querySelectorAll('[data-cal]').forEach(a=>{
+  a.addEventListener('click', (e)=>{ e.preventDefault(); window.open(CAL_URL,'_blank') })
+});
+
+/* ===== Cookie 90 Tage ===== */
 const CKEY='cp_cookie_ts';
 function acceptCookies(){localStorage.setItem(CKEY,Date.now().toString());hideCookie()}
 function declineCookies(){localStorage.setItem(CKEY,(Date.now()).toString());hideCookie()}
@@ -404,16 +429,15 @@ function hideCookie(){const b=document.getElementById('cookie'); if(b) b.style.d
   }
 })();
 
-/* sanfter Reveal (leicht) */
-const io=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting) return;
-  e.target.style.animation='fadeIn .6s ease-out both';
-  io.unobserve(e.target);
-}),{threshold:.12});
-document.querySelectorAll('section .flow, section .card, section .feature, section .kcard, section .trow, .steps .step').forEach(el=>io.observe(el));
-const style=document.createElement('style');
-style.textContent='@keyframes fadeIn{from{opacity:.0;transform:translateY(12px)}to{opacity:1;transform:none}}';
-document.head.appendChild(style);
+/* ===== Reveal in & out ===== */
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('show'); }
+    else{ e.target.classList.remove('show'); } // abtauchen beim Rausscrollen
+  });
+},{threshold:.15, rootMargin:'0px 0px -5% 0px'});
+
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
