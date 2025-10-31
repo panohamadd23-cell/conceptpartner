@@ -2,480 +2,439 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>ConceptPartner – B2B-Leads & Recruiting</title>
-<meta name="description" content="Planbare B2B-Anfragen & Bewerbungen: Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking. Kurz, konkret, skalierbar.">
+<meta name="description" content="Planbare B2B-Anfragen & Bewerbungen ohne Streuverluste. Funnel + Google/Instagram/Facebook-Ads, sauberes Tracking, knappe Prozesse.">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  /* Farben (hellgrau Hintergrund, schwarz Schrift, Blau-Effekte) */
-  --bg:#F4F5F7;
-  --card:#ffffff;
-  --text:#0A0D14;
-  --muted:#5E6A7B;
-  --line:#E6E8EE;
+  --bg:#F4F6F8;
+  --text:#0F1216;
+  --muted:#5E6A7A;
+  --line:#E3E7EC;
 
-  --blue:#2B6EF3;
-  --blue-2:#51A1FF;
-  --blue-3:#0D41C9;
-
-  /* Abstände */
-  --wrap:1200px;
-  --radius:14px;
-  --shadow:0 10px 24px rgba(16,24,40, .08);
+  --blue:#2E6AF2;
+  --blue2:#1F4EC0;
+  --chip:#0F121610;
+  --card:#FFFFFF;
 }
 
-/* Reset & Base */
+/* Base -------------------------------------------------- */
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
+html,body{height:100%}
 body{
+  margin:0;background:var(--bg);color:var(--text);
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
-img,svg,video{display:block;max-width:100%;height:auto}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
+button{font:inherit}
 
-/* Layout */
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
-section{padding:88px 0}
-.section-tight{padding:56px 0}
-hr{border:0;border-top:1px solid var(--line);margin:60px 0}
+/* Layout & spacing */
+section{padding:120px 22px}
+.wrap{max-width:1200px;margin:0 auto}
+hr.sep{border:0;border-top:1px solid var(--line); margin:80px auto; width:min(100%,1200px); opacity:.9}
 
-/* Header */
+/* Header ------------------------------------------------ */
 header{
-  position:sticky;top:0;z-index:1000;
-  background:rgba(244,245,247,.9);
-  backdrop-filter:saturate(120%) blur(10px);
+  position:sticky; top:0; z-index:1000;
+  background:#fffefef0; backdrop-filter:saturate(1.1) blur(12px);
   border-bottom:1px solid var(--line);
 }
-.header-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800}
-.brand-dot{width:10px;height:10px;border-radius:999px;background:var(--blue)}
-nav a{margin-left:26px;font-weight:700}
+.navbar{display:flex;align-items:center;justify-content:space-between; gap:20px; padding:14px 22px}
+.brand{display:flex;align-items:center; gap:10px; font-weight:800}
+.brand-dot{width:10px;height:10px;border-radius:50%;background:var(--blue)}
+nav a{font-weight:700;margin-left:26px; position:relative}
 nav a:hover{color:var(--blue)}
+/* underline hover */
+nav a::after{content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background:linear-gradient(90deg,var(--blue),#76A4FF); transition:width .25s}
+nav a:hover::after{width:100%}
 
-/* Buttons – Blau */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:14px 22px;border-radius:12px;font-weight:800;border:2px solid transparent;
-  background:linear-gradient(180deg,var(--blue),var(--blue-3));
-  color:#fff; box-shadow:0 8px 24px rgba(43,110,243,.25);
-  transition:.2s transform ease, .2s box-shadow ease;
-  user-select:none;-webkit-user-select:none;
-}
-.btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(43,110,243,.30)}
-.btn-outline{
-  background:#fff;color:var(--blue);border-color:var(--blue);
-  box-shadow:none;
-}
-.btn-block{width:100%}
-
-/* HERO */
-.hero h1{font-size:46px;line-height:1.08;margin:0 0 14px;font-weight:800}
-.hero p{font-size:18px;color:var(--muted);max-width:720px}
-
-/* „Industrie-Scroller“ (endlos) */
-.tags{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent, #000 10%, #000 90%, transparent)}
-.tag-track{display:flex;gap:18px;white-space:nowrap;will-change:transform;
-  animation:tagroll 22s linear infinite}
-.tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
-  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
-.tag i{width:8px;height:8px;border-radius:999px;background:var(--blue)}
-@keyframes tagroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-
-/* KPI-Band */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
-.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
-.kpi .num{font-weight:900;font-size:28px;line-height:1}
-.kpi .sub{color:var(--muted);font-size:14px;margin-top:6px}
-.kpi .minus{margin-right:8px;font-weight:900}
-
-/* Blaue Text-Welle (SMOOTH) */
-.flow{
-  background:linear-gradient(90deg, #111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
-  background-size:220% 100%;
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
-  animation:flow 10s linear infinite;
+/* Blue FLOW (glänzt über Text) ------------------------- */
+.blue-flow{
+  background:linear-gradient(90deg,#111 0%, #2E6AF2 20%, #111 40%, #2E6AF2 60%, #111 80%);
+  background-size:300% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:textflow 10s linear infinite;
   will-change:background-position;
 }
-@keyframes flow{0%{background-position:0% 0}100%{background-position:-120% 0}}
+@keyframes textflow{0%{background-position:0% 0}100%{background-position:100% 0}}
 
-/* Content Blocks */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-h2{font-size:34px;line-height:1.12;margin:0 0 18px;font-weight:800}
-h3{font-size:20px;margin:0 0 8px}
-.lead{color:var(--muted)}
-.center{text-align:center}
+/* Headings & text */
+h1,h2,h3{font-family:Manrope,Inter,sans-serif;letter-spacing:.2px; margin:0 0 14px}
+h1{font-size:56px;line-height:1.05}
+h2{font-size:36px;line-height:1.12; text-align:center}
+h3{font-size:22px;margin-bottom:10px}
+.lead{color:var(--muted);font-size:18px;line-height:1.7;max-width:820px}
 
-/* „Weit über Zahlen hinaus“ – kurze Erklärungen */
-.points{display:flex;flex-direction:column;gap:18px}
-.point h4{margin:0 0 6px;font-size:18px}
-.point p{margin:0;color:var(--muted)}
-
-/* „Was wir liefern“ – zentriert, ohne Kästen */
-.features{max-width:880px;margin:0 auto}
-.features h3{font-size:22px}
-.features ul{margin:8px 0 22px 18px;color:var(--muted)}
-.features li{margin:6px 0}
-
-/* Vorteil-Kacheln (3 Icons) */
-.benefits .item{padding:22px;text-align:center}
-.benefits .icon{
-  width:48px;height:48px;margin:0 auto 12px;border-radius:12px;
-  background:linear-gradient(180deg,#fff, #EEF4FF);border:1px solid var(--line);
-  display:grid;place-items:center;color:var(--blue);font-weight:900
+/* Buttons */
+.btn{
+  display:inline-block; padding:14px 22px; border-radius:12px; border:2px solid var(--blue);
+  font-weight:800; transition:transform .15s, box-shadow .2s, background .2s, color .2s;
+  box-shadow:0 8px 22px rgba(46,106,242,.15);
+  background:#fff; color:var(--blue);
+  user-select:none; -webkit-user-select:none;
 }
+.btn:hover{transform:translateY(-1px); background:var(--blue); color:#fff}
+.btn-ghost{background:transparent}
 
-/* Video-Testimonials */
-.testis{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.video{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
-.video iframe{position:absolute;inset:0;width:100%;height:100%}
-.quote{padding:10px 2px;color:var(--muted)}
-
-/* FAQ */
-details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
-summary{cursor:pointer;font-weight:700}
-details[open]{border-color:#C9D7FF}
-
-/* CTA Streifen */
-.cta-bar{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:center;
-  background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
-
-/* Footer */
-footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
-
-/* Cookie Banner */
-.cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:1200;
-  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
-.cookie p{margin:0;color:var(--muted)}
-.cookie .row{display:flex;gap:10px}
-
-/* Reveal on scroll (rein + wieder raus) */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;will-change:opacity,transform}
-.reveal.show{opacity:1;transform:none}
-.hide-up{opacity:0;transform:translateY(24px)}
-
-/* Responsive */
-@media(max-width:960px){
-  .grid-2{grid-template-columns:1fr}
-  .kpis{grid-template-columns:1fr 1fr}
-  .testis{grid-template-columns:1fr}
+/* Hero -------------------------------------------------- */
+.hero .chips-mask{mask-image:linear-gradient(90deg,transparent, #000 7%, #000 93%, transparent); -webkit-mask-image:linear-gradient(90deg,transparent, #000 7%, #000 93%, transparent)}
+.hero .chips{position:relative; overflow:hidden}
+.hero .track{display:flex; gap:22px; align-items:center; white-space:nowrap}
+.chip{
+  flex:0 0 auto; padding:10px 16px; border-radius:999px; background:var(--chip);
+  border:1px solid var(--line); display:flex; align-items:center; gap:10px; font-weight:700;
 }
-@media(max-width:600px){
-  .hero h1{font-size:36px}
-  .kpis{grid-template-columns:1fr}
+.dot{width:8px;height:8px;border-radius:50%; background:var(--blue)}
+/* infinite scroll — smooth & seamless */
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.hero .track{animation:ticker 30s linear infinite; will-change:transform}
+
+/* KPI row ---------------------------------------------- */
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
+.kpi{background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px}
+.kpi .n{font:800 28px/1 Manrope,Inter,sans-serif}
+.kpi .n.blue-flow{-webkit-text-fill-color:transparent}
+.kpi .l{color:var(--muted); font-size:14px}
+
+/* Story (Weit über Zahlen hinaus) ---------------------- */
+.story{max-width:900px; margin:0 auto; text-align:center}
+.story p{margin:16px 0; color:#1d2430; font-size:18px}
+
+/* Features row (Icons) --------------------------------- */
+.features{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+.feat{background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px}
+.feat .icon{font-size:22px; width:40px;height:40px;border-radius:10px; display:grid;place-items:center; background:#EBF1FF; color:var(--blue); margin-bottom:10px}
+.feat p{color:var(--muted); margin:6px 0 0}
+
+/* Was wir liefern -------------------------------------- */
+.offers{max-width:900px; margin:0 auto}
+.offers h2{margin-bottom:28px}
+.offers h3{margin-top:26px}
+.offers ul{margin:10px 0 0 20px; color:var(--muted); line-height:1.6}
+
+/* Testimonials (nur Text + Avatar) --------------------- */
+.testi{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
+.tcard{background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px}
+.thead{display:flex; align-items:center; gap:12px; margin-bottom:8px}
+.thead img{width:44px;height:44px;border-radius:50%; object-fit:cover}
+.tquote{font-weight:800; font-size:18px; margin:0 0 4px}
+.tline{color:var(--muted); margin:0}
+
+/* CTA band --------------------------------------------- */
+.ctr{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+.ctr>div{background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px}
+.ctr p{color:var(--muted); margin:8px 0 0}
+
+/* FAQ --------------------------------------------------- */
+.faq{max-width:900px; margin:0 auto}
+.faq details{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0}
+.faq summary{cursor:pointer; font-weight:800}
+.faq p{color:var(--muted); margin:10px 0 0}
+
+/* Footer ----------------------------------------------- */
+footer{padding:40px 22px; border-top:1px solid var(--line); color:var(--muted)}
+footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:14px}
+
+/* Reveal in/out ---------------------------------------- */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .6s, transform .6s}
+.reveal.show{opacity:1; transform:none}
+
+/* Cookie banner ---------------------------------------- */
+.cookie{
+  position:fixed; left:20px; right:20px; bottom:20px; z-index:1200;
+  background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.cookie .actions{display:flex; gap:10px; flex-wrap:wrap}
+.cookie .btn{border-width:1px}
+
+/* Responsive ------------------------------------------- */
+@media (max-width:1000px){
+  h1{font-size:44px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:1fr}
+  .testi{grid-template-columns:1fr}
+  .ctr{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  section{padding:90px 18px}
+  h1{font-size:36px}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap header-in">
-    <div class="brand"><span class="brand-dot"></span>ConceptPartner</div>
+  <div class="navbar wrap">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      ConceptPartner
+    </div>
     <nav>
       <a href="#start">Start</a>
-      <a href="#lieferung">Leistungen</a>
-      <a href="#karriere">Karriere</a>
-      <a href="#kontakt">Kontakt</a>
+      <a href="#services">Leistungen</a>
+      <a href="#careers">Karriere</a>
+      <a href="#contact">Kontakt</a>
     </nav>
   </div>
 </header>
 
 <main id="start">
   <!-- HERO -->
-  <section class="wrap hero reveal">
-    <h1 class="flow">Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste</h1>
-    <p>Wir bauen für dich ein planbares System aus Funnel + Google/Instagram/Facebook-Ads inklusive sauberem Tracking. Perfekt für kleine & mittlere Unternehmen.</p>
-    <div style="margin:18px 0 8px">
-      <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Kostenloses Erstgespräch buchen</a>
+  <section class="wrap reveal">
+    <h1 class="blue-flow">Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste</h1>
+    <p class="lead">Wir bauen für dich ein planbares System aus Funnel + Google/Instagram/Facebook-Ads inklusive sauberem Tracking. Perfekt für kleine & mittlere Unternehmen.</p>
+    <div style="margin:18px 0 28px">
+      <a class="btn" href="https://calendly.com/" target="_blank" rel="noopener">Kostenloses Erstgespräch buchen</a>
     </div>
 
-    <!-- Endlos laufende Zielgruppen (flüssig) -->
-    <div class="tags" aria-hidden="true">
-      <div class="tag-track" id="tagTrack">
-        <span class="tag"><i></i> SaaS</span>
-        <span class="tag"><i></i> E-Commerce B2B</span>
-        <span class="tag"><i></i> Industrie</span>
-        <span class="tag"><i></i> Maschinenbau</span>
-        <span class="tag"><i></i> IT & Software</span>
-        <span class="tag"><i></i> Logistik</span>
-        <span class="tag"><i></i> Consulting</span>
-        <!-- Duplikat für nahtlose Endlosschleife -->
-        <span class="tag"><i></i> SaaS</span>
-        <span class="tag"><i></i> E-Commerce B2B</span>
-        <span class="tag"><i></i> Industrie</span>
-        <span class="tag"><i></i> Maschinenbau</span>
-        <span class="tag"><i></i> IT & Software</span>
-        <span class="tag"><i></i> Logistik</span>
-        <span class="tag"><i></i> Consulting</span>
+    <!-- Branchen-Ticker -->
+    <div class="chips chips-mask" aria-label="Beispiele Branchen">
+      <div class="track" id="ticker">
+        <span class="chip"><span class="dot"></span>SaaS</span>
+        <span class="chip"><span class="dot"></span>E-Commerce B2B</span>
+        <span class="chip"><span class="dot"></span>Industrie</span>
+        <span class="chip"><span class="dot"></span>Maschinenbau</span>
+        <span class="chip"><span class="dot"></span>IT & Software</span>
+        <span class="chip"><span class="dot"></span>Logistik</span>
+        <span class="chip"><span class="dot"></span>Consulting</span>
+        <!-- wird per JS verdoppelt für nahtlosen Loop -->
       </div>
     </div>
 
     <!-- KPIs -->
-    <div class="kpis">
-      <div class="kpi reveal"><div class="num flow">+312</div><div class="sub">qualifizierte Anfragen / 90 Tage</div></div>
-      <div class="kpi reveal"><div class="num"><span class="minus flow">-</span><span class="flow">38%</span></div><div class="sub">Cost-per-Lead nach 6 Wochen</div></div>
-      <div class="kpi reveal"><div class="num flow">4,9★</div><div class="sub">Kundenzufriedenheit</div></div>
-      <div class="kpi reveal"><div class="num flow">30</div><div class="sub">Tage · Time-to-Hire (Recruiting)</div></div>
-    </div>
-  </section>
-
-  <!-- Info-Stripes (zwischen Zahlen & KPIs) -->
-  <section class="wrap section-tight reveal benefits">
-    <div class="grid-3">
-      <div class="card item">
-        <div class="icon">✓</div>
-        <h3>Playbooks, die funktionieren</h3>
-        <p class="lead">Kurz, konkret, sofort umsetzbar – für Vertrieb & Recruiting.</p>
+    <div class="kpis" style="margin-top:28px">
+      <div class="kpi">
+        <div class="n blue-flow">+312</div>
+        <div class="l">qualifizierte Anfragen / 90 Tage</div>
       </div>
-      <div class="card item">
-        <div class="icon">★</div>
-        <h3>Tracking mit Antworten</h3>
-        <p class="lead">KPIs statt Bauchgefühl: CPL, CPA, ROAS, LTV – live im Dashboard.</p>
+      <div class="kpi">
+        <div class="n"><span class="blue-flow">-38%</span></div>
+        <div class="l">Cost-per-Lead nach 6 Wochen</div>
       </div>
-      <div class="card item">
-        <div class="icon">↗︎</div>
-        <h3>Skalierung, die mitwächst</h3>
-        <p class="lead">Iterationen mit System – Creatives, Funnel, Retargeting.</p>
+      <div class="kpi">
+        <div class="n blue-flow">4,9★</div>
+        <div class="l">Kundenzufriedenheit</div>
+      </div>
+      <div class="kpi">
+        <div class="n blue-flow">30&nbsp;Tage</div>
+        <div class="l">Time-to-Hire (Recruiting)</div>
       </div>
     </div>
   </section>
 
-  <!-- Weit über Zahlen hinaus -->
-  <section class="wrap reveal" id="beyond">
-    <h2 class="center flow">Weit über Zahlen hinaus</h2>
-    <div class="grid-2" style="margin-top:26px">
-      <div class="points">
-        <div class="point">
-          <h4>Terminfluss statt Zufall</h4>
-          <p>Klare Positionierung + sauberer Funnel bringen Entscheider planbar in deine Gespräche.</p>
-        </div>
-        <div class="point">
-          <h4>Entlastung im Alltag</h4>
-          <p>Standardisierte Abläufe & Tracking liefern Antworten statt Rauschen – du triffst bessere Entscheidungen.</p>
-        </div>
-        <div class="point">
-          <h4>Wachstum mit System</h4>
-          <p>Kampagnen, die iterieren. Inhalte, die performen. Budgets, die nach ROAS/LTV gesteuert werden.</p>
-        </div>
-      </div>
+  <hr class="sep">
 
-      <div class="cta-bar">
-        <strong>Bereit für planbares Wachstum?</strong>
-        <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
-      </div>
+  <!-- WEIT ÜBER ZAHLEN HINAUS (Story, kurz & knackig) -->
+  <section class="wrap reveal">
+    <h2 class="blue-flow">Weit über Zahlen hinaus</h2>
+    <div class="story">
+      <p><b>Terminfluss statt Zufall:</b> klare Positionierung + sauberer Funnel bringen Entscheider planbar in deine Gespräche.</p>
+      <p><b>Entlastung im Alltag:</b> standardisierte Abläufe & Tracking liefern Antworten statt Rauschen – du triffst bessere Entscheidungen.</p>
+      <p><b>Wachstum mit System:</b> Kampagnen, die iterieren. Inhalte, die performen. Budgets, die nach ROAS/LTV gesteuert werden.</p>
     </div>
   </section>
 
-  <!-- Was wir liefern (zentriert, ohne Kästen) -->
-  <section class="wrap reveal" id="lieferung">
-    <h2 class="center flow">Was wir liefern</h2>
+  <!-- Feature-Icons -->
+  <section class="wrap reveal" aria-label="Vorteile">
     <div class="features">
+      <div class="feat">
+        <div class="icon">⚙️</div>
+        <h3>Playbooks, die funktionieren</h3>
+        <p>Kurz, konkret, sofort umsetzbar – für Vertrieb & Recruiting.</p>
+      </div>
+      <div class="feat">
+        <div class="icon">📈</div>
+        <h3>Tracking mit Antworten</h3>
+        <p>KPIs statt Bauchgefühl: CPL, CPA, ROAS, LTV im Dashboard.</p>
+      </div>
+      <div class="feat">
+        <div class="icon">🚀</div>
+        <h3>Skalierung, die mitwächst</h3>
+        <p>Iterationen mit System – Creatives, Funnel, Retargeting.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="sep">
+
+  <!-- WAS WIR LIEFERN (unterhalb) -->
+  <section id="services" class="wrap reveal">
+    <div class="offers">
+      <h2 class="blue-flow">Was wir liefern</h2>
+
       <h3>Neukunden-Systeme (B2B)</h3>
       <ul>
-        <li>ICP & Value Proposition schärfen – klare Botschaft & Angebot.</li>
-        <li>Funnel & Landingpages (Speed, Trust, CRO).</li>
-        <li>Google & Meta Ads inkl. Retargeting.</li>
-        <li>GA4 / Tag-Manager · UTM-Standards.</li>
+        <li>ICP & Value Proposition schärfen – Entscheider aktivieren</li>
+        <li>Funnel & Landingpages (Speed, Trust, CRO)</li>
+        <li>Google & Meta Ads inkl. Retargeting</li>
+        <li>GA4 / Tag-Manager · UTM-Standards</li>
       </ul>
 
       <h3>Recruiting-Funnel</h3>
       <ul>
-        <li>Karriereseite & One-Click-Formulare.</li>
-        <li>Creatives & Hooks für Fachkräfte.</li>
-        <li>ATS/CRM-Anbindung · Datenschutz ready.</li>
-        <li>KPIs: Cost-per-Apply, Time-to-Hire.</li>
+        <li>Karriereseite & One-Click-Formulare</li>
+        <li>Creatives & Hooks für Fachkräfte</li>
+        <li>ATS/CRM-Anbindung · Datenschutz ready</li>
+        <li>KPIs: Cost-per-Apply, Time-to-Hire</li>
       </ul>
 
       <h3>Werkzeuge & Reporting</h3>
       <ul>
-        <li>Live-Dashboards (CPL, CPA, ROAS, LTV).</li>
-        <li>Heatmaps & Session-Review · A/B-Testing.</li>
-        <li>Standards für Naming & Tracking.</li>
+        <li>Live-Dashboards (CPL, CPA, ROAS, LTV)</li>
+        <li>Heatmaps & Session-Review · A/B-Tests</li>
+        <li>Standards für Naming & Tracking</li>
       </ul>
+    </div>
+  </section>
 
-      <h3>Digitale Skalierung</h3>
-      <ul>
-        <li>Budgetsteuerung nach ROAS/LTV.</li>
-        <li>Kreativ-Iterationen mit System.</li>
-        <li>Outbound/Retargeting-Playbooks.</li>
-        <li>Prozesse, die mitwachsen.</li>
-      </ul>
-      <div class="center" style="margin-top:22px">
-        <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
+  <hr class="sep">
+
+  <!-- Testimonials (ohne Video) -->
+  <section class="wrap reveal" aria-label="Kundenstimmen">
+    <h2 class="blue-flow">Das sagen unsere Kunden</h2>
+    <div class="testi" style="margin-top:18px">
+      <article class="tcard">
+        <div class="thead">
+          <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop" alt="Portrait">
+          <div><strong>Sarah M.</strong><div style="color:var(--muted);font-size:13px">HR-Leitung, Bau</div></div>
+        </div>
+        <p class="tquote">„Wie skaliere ich Bewerbungen ohne Qualitätsverlust?“</p>
+        <p class="tline">Mit Qualifizierungsfragen & Retargeting – Time-to-Hire ~30 Tage, Qualität bleibt hoch.</p>
+      </article>
+
+      <article class="tcard">
+        <div class="thead">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="Portrait">
+          <div><strong>Daniel K.</strong><div style="color:var(--muted);font-size:13px">COO, IT</div></div>
+        </div>
+        <p class="tquote">„Wann erhöhe ich meinen Preis?“</p>
+        <p class="tline">Sobald Ergebnisse stabil laufen – Argumente kommen aus dem Tracking, nicht aus dem Bauchgefühl.</p>
+      </article>
+    </div>
+
+    <div style="text-align:center; margin-top:26px">
+      <a class="btn" href="https://calendly.com/" target="_blank" rel="noopener">Erstgespräch buchen</a>
+    </div>
+  </section>
+
+  <hr class="sep">
+
+  <!-- CTA + About -->
+  <section class="wrap reveal">
+    <div class="ctr">
+      <div>
+        <h3 class="blue-flow" style="font-size:24px">Bereit für planbares Wachstum?</h3>
+        <p>Wir kombinieren Positionierung, performante Funnels und bezahlte Kampagnen – alles sauber getrackt. In 15 Minuten klären wir, ob und wie wir helfen können.</p>
+        <a class="btn" href="https://calendly.com/" target="_blank" rel="noopener">Erstgespräch buchen</a>
+      </div>
+      <div>
+        <h3 class="blue-flow" style="font-size:24px">Mehr über ConceptPartner GmbH</h3>
+        <p><b>Mission:</b> Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
+        <p><b>Werte:</b> Klarheit, Tempo, Qualität. Dashboards statt Rauschen.</p>
+        <p><b>Fakten:</b> 10+ Jahre Expertise · 600+ erfolgreiche Kunden.</p>
       </div>
     </div>
   </section>
 
-  <!-- Video-Kundenstimmen (MUSTER) -->
-  <section class="wrap reveal" id="kunden">
-    <h2 class="center flow">Das sagen unsere Kunden</h2>
-    <div class="testis" style="margin-top:18px">
-      <div>
-        <div class="video">
-          <!-- Beispielvideo (YouTube) -->
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                  title="Kundenstimme 1" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
-        </div>
-        <p class="quote">„Planbarer Terminfluss, starke Leads. Wir haben innerhalb von 8 Wochen unsere Pipeline gefüllt und können endlich sauber skalieren.“ — <strong>Sarah M., HR-Leitung</strong></p>
-      </div>
-
-      <div>
-        <div class="video">
-          <iframe src="https://www.youtube.com/embed/oHg5SJYRHA0"
-                  title="Kundenstimme 2" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
-        </div>
-        <p class="quote">„Kosten runter, Qualität rauf. Das Tracking liefert Antworten und die Kampagnen performen.“ — <strong>Daniel K., COO</strong></p>
-      </div>
-    </div>
-    <div class="center" style="margin-top:20px">
-      <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
-    </div>
-  </section>
+  <hr class="sep">
 
   <!-- FAQ -->
-  <section class="wrap reveal" id="faq">
-    <h2 class="center">FAQ · Kurz & knackig</h2>
-    <div class="wrap-narrow" style="max-width:900px;margin:0 auto">
+  <section class="wrap reveal" id="contact">
+    <h2 class="blue-flow">FAQ · Kurz & knackig</h2>
+    <div class="faq" style="margin-top:18px">
       <details>
         <summary>Für wen ist ConceptPartner geeignet?</summary>
-        <p>Für B2B-KMU, die planbar <strong>Entscheider</strong> erreichen wollen – z. B. Industrie, Maschinenbau, IT/Software, Logistik, Consulting. Wir bauen Systeme, keine einmaligen Kampagnen.</p>
+        <p>B2B-KMU mit klarem Angebot, die planbar Anfragen oder Bewerbungen generieren wollen – z. B. Industrie, IT/Software, Maschinenbau, Beratung, Logistik.</p>
       </details>
       <details>
         <summary>Wie schnell sehe ich Ergebnisse?</summary>
-        <p>Erste belastbare Daten i. d. R. in <strong>2–4 Wochen</strong> (abhängig von Traffic/Ticketgröße). Parallel härten wir Angebot, Funnel und Tracking, damit du sauber skalieren kannst.</p>
+        <p>Erste belastbare Daten in der Regel nach 2–4 Wochen (abhängig von Ticketgröße & Traffic). Optimierungsschleifen laufen wöchentlich.</p>
       </details>
       <details>
         <summary>Welche Kanäle nutzt ihr?</summary>
-        <p>Google (Search/PMax), Instagram/Facebook (Paid & Retargeting) sowie CRO & Tracking (GA4, Tag-Manager). Kanäle wählen wir datenbasiert pro ICP.</p>
+        <p>Google (Search/PMax), Instagram/Facebook, Retargeting. Ergänzend CRO & Tracking (GA4, Tag-Manager) für saubere Attribution.</p>
       </details>
       <details>
         <summary>Wie messt ihr Erfolg?</summary>
-        <p>Transparente KPIs im Live-Dashboard: <strong>CPL/CPA</strong>, <strong>Time-to-Hire</strong>, <strong>ROAS/LTV</strong>. Entscheidungen treffen wir auf Basis von Tests & Zahlen – nicht aus dem Bauch.</p>
+        <p>Transparente KPIs im Live-Dashboard: CPL/CPA, Time-to-Hire, ROAS/LTV. Entscheidungen nach Zahlen, nicht nach Bauchgefühl.</p>
       </details>
-      <div class="center" style="margin-top:10px">
-        <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
-      </div>
     </div>
-  </section>
 
-  <!-- Zahlen & Fakten -->
-  <section class="wrap reveal" id="facts">
-    <h2 class="center flow">Zahlen & Fakten</h2>
-    <div class="kpis" style="margin-top:22px">
-      <div class="kpi"><div class="num flow">10+ Jahre</div><div class="sub">Erfahrung in B2B-Growth</div></div>
-      <div class="kpi"><div class="num flow">600+</div><div class="sub">erfolgreiche Kundenprojekte</div></div>
-      <div class="kpi"><div class="num flow">↗︎ ROAS/LTV</div><div class="sub">Budgetsteuerung nach ROAS/LTV</div></div>
-      <div class="kpi"><div class="num flow">4,9★</div><div class="sub">Ø Zufriedenheit</div></div>
+    <div style="text-align:center; margin-top:26px">
+      <a class="btn" href="https://calendly.com/" target="_blank" rel="noopener">Erstgespräch buchen</a>
     </div>
-  </section>
-
-  <!-- Mehr über ConceptPartner -->
-  <section class="wrap reveal" id="about">
-    <h2 class="center">Mehr über ConceptPartner GmbH</h2>
-    <div class="grid-2" style="margin-top:10px">
-      <div class="card">
-        <h3>Mission</h3>
-        <p>Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
-      </div>
-      <div class="card">
-        <h3>Werte</h3>
-        <p>Klarheit, Tempo, Qualität. Sauberes Tracking & Dashboards mit Antworten – kein Rauschen.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Abschluss-CTA -->
-  <section class="wrap reveal center">
-    <h2 class="flow">Bereit für planbares Wachstum?</h2>
-    <p class="lead" style="margin:10px 0 18px">Wir kombinieren Positionierung, performante Funnels und bezahlte Kampagnen – alles sauber getrackt.</p>
-    <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
   </section>
 </main>
 
-<footer id="kontakt">
-  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
-    <div>© ConceptPartner</div>
-    <div style="display:flex;gap:16px">
-      <a href="imprint.html">Impressum</a>
+<footer>
+  <div class="wrap">
+    <div>© ConceptPartner GmbH</div>
+    <div>
+      <a href="imprint.html">Impressum</a> ·
       <a href="privacy.html">Datenschutz</a>
     </div>
   </div>
 </footer>
 
 <!-- Cookie Banner -->
-<div id="cookie" class="cookie" role="dialog" aria-live="polite">
-  <p>Wir nutzen Cookies für ein besseres Erlebnis. Speicherdauer: 90 Tage.</p>
-  <div class="row">
-    <button class="btn btn-outline" id="decline">Ablehnen</button>
-    <button class="btn" id="accept">Annehmen</button>
+<div id="cookie" class="cookie" role="dialog" aria-live="polite" aria-label="Cookie Hinweis" style="display:none">
+  <div>Wir nutzen Cookies für ein besseres Erlebnis. Speicherdauer: 90 Tage.</div>
+  <div class="actions">
+    <button class="btn btn-ghost" onclick="setCookieChoice('no')">Ablehnen</button>
+    <button class="btn" onclick="setCookieChoice('yes')">Annehmen</button>
   </div>
 </div>
 
 <script>
-/* ===== Smooth Reveal (rein beim runter scrollen, wieder aus beim hochscrollen) ===== */
+/* ====== Branchen-Ticker: Track verdoppeln für Endlos-Loop ====== */
+(function(){
+  const t = document.getElementById('ticker');
+  if(!t) return;
+  // Inhalt duplizieren, damit 100% -> 50% shift nahtlos ist
+  t.innerHTML = t.innerHTML + t.innerHTML;
+})();
+
+/* ====== Scroll-Reveal: rein & wieder ausblenden ====== */
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){ e.target.classList.add('show'); }
-    else { e.target.classList.remove('show'); e.target.classList.add('hide-up'); }
+    else{ e.target.classList.remove('show'); } // beim Hochscrollen wieder ausblenden
   });
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ===== Cookie mit 90 Tagen TTL ===== */
-const cookieBox = document.getElementById('cookie');
-function setCookieDecision(val){
-  const exp = Date.now() + 90*24*60*60*1000; // 90 Tage
-  localStorage.setItem('cp_cookie', JSON.stringify({v:val, exp}));
-  cookieBox.style.display='none';
+/* ====== Cookie: 90 Tage ====== */
+const COOKIE_KEY='cp_cookie_choice';
+function setCookieChoice(v){
+  const days=90;
+  const d=new Date(); d.setTime(d.getTime()+days*24*60*60*1000);
+  document.cookie=COOKIE_KEY+"="+encodeURIComponent(v)+"; expires="+d.toUTCString()+"; path=/; SameSite=Lax";
+  document.getElementById('cookie').style.display='none';
 }
-function checkCookie(){
-  const raw = localStorage.getItem('cp_cookie');
-  if(!raw){ cookieBox.style.display='flex'; return; }
-  try{
-    const obj = JSON.parse(raw);
-    if(Date.now() > obj.exp){ localStorage.removeItem('cp_cookie'); cookieBox.style.display='flex'; }
-    else cookieBox.style.display='none';
-  }catch{ cookieBox.style.display='flex'; }
+function getCookie(k){
+  return document.cookie.split('; ').find(r=>r.startsWith(k+'='))?.split('=')[1];
 }
-document.getElementById('accept').onclick=()=>setCookieDecision('yes');
-document.getElementById('decline').onclick=()=>setCookieDecision('no');
-checkCookie();
+(function(){
+  if(!getCookie(COOKIE_KEY)){
+    const c=document.getElementById('cookie'); if(c) c.style.display='flex';
+  }
+})();
 
-/* ===== Verhindere extremes Rauszoomen (Mobile) ===== */
-document.addEventListener('wheel', (e)=>{
-  if(e.ctrlKey) e.preventDefault();
-},{passive:false});
+/* ====== Fix: Minuszeichen stabil & blau-flow überall glatt ====== */
+/* Nichts nötig: CSS nutzt -38% als echten Text; Blue-Flow animiert über background-position */
 
-/* ===== Fix für Endlos-Tag-Lauf: pausiere bei Hover ===== */
-const track = document.getElementById('tagTrack');
-track.addEventListener('mouseenter', ()=>track.style.animationPlayState='paused');
-track.addEventListener('mouseleave', ()=>track.style.animationPlayState='running');
-
-/* ===== Alle blauen Buttons -> Calendly ===== */
-document.querySelectorAll('a.btn').forEach(a=>{
-  a.addEventListener('click',()=>{ /* nothing else – Link öffnet Calendly */ });
-});
+/* ====== Kleine UX: Buttons über allem klickbar ====== */
+document.querySelectorAll('.btn').forEach(b=>b.style.zIndex=5);
 </script>
 </body>
 </html>
