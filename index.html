@@ -128,16 +128,30 @@ details[open]{border-color:#C9D7FF}
 /* Footer */
 footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
-/* Erfolgsbox (grün) */
+/* Erfolgsbox (grün) – mit Fade-in + kleinem Pop */
 .form-ok{
   max-width:600px;margin:18px auto 0;padding:14px 16px;
   border:1px solid #C6F6D5;border-radius:10px;background:#F0FFF4;color:#22543D;
-  box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:15px;line-height:1.45
+  box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:15px;line-height:1.45;
+
+  /* Animation */
+  opacity:0; transform:translateY(8px);
+  transition:opacity .45s ease, transform .45s ease;
+}
+.form-ok.is-visible{
+  opacity:1; transform:none;
 }
 .ok-badge{
   display:inline-grid;place-items:center;
   width:22px;height:22px;margin-right:8px;border-radius:999px;
-  background:#38A169;color:#fff;font-weight:800;vertical-align:middle
+  background:#38A169;color:#fff;font-weight:800;vertical-align:middle;
+
+  /* leichtes Pop-in, zeitversetzt */
+  opacity:0; transform:scale(.85);
+  transition:opacity .35s ease .12s, transform .35s ease .12s;
+}
+.form-ok.is-visible .ok-badge{
+  opacity:1; transform:scale(1);
 }
 
 /* Responsive */
@@ -376,7 +390,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <section class="wrap reveal center" id="closing">
     <h2 class="flow">Let’s make growth boring (because it’s predictable)</h2>
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
-    <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
+    <a class="btn" href="https://calendly.com/your-calendly/erstgespräech" target="_blank" rel="noopener">Erstgespräch buchen</a>
   </section>
 
 </main>
@@ -470,8 +484,11 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
     const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     openMail.setAttribute('href', mailto);
 
-    // Erfolgsbox zeigen, Formular leeren, sanft hin scrollen
+    // Erfolgsbox zeigen & Animation anstoßen
     successBox.hidden = false;
+    requestAnimationFrame(()=> successBox.classList.add('is-visible'));
+
+    // Formular leeren & hin scrollen
     f.reset();
     successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
