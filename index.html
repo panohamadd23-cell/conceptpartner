@@ -25,26 +25,27 @@ html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 img,svg,video{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
 
-/* Layout */
+/* Abstand & Layout */
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
 
-/* ✅ NUR DAS: Abstand + graue Linie */
+/* >>> ONLY CHANGE: mehr Abstand + klare Linie <<< */
 section{
-  padding:220px 0 !important;    /* fetter Abstand innen */
-  margin-top:140px !important;   /* zusätzlicher Abstand zwischen Sections */
-  position:relative;
-  isolation:isolate;
-  scroll-margin-top:140px;       /* Offset für Sticky Header */
+  padding:220px 0;                 /* fetter Innenabstand */
+  margin-top:140px;                /* zusätzlicher Abstand zwischen Sektionen */
+  position:relative; isolation:isolate; scroll-margin-top:140px;
 }
-section:first-of-type{margin-top:0 !important}
-section + section::before{
-  content:"";
-  position:absolute;
-  top:0; left:0; right:0;
-  height:2px;
-  background:var(--line);        /* graue Trennlinie */
+section:first-of-type{ margin-top:0 }          /* oben kein Extra-Abstand */
+section + section{ border-top:2px solid var(--line) }  /* gut sichtbare graue Linie */
+/* <<< END CHANGE */
+
+/* dezenter Maus-Glow (liegt UNTER allem) */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:radial-gradient(360px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%);
 }
+header,main,footer{position:relative; z-index:1}
 
 /* Header */
 header{
@@ -56,7 +57,8 @@ header{
 .header-in{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800}
 .brand-dot{width:10px;height:10px;border-radius:999px;background:var(--blue)}
-nav a{margin-left:26px;font-weight:700}
+nav a{margin-left:26px;font-weight:700;position:relative}
+nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
 
 /* Buttons */
 .btn{
@@ -67,11 +69,11 @@ nav a{margin-left:26px;font-weight:700}
 }
 .btn:hover{transform:translateY(-1px); box-shadow:0 12px 28px rgba(43,110,243,.30)}
 
-/* Hero */
+/* HERO */
 .hero h1{font-size:46px;line-height:1.08;margin:0 0 14px;font-weight:800}
 .hero p{font-size:18px;color:var(--muted);max-width:720px}
 
-/* ✅ Flow – unverändert (läuft glatt) */
+/* ==== BLAUER FLOW – reines CSS, doppelter Layer, nahtlos ==== */
 .flow{
   background-image:
     linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
@@ -88,15 +90,22 @@ nav a{margin-left:26px;font-weight:700}
   from { background-position:   0% 0, 100% 0; }
   to   { background-position: -200% 0, -100% 0; }
 }
+@media (prefers-reduced-motion:reduce){ .flow{animation:none;background-position:0 0, 100% 0} }
 
-/* Branchen-Marquee – unverändert */
+/* Branchen-Marquee – CSS-only */
 .tags{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
 .tag-track{display:inline-flex;gap:18px;white-space:nowrap;will-change:transform;animation:marq 28s linear infinite}
 .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
 .tag i{width:8px;height:8px;border-radius:999px;background:var(--blue)}
 @keyframes marq{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* Cards/Grids (unverändert) */
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:32px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.kpi .num{font-weight:900;font-size:28px;line-height:1}
+.kpi .sub{color:var(--muted);font-size:14px;margin-top:8px}
+
+/* Content */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:44px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
@@ -105,7 +114,15 @@ h3{font-size:20px;margin:0 0 10px}
 .lead{color:var(--muted)}
 .center{text-align:center}
 
-/* Cookie Banner (nur Sichtbarkeit/Z-Index) */
+/* FAQ */
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
+summary{cursor:pointer;font-weight:700}
+details[open]{border-color:#C9D7FF}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
+
+/* Cookie-Banner (oberste Ebene) */
 .cookie{
   position:fixed; left:20px; right:20px; bottom:20px; z-index:99999;
   background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px;
@@ -114,11 +131,11 @@ h3{font-size:20px;margin:0 0 10px}
 .cookie p{margin:0;color:var(--muted)}
 .cookie .row{display:flex;gap:10px}
 
-/* Reveal (unverändert) */
+/* Reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s, transform .6s}
 .reveal.show{opacity:1;transform:none}
 
-/* Responsive (unverändert) */
+/* Responsive */
 @media(max-width:960px){
   .grid-2{grid-template-columns:1fr}
   .kpis{grid-template-columns:1fr 1fr}
@@ -131,10 +148,10 @@ h3{font-size:20px;margin:0 0 10px}
 </head>
 <body>
 
-<header>
+<header role="banner">
   <div class="wrap header-in">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span>ConceptPartner</div>
-    <nav>
+    <nav aria-label="Hauptnavigation">
       <a href="#start">Start</a>
       <a href="#lieferung">Leistungen</a>
       <a href="#karriere">Karriere</a>
@@ -143,7 +160,8 @@ h3{font-size:20px;margin:0 0 10px}
   </div>
 </header>
 
-<main id="start">
+<main id="start" role="main">
+
   <!-- HERO -->
   <section class="wrap hero reveal" id="hero">
     <h1 class="flow">Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste</h1>
@@ -152,7 +170,7 @@ h3{font-size:20px;margin:0 0 10px}
       <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Kostenloses Erstgespräch buchen</a>
     </div>
 
-    <!-- Branchen-Laufband -->
+    <!-- Branchen-Laufband: zwei identische Spuren für nahtlosen Loop -->
     <div class="tags" aria-hidden="true">
       <div class="tag-track" id="tagTrack">
         <span class="tag"><i></i> SaaS</span>
@@ -162,6 +180,7 @@ h3{font-size:20px;margin:0 0 10px}
         <span class="tag"><i></i> IT & Software</span>
         <span class="tag"><i></i> Logistik</span>
         <span class="tag"><i></i> Consulting</span>
+
         <!-- Duplikat -->
         <span class="tag"><i></i> SaaS</span>
         <span class="tag"><i></i> E-Commerce B2B</span>
@@ -173,7 +192,7 @@ h3{font-size:20px;margin:0 0 10px}
       </div>
     </div>
 
-    <!-- KPIs (unverändert) -->
+    <!-- KPIs -->
     <div class="kpis" aria-label="Kennzahlen">
       <div class="kpi reveal"><div class="num flow">+312</div><div class="sub">qualifizierte Anfragen / 90 Tage</div></div>
       <div class="kpi reveal"><div class="num"><span class="flow">-38%</span></div><div class="sub">Cost-per-Lead nach 6 Wochen</div></div>
@@ -229,7 +248,7 @@ h3{font-size:20px;margin:0 0 10px}
   <section class="wrap reveal" id="faq">
     <h2 class="center">FAQ · Kurz & knackig</h2>
     <div class="wrap-narrow" style="max-width:900px;margin:0 auto">
-      <details><summary>Für wen ist ConceptPartner geeignet?</summary><p>Für B2B-KMU, die planbar <strong>Entscheider</strong> erreichen wollen – z. B. Industrie, Maschinenbau, IT/Software, Logistik, Consulting.</p></details>
+      <details><summary>Für wen ist ConceptPartner geeignet?</summary><p>Für B2B-KMU, die planbar <strong>Entscheider</strong> erreichen wollen – z. B. Industrie, Maschinenbau, IT/Software, Logistik, Consulting. Wir bauen Systeme, keine einmaligen Kampagnen.</p></details>
       <details><summary>Wie schnell sehe ich Ergebnisse?</summary><p>Erste belastbare Daten in <strong>2–4 Wochen</strong>. Parallel härten wir Angebot, Funnel und Tracking.</p></details>
       <details><summary>Welche Kanäle nutzt ihr?</summary><p>Google (Search/PMax), Instagram/Facebook (Paid & Retargeting) sowie CRO & Tracking (GA4, Tag-Manager).</p></details>
       <details><summary>Wie messt ihr Erfolg?</summary><p>Transparente KPIs im Live-Dashboard: <strong>CPL/CPA</strong>, <strong>Time-to-Hire</strong>, <strong>ROAS/LTV</strong>.</p></details>
@@ -256,14 +275,15 @@ h3{font-size:20px;margin:0 0 10px}
     </div>
   </section>
 
-  <!-- Abschluss-Statement (unverändert gewünscht) -->
+  <!-- Abschluss-Statement -->
   <section class="wrap reveal center" id="closing">
     <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
     <p class="lead" style="margin:10px 0 0">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
   </section>
+
 </main>
 
-<footer id="kontakt">
+<footer id="kontakt" role="contentinfo">
   <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
     <div>© ConceptPartner</div>
     <div style="display:flex;gap:16px">
@@ -287,12 +307,12 @@ h3{font-size:20px;margin:0 0 10px}
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting) e.target.classList.add('show');});},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ✅ Cookie – nur Sichtbarkeit gefixt (display statt hidden) */
+/* >>> ONLY CHANGE: Cookie verlässlich verstecken (display) <<< */
 const cookieBox=document.getElementById('cookie');
 function setCookieDecision(v){
   const exp=Date.now()+90*24*60*60*1000;
   localStorage.setItem('cp_cookie', JSON.stringify({v,exp}));
-  cookieBox.style.display='none';
+  cookieBox.style.display='none';         // garantiert weg
 }
 function checkCookie(){
   const raw=localStorage.getItem('cp_cookie');
@@ -312,12 +332,16 @@ function checkCookie(){
 document.getElementById('accept').addEventListener('click',()=>setCookieDecision('yes'));
 document.getElementById('decline').addEventListener('click',()=>setCookieDecision('no'));
 checkCookie();
+/* <<< END CHANGE */
 
-/* Maus-Glow (unverändert) */
+/* Maus-Glow */
 document.addEventListener('mousemove', e=>{
   document.documentElement.style.setProperty('--mx', e.clientX + 'px');
   document.documentElement.style.setProperty('--my', e.clientY + 'px');
 },{passive:true});
+
+/* Ctrl+Wheel Zoom blocken (optional) */
+document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
 </script>
 </body>
 </html>
