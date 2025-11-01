@@ -305,20 +305,19 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
     <!-- Erfolgsbox (ersetzt das Formular nach Submit) -->
     <div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <span class="ok-badge" aria-hidden="true">✓</span>
-        <div>
-          <strong>Danke! Ihre Nachricht wurde vollständig übermittelt.</strong><br>
-          ConceptPartner meldet sich in Kürze bei Ihnen.
-          <div style="margin-top:8px;font-size:14px;color:#276749">
-            Falls Sie uns direkt erreichen möchten:<br>
-            📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a> ·
-            ✉️ <a id="openMail" href="#" style="text-decoration:underline;color:#276749">E-Mail-Programm öffnen</a><br>
-            📍 Düsselthaler Straße 65, 40211 Düsseldorf
-          </div>
-        </div>
+  <div style="display:flex;align-items:flex-start;gap:10px">
+    <span class="ok-badge" aria-hidden="true">✓</span>
+    <div>
+      <strong>Danke! Ihre Nachricht wurde vollständig übermittelt.</strong><br>
+      ConceptPartner meldet sich in Kürze bei Ihnen.
+      <div style="margin-top:8px;font-size:14px;color:#276749;line-height:1.6">
+        • <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a><br>
+        • <a href="mailto:info@conceptpartner.de" style="text-decoration:underline;color:#276749">info@conceptpartner.de</a><br>
+        • Düsselthaler Straße 65, 40211 Düsseldorf
       </div>
     </div>
+  </div>
+</div>
   </section>
 
   <!-- FAQ -->
@@ -433,12 +432,15 @@ document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {pa
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
 /* Kontaktformular: Submit → Formular ausblenden, Erfolgsbox einblenden (kein neuer Tab) */
+<script>
+/* …alles andere unverändert… */
+
+/* Kontaktformular: Submit → Formular ausblenden, Erfolgsbox einblenden (kein neuer Tab) */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
 
   const successBox = document.getElementById('contactSuccess');
-  const openMail   = document.getElementById('openMail');
 
   f.addEventListener('submit', function(e){
     e.preventDefault();
@@ -449,21 +451,10 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
 
     /* Basic E-Mail Check */
     const email=(data.get('email')||'').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Bitte gültige E-Mail eingeben.'); return; }
-
-    /* Mailto (optional, nicht automatisch) */
-    const to = 'info@conceptpartner.de';
-    const subject = 'Neue Nachricht von der Website';
-    const body =
-`Name: ${data.get('name')||''}
-E-Mail: ${email}
-Telefon: ${data.get('telefon')||''}
-Firma: ${data.get('firma')||''}
-
-Nachricht:
-${data.get('nachricht')||''}`;
-    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    openMail.setAttribute('href', mailto);
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      alert('Bitte gültige E-Mail eingeben.');
+      return;
+    }
 
     /* Formular ausblenden, Erfolgsbox zeigen + animiert */
     f.style.display='none';
