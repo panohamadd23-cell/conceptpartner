@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 /* Layout */
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
 
-/* Standard-Section-Spacing (wird unten notfalls übersteuert) */
+/* Section spacing (wird unten nochmal mit !important übersteuert) */
 section{
   padding:200px 0;
   margin-top:180px;
@@ -123,12 +123,12 @@ details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:
 summary{cursor:pointer;font-weight:700}
 details[open]{border-color:#C9D7FF}
 
-/* Footer */
-footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
-
 /* Reveal Animation */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s, transform .6s}
 .reveal.show{opacity:1;transform:none}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
 /* Responsive */
 @media(max-width:960px){
@@ -294,22 +294,22 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     </div>
   </section>
 
-  <!-- Abschluss-CTA -->
-  <section class="wrap reveal center" id="closing">
-    <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
-    <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
-    <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
-  </section>
-
-  <!-- FAQ – GANZ UNTEN -->
+  <!-- FAQ – jetzt vorletzte Sektion -->
   <section class="wrap reveal" id="faq">
-    <h2 class="center">FAQ · Kurz & knackig</h2>
+    <h2 class="center">FAQ · Kurz & knackig</h2> <!-- kein .flow hier -->
     <div class="wrap-narrow" style="max-width:900px;margin:0 auto">
       <details><summary>Für wen ist ConceptPartner geeignet?</summary><p>Für B2B-KMU, die planbar <strong>Entscheider</strong> erreichen wollen – z. B. Industrie, Maschinenbau, IT/Software, Logistik, Consulting. Wir bauen Systeme, keine einmaligen Kampagnen.</p></details>
       <details><summary>Wie schnell sehe ich Ergebnisse?</summary><p>Erste belastbare Daten i. d. R. in <strong>2–4 Wochen</strong> (abhängig von Traffic/Ticketgröße). Parallel härten wir Angebot, Funnel und Tracking.</p></details>
       <details><summary>Welche Kanäle nutzt ihr?</summary><p>Google (Search/PMax), Instagram/Facebook (Paid & Retargeting) sowie CRO & Tracking (GA4, Tag-Manager). Kanäle wählen wir datenbasiert pro ICP.</p></details>
       <details><summary>Wie messt ihr Erfolg?</summary><p>Transparente KPIs im Live-Dashboard: <strong>CPL/CPA</strong>, <strong>Time-to-Hire</strong>, <strong>ROAS/LTV</strong>. Entscheidungen treffen wir auf Basis von Tests & Zahlen.</p></details>
     </div>
+  </section>
+
+  <!-- Abschluss-CTA – LETZTE Sektion -->
+  <section class="wrap reveal center" id="closing">
+    <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
+    <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
+    <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
   </section>
 
 </main>
