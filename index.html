@@ -128,6 +128,18 @@ details[open]{border-color:#C9D7FF}
 /* Footer */
 footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
+/* Erfolgsbox (grün) */
+.form-ok{
+  max-width:600px;margin:18px auto 0;padding:14px 16px;
+  border:1px solid #C6F6D5;border-radius:10px;background:#F0FFF4;color:#22543D;
+  box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:15px;line-height:1.45
+}
+.ok-badge{
+  display:inline-grid;place-items:center;
+  width:22px;height:22px;margin-right:8px;border-radius:999px;
+  background:#38A169;color:#fff;font-weight:800;vertical-align:middle
+}
+
 /* Responsive */
 @media(max-width:960px){
   .grid-2{grid-template-columns:1fr}
@@ -312,6 +324,14 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <textarea name="nachricht" placeholder="Nachricht" rows="5" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px;resize:vertical"></textarea>
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
+
+    <!-- ✅ Erfolgsbox direkt unter dem Formular -->
+    <div id="contactSuccess" class="form-ok" hidden>
+      <span class="ok-badge" aria-hidden="true">✓</span>
+      <strong>Danke! Ihre Nachricht wurde übertragen.</strong><br>
+      Wir melden uns in Kürze.
+      <a id="openMail" href="#" style="margin-left:8px;white-space:nowrap">(Optional: E-Mail-Programm öffnen)</a>
+    </div>
   </section>
 
   <!-- FAQ -->
@@ -425,12 +445,17 @@ document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {pa
 /* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
-/* Sicheren mailto-Submit für das Kontaktformular */
+/* Submit mit In-Page-Bestätigung (kein Auto-Mailto, kein neuer Tab) */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
+
+  const successBox = document.getElementById('contactSuccess');
+  const openMail   = document.getElementById('openMail');
+
   f.addEventListener('submit', function(e){
     e.preventDefault();
+
     const data = new FormData(f);
     const to = 'info@conceptpartner.de'; // Platzhalter – echte Adresse später
     const subject = 'Neue Nachricht von der Website';
@@ -440,7 +465,15 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
       `Telefon: ${data.get('telefon')||''}\n`+
       `Firma: ${data.get('firma')||''}\n\n`+
       `Nachricht:\n${data.get('nachricht')||''}`;
-    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Optionalen Mailto-Link anbieten (aber NICHT automatisch öffnen)
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    openMail.setAttribute('href', mailto);
+
+    // Erfolgsbox zeigen, Formular leeren, sanft hin scrollen
+    successBox.hidden = false;
+    f.reset();
+    successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
 })();
 </script>
