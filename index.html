@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 /* Layout */
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
 
-/* Section spacing (Basis, wird unten mit !important gehärtet) */
+/* Section spacing (Basis; unten mit !important gehärtet) */
 section{
   padding:200px 0;
   margin-top:180px;
@@ -109,14 +109,14 @@ h3{font-size:20px;margin:0 0 10px}
 .lead{color:var(--muted)}
 .center{text-align:center}
 
-/* Features: blaue Bullets */
-.features h3{margin-top:10px}
-.features ul{margin:10px 0 22px 0; padding:0; list-style:none}
-.features li{display:flex;gap:10px;align-items:flex-start;line-height:1.55}
-.features li::before{
-  content:""; flex:0 0 8px; height:8px; margin-top:9px;
-  border-radius:999px; background:var(--blue);
-}
+/* Features: PRO-Karten für 'Was wir liefern' */
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;margin:0 auto}
+.feature-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+.feature-card h3{margin:0 0 10px}
+.feature-card ul{list-style:none;margin:0;padding:0}
+.feature-card li{display:flex;gap:10px;align-items:flex-start;margin:10px 0;line-height:1.55}
+.feature-card li::before{content:"";flex:0 0 8px;height:8px;border-radius:999px;background:var(--blue);margin-top:8px}
+@media(max-width:960px){ .feature-grid{grid-template-columns:1fr} }
 
 /* FAQ */
 details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
@@ -159,7 +159,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
   <!-- HERO -->
   <section class="wrap hero reveal" id="hero">
-    <h1 class="flow">Planbares Wachstum für B2B-Unternehmen.</h1>
+    <h1 class="flow">Planbares Wachstum für B2B-Unternehmen</h1>
     <p>ConceptPartner entwickelt skalierbare Systeme für planbare Anfragen und qualifizierte Bewerbungen. Von der Strategie bis zum Tracking – alles, was Performance messbar macht.</p>
     <div style="margin:18px 0 8px">
       <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Kostenloses Erstgespräch buchen</a>
@@ -197,7 +197,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
   <!-- VORTEILE -->
   <section class="wrap reveal benefits" id="benefits">
-    <h2 class="center flow">Warum ConceptPartner.</h2>
+    <h2 class="center flow">Warum ConceptPartner</h2>
     <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:24px">
       <div class="card item">
         <div class="icon" aria-hidden="true">✓</div>
@@ -224,11 +224,14 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
   <!-- WEIT ÜBER ZAHLEN HINAUS -->
   <section class="wrap reveal" id="beyond">
-    <h2 class="center flow">Weit über Zahlen hinaus.</h2>
+    <h2 class="center flow">Weit über Zahlen hinaus</h2>
     <div class="grid-2" style="margin-top:26px">
       <div class="card"><h3 class="flow">Terminfluss statt Zufall</h3><p>Positionierung, Funnel, Ads – so kommen Entscheider planbar in Ihre Gespräche.</p></div>
       <div class="card"><h3 class="flow">Entlastung im Alltag</h3><p>Standardisierte Abläufe & Tracking liefern Antworten statt Rauschen.</p></div>
       <div class="card"><h3 class="flow">Wachstum mit System</h3><p>Kampagnen, die iterieren. Inhalte, die performen. Budgets nach ROAS/LTV gesteuert.</p></div>
+      <!-- NEU: 4. Kachel -->
+      <div class="card"><h3 class="flow">Transparenz im Reporting</h3><p>Dashboards mit klaren KPIs – jeder Schritt nachvollziehbar und entscheidungsfähig.</p></div>
+
       <div class="card" style="grid-column:1/-1;display:flex;gap:18px;align-items:center;justify-content:center;margin-top:18px">
         <strong>Bereit für planbares Wachstum?</strong>
         <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
@@ -236,45 +239,56 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     </div>
   </section>
 
-  <!-- WAS WIR LIEFERN -->
+  <!-- WAS WIR LIEFERN (Pro-Karten) -->
   <section class="wrap reveal" id="lieferung">
-    <h2 class="center flow">Was wir liefern.</h2>
-    <div class="features">
-      <h3 class="flow">Neukunden-Systeme (B2B)</h3>
-      <ul>
-        <li>ICP & Value Proposition schärfen – klare Botschaft & Angebot.</li>
-        <li>Funnel & Landingpages (Speed, Trust, CRO).</li>
-        <li>Google & Meta Ads inkl. Retargeting.</li>
-        <li>GA4 / Tag-Manager · UTM-Standards.</li>
-      </ul>
+    <h2 class="center flow">Was wir liefern</h2>
 
-      <h3 class="flow">Recruiting-Funnel</h3>
-      <ul>
-        <li>Karriereseite & One-Click-Formulare.</li>
-        <li>Creatives & Hooks für Fachkräfte.</li>
-        <li>ATS/CRM-Anbindung · Datenschutz ready.</li>
-        <li>KPIs: Cost-per-Apply, Time-to-Hire.</li>
-      </ul>
+    <div class="feature-grid" style="margin-top:14px">
+      <div class="feature-card">
+        <h3 class="flow">Neukunden-Systeme (B2B)</h3>
+        <ul>
+          <li>ICP & Value Proposition schärfen – klare Botschaft & Angebot.</li>
+          <li>Funnel & Landingpages mit Fokus auf Speed, Trust, CRO.</li>
+          <li>Google & Meta Ads inkl. Retargeting – performanceorientiert.</li>
+          <li>Standards für Naming, UTM & saubere Datenerfassung.</li>
+        </ul>
+      </div>
 
-      <h3 class="flow">Tracking & Analytics</h3>
-      <ul>
-        <li>Sauberes Setup: GA4, Tag-Manager, UTM-Standards.</li>
-        <li>Dashboards: CPL, CPA, ROAS, LTV – live & nachvollziehbar.</li>
-        <li>Qualitative Insights: Heatmaps & Session-Review.</li>
-      </ul>
+      <div class="feature-card">
+        <h3 class="flow">Recruiting-Funnel</h3>
+        <ul>
+          <li>Karriereseite & One-Click-Bewerbung – mobil optimiert.</li>
+          <li>Creatives & Hooks für Fachkräfte in Engpass-Märkten.</li>
+          <li>ATS/CRM-Anbindung · Datenschutz ready.</li>
+          <li>KPIs: Cost-per-Apply, Time-to-Hire, Funnel-Qualität.</li>
+        </ul>
+      </div>
 
-      <h3 class="flow">Performance & Skalierung</h3>
-      <ul>
-        <li>Budgetsteuerung nach ROAS/LTV.</li>
-        <li>Kreativ-Iterationen mit System.</li>
-        <li>Outbound- & Retargeting-Playbooks.</li>
-      </ul>
+      <div class="feature-card">
+        <h3 class="flow">Tracking & Analytics</h3>
+        <ul>
+          <li>GA4 & Tag-Manager: belastbare Datengrundlage.</li>
+          <li>Dashboards für CPL, CPA, ROAS, LTV – live & nachvollziehbar.</li>
+          <li>Heatmaps & Session-Review für qualitative Insights.</li>
+          <li>Testing-Routinen und Dokumentation für Klarheit.</li>
+        </ul>
+      </div>
+
+      <div class="feature-card">
+        <h3 class="flow">Performance & Skalierung</h3>
+        <ul>
+          <li>Budgetsteuerung nach ROAS/LTV – effizient und kontrolliert.</li>
+          <li>Kreativ-Iterationen mit System (Hooks, Formate, Offers).</li>
+          <li>Retargeting & Outbound-Playbooks entlang des Funnels.</li>
+          <li>Skalierungsschritte mit klaren Meilensteinen.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- ZAHLEN & FAKTEN -->
   <section class="wrap reveal" id="facts">
-    <h2 class="center flow">Ergebnisse, die für sich sprechen.</h2>
+    <h2 class="center flow">Ergebnisse, die für sich sprechen</h2>
     <p class="lead center" style="max-width:860px;margin:10px auto 22px">Performance ist kein Zufall – sie ist das Ergebnis von System, Präzision und stetiger Optimierung.</p>
     <div class="kpis" style="margin-top:22px">
       <div class="kpi"><div class="num flow">+312</div><div class="sub">Qualifizierte Anfragen · 90 Tage</div></div>
@@ -284,22 +298,23 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     </div>
   </section>
 
-  <!-- KONTAKTFORMULAR (direkt nach Zahlen & Fakten) -->
+  <!-- KONTAKTFORMULAR (nach Zahlen & Fakten) -->
   <section class="wrap reveal" id="kontaktformular">
-    <h2 class="center flow">Lassen Sie uns sprechen.</h2>
+    <h2 class="center flow">Lassen Sie uns sprechen</h2>
     <p class="lead center" style="max-width:700px;margin:10px auto 50px">
       Sie möchten wissen, welches Potenzial in Ihrem Unternehmen steckt? Wir zeigen Ihnen, wie Sie planbare Anfragen und Bewerbungen mit System erreichen.
     </p>
     <form action="mailto:info@conceptpartner.de" method="post" enctype="text/plain" style="max-width:600px;margin:0 auto;display:grid;gap:18px">
       <input type="text" name="name" placeholder="Name" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <input type="email" name="email" placeholder="E-Mail" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
+      <input type="tel" name="telefon" placeholder="Telefon (optional)" style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <input type="text" name="firma" placeholder="Firma" style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <textarea name="nachricht" placeholder="Nachricht" rows="5" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px;resize:vertical"></textarea>
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
   </section>
 
-  <!-- FAQ (vor Mehr über ConceptPartner) -->
+  <!-- FAQ -->
   <section class="wrap reveal" id="faq">
     <h2 class="center">FAQ · Häufige Fragen</h2> <!-- kein .flow -->
     <div class="wrap-narrow" style="max-width:900px;margin:0 auto">
@@ -313,7 +328,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
   <!-- MEHR ÜBER CONCEPTPARTNER -->
   <section class="wrap reveal" id="about">
-    <h2 class="center flow">Mehr über ConceptPartner.</h2>
+    <h2 class="center flow">Mehr über ConceptPartner</h2>
     <p class="lead center" style="max-width:860px;margin:10px auto 22px">
       ConceptPartner steht für planbares Wachstum im B2B-Marketing. Wir kombinieren strategische Beratung, datengetriebene Umsetzung und technische Exzellenz zu einem System, das nachhaltig Ergebnisse liefert.
     </p>
@@ -339,7 +354,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
   <!-- ABSCHLUSS -->
   <section class="wrap reveal center" id="closing">
-    <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
+    <h2 class="flow">Let’s make growth boring (because it’s predictable)</h2>
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
     <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
   </section>
@@ -406,6 +421,9 @@ document.addEventListener('mousemove', e=>{
 
 /* Ctrl+Wheel Zoom blocken (optional) */
 document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
+
+/* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
+document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 </script>
 
 <!-- HARTER SPACING-OVERRIDE: 140 / 140 / 100 -->
