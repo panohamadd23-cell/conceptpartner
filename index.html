@@ -126,6 +126,10 @@ details[open]{border-color:#C9D7FF}
 /* Footer */
 footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
+/* Reveal Animation */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s, transform .6s}
+.reveal.show{opacity:1;transform:none}
+
 /* Responsive */
 @media(max-width:960px){
   .grid-2{grid-template-columns:1fr}
@@ -290,7 +294,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     </div>
   </section>
 
-  <!-- Abschluss-CTA (bleibt) -->
+  <!-- Abschluss-CTA -->
   <section class="wrap reveal center" id="closing">
     <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
@@ -331,9 +335,12 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  /* Reveal */
+  /* Reveal – ein- UND ausblenden */
   const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); }
+      else { e.target.classList.remove('show'); }
+    });
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
@@ -369,7 +376,7 @@ document.addEventListener('mousemove', e=>{
 document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
 </script>
 
-<!-- HARTER SPACING-OVERRIDE: gewinnt immer -->
+<!-- HARTER SPACING-OVERRIDE: 140 / 140 / 100 -->
 <style id="spacing-override">
   section{ padding-top:140px !important; padding-bottom:140px !important; margin-top:100px !important; }
   section:first-of-type{ margin-top:0 !important; }
