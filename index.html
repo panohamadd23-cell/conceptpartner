@@ -1,231 +1,178 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>ConceptPartner – B2B-Leads & Recruiting</title>
-<meta name="description" content="Planbare B2B-Anfragen & Bewerbungen: Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking. Kurz, konkret, skalierbar.">
-<meta name="theme-color" content="#0A0D14">
-<link rel="canonical" href="https://example.com/">
+  <title>ConceptPartner – B2B-Leads & Recruiting</title>
+  <meta name="description" content="Planbare B2B-Anfragen & Bewerbungen: Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking. Kurz, konkret, skalierbar.">
+  <meta name="theme-color" content="#0A0D14">
 
-<!-- Open Graph / Twitter -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="ConceptPartner – B2B-Leads & Recruiting">
-<meta property="og:description" content="Planbare B2B-Anfragen & Bewerbungen: Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking.">
-<meta property="og:image" content="/public/og.jpg">
-<meta property="og:url" content="https://example.com/">
-<meta name="twitter:card" content="summary_large_image">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Icons (ersetzen, wenn vorhanden) -->
-<link rel="icon" href="/favicon.ico">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/site.webmanifest">
+  <style>
+  :root{
+    --bg:#F4F5F7;
+    --card:#ffffff;
+    --text:#0A0D14;
+    --muted:#5E6A7B;
+    --line:#E6E8EE;
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    --blue:#2B6EF3;
+    --blue-2:#51A1FF;
+    --blue-3:#0D41C9;
 
-<style>
-:root{
-  /* Farben */
-  --bg:#F4F5F7;
-  --card:#ffffff;
-  --text:#0A0D14;
-  --muted:#5E6A7B;
-  --line:#E6E8EE;
+    --wrap:1200px;
+    --radius:14px;
+    --shadow:0 10px 24px rgba(16,24,40,.08);
+  }
 
-  --blue:#2B6EF3;
-  --blue-2:#51A1FF;
-  --blue-3:#0D41C9;
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+  body{
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img,svg,video{display:block;max-width:100%;height:auto}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
 
-  /* Abstände */
-  --wrap:1200px;
-  --radius:14px;
-  --shadow:0 10px 24px rgba(16,24,40,.08);
-}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+  section{
+    padding:120px 0;                  /* MEHR ABSTAND */
+    position:relative; isolation:isolate;
+    scroll-margin-top:84px;
+  }
+  section + section{border-top:1px solid var(--line)} /* GRAUE LINIE */
 
-/* Reset & Base */
-*{box-sizing:border-box}
-html,body{margin:0;height:100%}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-img,svg,video{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+  /* subtiler Maus-Glow */
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(360px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%);
+  }
+  header,main,footer{position:relative; z-index:1}
 
-/* Layout */
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
-section{
-  padding:88px 0;
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-  backface-visibility:hidden;
-  will-change:auto;
-  scroll-margin-top:84px; /* Anker-Offset unter Sticky Header */
-}
-.section-tight{padding:56px 0}
-hr{border:0;border-top:1px solid var(--line);margin:60px 0}
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:1000;
+    background:rgba(244,245,247,.9);
+    -webkit-backdrop-filter:saturate(120%) blur(10px);
+    backdrop-filter:saturate(120%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+  .brand-dot{width:10px;height:10px;border-radius:999px;background:var(--blue)}
+  nav a{margin-left:26px;font-weight:700;position:relative}
+  nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
+  nav a:hover{color:var(--blue)}
 
-/* Skip-Link */
-.skip{
-  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden
-}
-.skip:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;z-index:2000;background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:10px;box-shadow:var(--shadow)}
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 22px;border-radius:12px;font-weight:800;border:2px solid transparent;
+    background:linear-gradient(180deg,var(--blue),var(--blue-3));
+    color:#fff; box-shadow:0 8px 24px rgba(43,110,243,.25);
+    transition:.2s transform ease, .2s box-shadow ease;
+    user-select:none;
+  }
+  .btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(43,110,243,.30)}
+  .btn:focus-visible{transform:none}
 
-/* Header */
-header{
-  position:sticky;top:0;z-index:1000;
-  background:rgba(244,245,247,.9);
-  -webkit-backdrop-filter:saturate(120%) blur(10px);
-  backdrop-filter:saturate(120%) blur(10px);
-  border-bottom:1px solid var(--line);
-}
-.header-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800}
-.brand-dot{width:10px;height:10px;border-radius:999px;background:var(--blue)}
-nav a{margin-left:26px;font-weight:700;position:relative}
-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
-nav a:hover{color:var(--blue)}
+  /* HERO */
+  .hero h1{font-size:46px;line-height:1.08;margin:0 0 14px;font-weight:800}
+  .hero p{font-size:18px;color:var(--muted);max-width:720px}
 
-/* Buttons – Blau */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  padding:14px 22px;border-radius:12px;font-weight:800;border:2px solid transparent;
-  background:linear-gradient(180deg,var(--blue),var(--blue-3));
-  color:#fff; box-shadow:0 8px 24px rgba(43,110,243,.25);
-  transition:.2s transform ease, .2s box-shadow ease;
-  user-select:none;-webkit-user-select:none;
-}
-.btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(43,110,243,.30)}
-.btn:focus-visible{transform:none}
-.btn-outline{background:#fff;color:var(--blue);border-color:var(--blue);box-shadow:none}
-.btn-block{width:100%}
+  /* FLOW – nahtlos, kein Ruckeln (JS treibt Position) */
+  .flow{
+    background-image:
+      linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
+      linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
+    background-size:200% 100%, 200% 100%;
+    background-repeat:repeat-x, repeat-x;
+    background-position:var(--flowX,0%) 0, calc(var(--flowX,0%) + 100%) 0;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+    will-change:background-position;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .flow{background-position:0 0, 100% 0}
+  }
 
-/* HERO */
-.hero h1{font-size:46px;line-height:1.08;margin:0 0 14px;font-weight:800}
-.hero p{font-size:18px;color:var(--muted);max-width:720px}
+  /* Branchen-Marquee */
+  .tags{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+  .tag-track{display:flex;gap:18px;white-space:nowrap;will-change:transform}
+  .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .tag i{width:8px;height:8px;border-radius:999px;background:var(--blue)}
 
-/* „Industrie-Scroller“ (endlos) */
-.tags{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.tag-track{display:flex;gap:18px;white-space:nowrap;will-change:transform;animation:tagroll 22s linear infinite}
-.tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
-.tag i{width:8px;height:8px;border-radius:999px;background:var(--blue)}
-@keyframes tagroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+  .kpi .num{font-weight:900;font-size:28px;line-height:1}
+  .kpi .sub{color:var(--muted);font-size:14px;margin-top:6px}
+  .kpi .minus{margin-right:8px;font-weight:900}
 
-/* KPI-Band */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
-.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
-.kpi .num{font-weight:900;font-size:28px;line-height:1}
-.kpi .sub{color:var(--muted);font-size:14px;margin-top:6px}
-.kpi .minus{margin-right:8px;font-weight:900}
+  /* Content Blocks */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+  h2{font-size:34px;line-height:1.12;margin:0 0 18px;font-weight:800}
+  h3{font-size:20px;margin:0 0 8px}
+  .lead{color:var(--muted)}
+  .center{text-align:center}
 
-/* Blaue Text-Welle – nahtlos per doppeltem Layer (JS treibt nur die Position) */
-.flow{
-  background-image:
-    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
-    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
-  background-size:200% 100%, 200% 100%;
-  background-repeat:repeat-x, repeat-x;
-  background-position:var(--flowX,0%) 0, calc(var(--flowX,0%) + 100%) 0;
-  -webkit-background-clip:text; background-clip:text;
-  -webkit-text-fill-color:transparent; color:transparent;
-  will-change:background-position;
-}
-/* Reduced Motion: deaktiviert JS-Animation */
-@media (prefers-reduced-motion: reduce){
-  .flow{background-position:0 0, 100% 0}
-}
-  .tag-track{animation:none}
-}
+  .points{display:flex;flex-direction:column;gap:18px}
+  .point h4{margin:0 0 6px;font-size:18px}
+  .point p{margin:0;color:var(--muted)}
 
-/* Content Blocks */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-h2{font-size:34px;line-height:1.12;margin:0 0 18px;font-weight:800}
-h3{font-size:20px;margin:0 0 8px}
-.lead{color:var(--muted)}
-.center{text-align:center}
+  .features{max-width:880px;margin:0 auto}
+  .features h3{font-size:22px;margin-top:22px}
+  .features ul{margin:10px 0 22px 0;padding:0;list-style:none;color:var(--muted)}
+  .features li{margin:10px 0;display:flex;gap:10px;align-items:flex-start;line-height:1.55}
+  .features li::before{content:"";flex:0 0 8px;height:8px;border-radius:999px;background:var(--blue);margin-top:8px}
 
-/* „Weit über Zahlen hinaus“ */
-.points{display:flex;flex-direction:column;gap:18px}
-.point h4{margin:0 0 6px;font-size:18px}
-.point p{margin:0;color:var(--muted)}
+  .benefits .item{padding:22px;text-align:center}
+  .benefits .icon{width:48px;height:48px;margin:0 auto 12px;border-radius:12px;background:linear-gradient(180deg,#fff,#EEF4FF);border:1px solid var(--line);display:grid;place-items:center;color:var(--blue);font-weight:900}
 
-/* „Was wir liefern“ */
-.features{max-width:880px;margin:0 auto}
-.features h3{font-size:22px;margin-top:22px}
-.features ul{margin:10px 0 22px 0;padding:0;list-style:none;color:var(--muted)}
-.features li{margin:10px 0;display:flex;gap:10px;align-items:flex-start;line-height:1.55}
-.features li::before{content:"";flex:0 0 8px;height:8px;border-radius:999px;background:var(--blue);margin-top:8px}
+  /* FAQ */
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
+  summary{cursor:pointer;font-weight:700}
+  details[open]{border-color:#C9D7FF}
 
-/* Vorteil-Kacheln */
-.benefits .item{padding:22px;text-align:center}
-.benefits .icon{width:48px;height:48px;margin:0 auto 12px;border-radius:12px;background:linear-gradient(180deg,#fff,#EEF4FF);border:1px solid var(--line);display:grid;place-items:center;color:var(--blue);font-weight:900}
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
 
-/* Video-Testimonials */
-.testis{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.video{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
-.video iframe{position:absolute;inset:0;width:100%;height:100%}
-.quote{padding:10px 2px;color:var(--muted)}
+  /* Cookie Banner */
+  .cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:1200;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .cookie p{margin:0;color:var(--muted)}
+  .cookie .row{display:flex;gap:10px}
 
-/* FAQ */
-details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
-summary{cursor:pointer;font-weight:700}
-details[open]{border-color:#C9D7FF}
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;will-change:opacity,transform}
+  .reveal.show{opacity:1;transform:none}
+  .hide-up{opacity:0;transform:translateY(24px)}
 
-/* CTA Streifen */
-.cta-bar{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
-
-/* Footer */
-footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
-
-/* Cookie Banner */
-.cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:1200;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.cookie p{margin:0;color:var(--muted)}
-.cookie .row{display:flex;gap:10px}
-
-/* Reveal on scroll */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;will-change:opacity,transform}
-.reveal.show{opacity:1;transform:none}
-.hide-up{opacity:0;transform:translateY(24px)}
-
-/* Cursor-Follow Effekt (sehr dezent) */
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(320px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%)}
-header,main,footer{position:relative;z-index:1}
-
-/* Abschnitts-Abstand + dezente Trennlinie */
-section{padding:120px 0}
-section + section{border-top:1px solid var(--line)}
-
-/* Responsive */
-@media(max-width:960px){
-  .grid-2{grid-template-columns:1fr}
-  .kpis{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .hero h1{font-size:36px}
-  .kpis{grid-template-columns:1fr}
-}
-</style>
+  /* Responsive */
+  @media(max-width:960px){
+    .grid-2{grid-template-columns:1fr}
+    .kpis{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:600px){
+    .hero h1{font-size:36px}
+    .kpis{grid-template-columns:1fr}
+  }
+  </style>
 </head>
 <body>
-<a href="#start" class="skip">Zum Inhalt springen</a>
-
 <header role="banner">
   <div class="wrap header-in">
     <div class="brand" aria-label="ConceptPartner Startseite"><span class="brand-dot" aria-hidden="true"></span>ConceptPartner</div>
@@ -240,24 +187,16 @@ section + section{border-top:1px solid var(--line)}
 
 <main id="start" role="main">
   <!-- HERO -->
-  <section class="wrap hero reveal">
+  <section class="wrap hero reveal" id="hero">
     <h1 class="flow">Mehr B2B-Anfragen & Bewerbungen – ohne Streuverluste</h1>
     <p>Wir bauen für dich ein planbares System aus Funnel + Google/Instagram/Facebook-Ads inklusive sauberem Tracking. Perfekt für kleine & mittlere Unternehmen.</p>
     <div style="margin:18px 0 8px">
       <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Kostenloses Erstgespräch buchen</a>
     </div>
 
-    <!-- Endlos laufende Zielgruppen -->
+    <!-- Branchen-Laufband (endlos, ohne Ruckeln) -->
     <div class="tags" aria-hidden="true">
       <div class="tag-track" id="tagTrack">
-        <span class="tag"><i></i> SaaS</span>
-        <span class="tag"><i></i> E-Commerce B2B</span>
-        <span class="tag"><i></i> Industrie</span>
-        <span class="tag"><i></i> Maschinenbau</span>
-        <span class="tag"><i></i> IT & Software</span>
-        <span class="tag"><i></i> Logistik</span>
-        <span class="tag"><i></i> Consulting</span>
-        <!-- Duplikat für nahtlose Endlosschleife -->
         <span class="tag"><i></i> SaaS</span>
         <span class="tag"><i></i> E-Commerce B2B</span>
         <span class="tag"><i></i> Industrie</span>
@@ -277,8 +216,8 @@ section + section{border-top:1px solid var(--line)}
     </div>
   </section>
 
-  <!-- Info-Stripes -->
-  <section class="wrap section-tight reveal benefits">
+  <!-- Vorteile -->
+  <section class="wrap section-tight reveal benefits" id="benefits">
     <div class="grid-3" role="list" aria-label="Vorteile">
       <div class="card item" role="listitem">
         <div class="icon" aria-hidden="true">✓</div>
@@ -298,7 +237,7 @@ section + section{border-top:1px solid var(--line)}
     </div>
   </section>
 
-  <!-- Weit über Zahlen hinaus -->
+  <!-- Beyond -->
   <section class="wrap reveal" id="beyond">
     <h2 class="center flow">Weit über Zahlen hinaus</h2>
     <div class="grid-2" style="margin-top:26px">
@@ -317,7 +256,7 @@ section + section{border-top:1px solid var(--line)}
         </div>
       </div>
 
-      <div class="cta-bar" aria-label="Call to Action">
+      <div class="card cta-bar" aria-label="Call to Action">
         <strong>Bereit für planbares Wachstum?</strong>
         <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
       </div>
@@ -358,7 +297,7 @@ section + section{border-top:1px solid var(--line)}
         <li>Outbound/Retargeting-Playbooks.</li>
         <li>Prozesse, die mitwachsen.</li>
       </ul>
-      
+      <!-- ab hier KEIN CTA mehr -->
     </div>
   </section>
 
@@ -382,7 +321,6 @@ section + section{border-top:1px solid var(--line)}
         <summary>Wie messt ihr Erfolg?</summary>
         <p>Transparente KPIs im Live-Dashboard: <strong>CPL/CPA</strong>, <strong>Time-to-Hire</strong>, <strong>ROAS/LTV</strong>. Entscheidungen treffen wir auf Basis von Tests & Zahlen – nicht aus dem Bauch.</p>
       </details>
-      
     </div>
   </section>
 
@@ -397,25 +335,58 @@ section + section{border-top:1px solid var(--line)}
     </div>
   </section>
 
-  <!-- Mehr über ConceptPartner -->
+  <!-- Karriere (mehr Inhalt) -->
+  <section class="wrap reveal" id="karriere">
+    <h2 class="center">Karriere bei ConceptPartner</h2>
+    <div class="grid-2" style="margin-top:10px">
+      <div class="card">
+        <h3>Wen wir suchen</h3>
+        <p>Performance-Marketer, Creative-Strategen, Growth-Ops und Web Analysts. Menschen, die Zahlen lieben, Verantwortung übernehmen und gern pragmatisch liefern.</p>
+        <ul class="lead">
+          <li>Meta/Google Kampagnen sicher aufsetzen & skalieren</li>
+          <li>Sauberes Tracking (GA4, GTM, UTM-Standards)</li>
+          <li>Funnel-Denken: Geschwindigkeit, Trust, CRO</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Was dich erwartet</h3>
+        <p>Arbeite in fokussierten Sprints mit klaren KPIs. Ehrliches Feedback, kurze Wege, viel Ownership. Remote-freundlich, mit regelmäßigen Team-Days.</p>
+        <ul class="lead">
+          <li>Transparente Ziele & klare Playbooks</li>
+          <li>Eigenes Test-Budget & Sandbox</li>
+          <li>Weiterbildung mit Mentoring</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mehr über ConceptPartner – MEHR LEBEN -->
   <section class="wrap reveal" id="about">
     <h2 class="center">Mehr über ConceptPartner GmbH</h2>
     <div class="grid-2" style="margin-top:10px">
       <div class="card">
         <h3>Mission</h3>
-        <p>Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar.</p>
+        <p>Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar. Wir bauen kein Strohfeuer, sondern wiederholbare Ergebnisse.</p>
       </div>
       <div class="card">
         <h3>Werte</h3>
-        <p>Klarheit, Tempo, Qualität. Sauberes Tracking & Dashboards mit Antworten – kein Rauschen.</p>
+        <p>Klarheit, Tempo, Qualität. Wir liefern harte Zahlen statt heißer Luft: Dashboards mit Antworten, nicht mit Rauschen. Entscheidungen basieren auf Tests, nicht auf Meinungen.</p>
+      </div>
+      <div class="card">
+        <h3>So arbeiten wir</h3>
+        <p>Kurze Iterationen, klare Hypothesen, sauberes Tracking. ICP schärfen → Funnel fit machen → Kampagnen starten → lernen → skalieren. Immer mit Blick auf ROAS & LTV.</p>
+      </div>
+      <div class="card">
+        <h3>Warum wir anders sind</h3>
+        <p>Wir kombinieren Strategie, Kreation, Media und Analytics in einem System. Keine Silos, kein Ping-Pong. Ein Team, ein Dashboard, ein Ziel: planbares Wachstum.</p>
       </div>
     </div>
   </section>
 
-  <!-- Abschluss-CTA -->
-  <section class="wrap reveal center">
-    <h2 class="flow">Bereit für planbares Wachstum?</h2>
-    <p class="lead" style="margin:10px 0 18px">Wir kombinieren Positionierung, performante Funnels und bezahlte Kampagnen – alles sauber getrackt.</p>
+  <!-- Abschluss ohne CTA -->
+  <section class="wrap reveal center" id="closing">
+    <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
+    <p class="lead" style="margin:10px 0 0">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
   </section>
 </main>
 
@@ -433,17 +404,17 @@ section + section{border-top:1px solid var(--line)}
 <div id="cookie" class="cookie" role="region" aria-live="polite" aria-label="Cookie Hinweis" hidden>
   <p>Wir nutzen Cookies für ein besseres Erlebnis. Speicherdauer: 90 Tage.</p>
   <div class="row">
-    <button class="btn btn-outline" id="decline" type="button">Ablehnen</button>
     <button class="btn" id="accept" type="button">Annehmen</button>
+    <button class="btn" id="decline" type="button" style="background:#fff;color:var(--blue);border-color:var(--blue);box-shadow:none">Ablehnen</button>
   </div>
 </div>
 
 <script>
-/* ===== Helper: QS ===== */
-const $ = (sel,ctx=document)=>ctx.querySelector(sel);
-const $$ = (sel,ctx=document)=>Array.from(ctx.querySelectorAll(sel));
+/* ===== Helpers ===== */
+const $ = (s,ctx=document)=>ctx.querySelector(s);
+const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
 
-/* ===== Smooth Reveal ===== */
+/* ===== Reveal on Scroll ===== */
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){ e.target.classList.add('show'); e.target.classList.remove('hide-up'); }
@@ -452,10 +423,10 @@ const io = new IntersectionObserver((entries)=>{
 },{threshold:.12});
 $$('.reveal').forEach(el=>io.observe(el));
 
-/* ===== Cookie mit 90 Tagen TTL (LocalStorage) ===== */
+/* ===== Cookie mit 90 Tagen TTL ===== */
 const cookieBox = $('#cookie');
 function setCookieDecision(val){
-  const exp = Date.now() + 90*24*60*60*1000; // 90 Tage
+  const exp = Date.now() + 90*24*60*60*1000;
   localStorage.setItem('cp_cookie', JSON.stringify({v:val, exp}));
   cookieBox.hidden = true;
 }
@@ -472,18 +443,8 @@ $('#accept').addEventListener('click',()=>setCookieDecision('yes'));
 $('#decline').addEventListener('click',()=>setCookieDecision('no'));
 checkCookie();
 
-/* ===== Verhindere extremes Rauszoomen (Desktop mit Ctrl+Wheel) ===== */
-document.addEventListener('wheel', (e)=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
-
-/* ===== Endlos-Tag-Lauf: pausieren bei Hover ===== */
-const track = $('#tagTrack');
-if(track){
-  track.addEventListener('mouseenter', ()=>track.style.animationPlayState='paused');
-  track.addEventListener('mouseleave', ()=>track.style.animationPlayState='running');
-}
-
-/* ===== Active Link auf Scroll ===== */
-const sections = ['start','lieferung','faq','facts','about','kontakt'];
+/* ===== Aktiver Nav-Link beim Scrollen ===== */
+const sections = ['start','lieferung','faq','facts','karriere','about','kontakt'];
 const links = sections.map(id=>({id, el: document.querySelector(`nav a[href="#${id}"]`)})).filter(x=>x.el);
 const spy = new IntersectionObserver((entries)=>{
   entries.forEach(({isIntersecting, target})=>{
@@ -492,27 +453,64 @@ const spy = new IntersectionObserver((entries)=>{
 },{rootMargin:'-40% 0px -55% 0px', threshold:0});
 sections.forEach(id=>{ const sec = document.getElementById(id); if(sec) spy.observe(sec); });
 
-/* ===== Flow: Nahtlos per RAF und doppeltem Layer ===== */
+/* ===== FLOW – ruckelfrei per RAF (endlose Kassette) ===== */
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!prefersReduced){
-  let flowX = 0; let lastTs = null; const flowEls = $$('.flow');
-  function tick(ts){
-    if(lastTs==null) lastTs = ts;
-    const dt = ts - lastTs; lastTs = ts;
-    // Geschwindigkeit: 0.015 % pro ms -> ~15s pro kompletter Loop
-    flowX = (flowX + dt * 0.015) % 100;
+  let flowX = 0, last = null;
+  const els = $$('.flow');
+  function step(ts){
+    if(last==null) last = ts;
+    const dt = ts - last; last = ts;
+    // 0.015% pro ms ~ 15s pro Loop
+    flowX = (flowX + dt*0.015) % 100;
     const x = flowX + '%';
-    flowEls.forEach(el=> el.style.setProperty('--flowX', x));
+    els.forEach(el=> el.style.setProperty('--flowX', x));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ===== Branchen-Marquee – ruckelfrei per RAF ===== */
+(function(){
+  const container = $('#tagTrack');
+  if(!container) return;
+  const base = Array.from(container.children).map(n=>n.cloneNode(true));
+  // Dupliziere bis Breite >= 2x Viewport für nahtlosen Loop
+  function fill(){
+    const min = window.innerWidth*2;
+    while(container.scrollWidth < min){
+      base.forEach(n=>container.appendChild(n.cloneNode(true)));
+    }
+  }
+  fill(); window.addEventListener('resize', fill);
+
+  let x = 0, last=null, paused=false;
+  container.addEventListener('mouseenter', ()=>paused=true);
+  container.addEventListener('mouseleave', ()=>paused=false);
+
+  function tick(ts){
+    if(last==null) last = ts;
+    const dt = ts - last; last = ts;
+    if(!paused){
+      x -= dt*0.08; // Geschwindigkeit
+      // Reset ohne Sprung: sobald zu weit links, wieder nach rechts schieben
+      const width = container.scrollWidth;
+      if(Math.abs(x) > width/2) x += width/2;
+      container.style.transform = `translateX(${x}px)`;
+    }
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
-}
+})();
 
-/* ===== Maus-Fokus: dezenter blauer Schein folgt Cursor ===== */
+/* ===== Mausposition für Glow ===== */
 document.addEventListener('mousemove', (e)=>{
   document.documentElement.style.setProperty('--mx', e.clientX + 'px');
   document.documentElement.style.setProperty('--my', e.clientY + 'px');
-}, {passive:true});
+},{passive:true});
+
+/* ===== Verhindere extremes Rauszoomen (Ctrl+Wheel) ===== */
+document.addEventListener('wheel', (e)=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
 </script>
 </body>
 </html>
