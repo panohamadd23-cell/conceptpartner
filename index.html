@@ -348,16 +348,6 @@ document.addEventListener('mousemove', e=>{
 
 /* Ctrl+Wheel Zoom blocken (optional) */
 document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
-
-/* FINAL HARD SPACING OVERRIDE – do not touch */
-section{
-  padding-top:280px !important;
-  padding-bottom:280px !important;
-  margin-top:180px !important;
-}
-section:first-of-type{ margin-top:0 !important; }
-section + section{ border-top:2px solid var(--line) !important; }
-
 </script>
 </body>
 </html>
