@@ -27,7 +27,7 @@ img,svg,video{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
 
-/* Layout + Spacing */
+/* Layout */
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
 section{
   padding:200px 0;
@@ -130,26 +130,38 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
 /* Erfolgsbox (grün) – mit Fade-in + kleinem Pop */
 .form-ok{
-  max-width:680px;margin:0 auto;padding:18px 18px;
-  border:1px solid #C6F6D5;border-radius:12px;background:#F0FFF4;color:#22543D;
-  box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:16px;line-height:1.5;
+  max-width:600px;margin:18px auto 0;padding:14px 16px;
+  border:1px solid #C6F6D5;border-radius:10px;background:#F0FFF4;color:#22543D;
+  box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:15px;line-height:1.45;
 
+  /* Animation */
   opacity:0; transform:translateY(8px);
   transition:opacity .45s ease, transform .45s ease;
 }
-.form-ok.is-visible{ opacity:1; transform:none; }
+.form-ok.is-visible{
+  opacity:1; transform:none;
+}
 .ok-badge{
   display:inline-grid;place-items:center;
-  width:24px;height:24px;margin-right:10px;border-radius:999px;
+  width:22px;height:22px;margin-right:8px;border-radius:999px;
   background:#38A169;color:#fff;font-weight:800;vertical-align:middle;
+
+  /* leichtes Pop-in, zeitversetzt */
   opacity:0; transform:scale(.85);
   transition:opacity .35s ease .12s, transform .35s ease .12s;
 }
-.form-ok.is-visible .ok-badge{ opacity:1; transform:scale(1); }
+.form-ok.is-visible .ok-badge{
+  opacity:1; transform:scale(1);
+}
 
-/* Mobile spacing softer */
-@media (max-width: 640px){
-  section{ padding-top:120px; padding-bottom:120px; margin-top:84px; }
+/* Responsive */
+@media(max-width:960px){
+  .grid-2{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .hero h1{font-size:36px}
+  .kpis{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -204,6 +216,33 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <div class="kpi reveal"><div class="num"><span class="flow">-38%</span></div><div class="sub">Cost-per-Lead nach 6 Wochen</div></div>
       <div class="kpi reveal"><div class="num flow">4,9★</div><div class="sub">Ø Kundenzufriedenheit</div></div>
       <div class="kpi reveal"><div class="num flow">30</div><div class="sub">Tage Time-to-Hire</div></div>
+    </div>
+  </section>
+
+  <!-- VORTEILE -->
+  <section class="wrap reveal benefits" id="benefits">
+    <h2 class="center flow">Warum ConceptPartner</h2>
+    <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:24px">
+      <div class="card item">
+        <div class="icon" aria-hidden="true">✓</div>
+        <h3 class="flow">Strategie, die wirkt</h3>
+        <p class="lead">Erprobte Frameworks, präzise ICPs, klare Value Proposition und messbare KPIs.</p>
+      </div>
+      <div class="card item">
+        <div class="icon" aria-hidden="true">★</div>
+        <h3 class="flow">Daten mit Antworten</h3>
+        <p class="lead">Transparenz in Google, Meta und GA4: Leads, Kosten und Pfade klar sichtbar.</p>
+      </div>
+      <div class="card item">
+        <div class="icon" aria-hidden="true">↗︎</div>
+        <h3 class="flow">Skalierung mit System</h3>
+        <p class="lead">Testen, messen, iterieren – Prozesse, die sich mit Ihrem Unternehmen mitentwickeln.</p>
+      </div>
+      <div class="card item">
+        <div class="icon" aria-hidden="true">🤝</div>
+        <h3 class="flow">Betreuung auf Augenhöhe</h3>
+        <p class="lead">Persönliche Ansprechpartner, klare Kommunikation, Ziele statt Versprechen.</p>
+      </div>
     </div>
   </section>
 
@@ -285,16 +324,13 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <!-- ALIAS-ANKER für Nav-Link 'Kontakt' -->
   <span id="kontakt"></span>
 
-  <!-- KONTAKT -->
+  <!-- KONTAKTFORMULAR -->
   <section class="wrap reveal" id="kontaktformular">
     <h2 class="center flow">Lassen Sie uns sprechen</h2>
     <p class="lead center" style="max-width:700px;margin:10px auto 50px">
       Sie möchten wissen, welches Potenzial in Ihrem Unternehmen steckt? Wir zeigen Ihnen, wie Sie planbare Anfragen und Bewerbungen mit System erreichen.
     </p>
-
     <form id="contactForm" style="max-width:600px;margin:0 auto;display:grid;gap:18px">
-      <!-- Honeypot (unsichtbar) -->
-      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
       <input type="text" name="name" placeholder="Name" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <input type="email" name="email" placeholder="E-Mail" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <input type="tel" name="telefon" placeholder="Telefon (optional)" style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
@@ -303,23 +339,23 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
 
-   <!-- Erfolgsbox (ersetzt das Formular nach Submit) -->
-<div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
-  <div style="display:flex;align-items:flex-start;gap:10px">
-    <span class="ok-badge" aria-hidden="true">✓</span>
-    <div>
-      <strong>Danke! Ihre Nachricht wurde vollständig übermittelt.</strong><br>
-      ConceptPartner meldet sich in Kürze bei Ihnen.
-      <div style="margin-top:8px;font-size:14px;color:#276749">
-        Falls Sie uns direkt erreichen möchten:<br>
-        📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a><br>
-        ✉️ <a href="mailto:info@conceptpartner.de" style="text-decoration:underline;color:#276749">info@conceptpartner.de</a><br>
-        📍 Düsselthaler Straße 65, 40211 Düsseldorf
+    <!-- ✅ Erfolgsbox (ersetzt das Formular nach Submit) -->
+    <div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="ok-badge" aria-hidden="true">✓</span>
+        <div>
+          <strong>Danke! Ihre Nachricht wurde vollständig übermittelt.</strong><br>
+          ConceptPartner meldet sich in Kürze bei Ihnen.
+          <div style="margin-top:8px;font-size:14px;color:#276749">
+            Falls Sie uns direkt erreichen möchten:<br>
+            📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a><br>
+            ✉️ <a href="mailto:info@conceptpartner.de" style="text-decoration:underline;color:#276749">info@conceptpartner.de</a><br>
+            📍 Düsselthaler Straße 65, 40211 Düsseldorf
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</section>
+  </section>
 
   <!-- FAQ -->
   <section class="wrap reveal" id="faq">
@@ -363,12 +399,12 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <section class="wrap reveal center" id="closing">
     <h2 class="flow">Let’s make growth boring (because it’s predictable)</h2>
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
-    <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
+    <a class="btn" href="https://calendly.com/your-calendly/erstgespräech" target="_blank" rel="noopener">Erstgespräch buchen</a>
   </section>
 
 </main>
 
-<footer role="contentinfo">
+<footer id="kontakt" role="contentinfo">
   <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
     <div>© ConceptPartner</div>
     <div style="display:flex;gap:16px">
@@ -389,7 +425,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  /* Reveal – ein und ausblenden */
+  /* Reveal – ein- UND ausblenden */
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){ e.target.classList.add('show'); }
@@ -398,12 +434,13 @@ document.addEventListener('DOMContentLoaded', () => {
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  /* Cookie */
+  /* Cookie – robustes Schließen */
   const cookieBox = document.getElementById('cookie');
   function setCookieDecision(v){
     const exp = Date.now() + 90*24*60*60*1000;
     localStorage.setItem('cp_cookie', JSON.stringify({v,exp}));
-    cookieBox.hidden = true; cookieBox.style.display='none';
+    cookieBox.hidden = true;
+    cookieBox.style.display = 'none';
   }
   function checkCookie(){
     const raw = localStorage.getItem('cp_cookie');
@@ -416,7 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   document.getElementById('accept').addEventListener('click',()=>setCookieDecision('yes'));
   document.getElementById('decline').addEventListener('click',()=>setCookieDecision('no'));
-  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !cookieBox.hidden) setCookieDecision('no'); });
   checkCookie();
 });
 
@@ -432,49 +468,37 @@ document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {pa
 /* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
-/* Kontaktformular: Submit → Formular ausblenden, Erfolgsbox einblenden (kein neuer Tab) */
+/* Submit mit In-Page-Bestätigung (kein Auto-Mailto, kein neuer Tab) */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
 
   const successBox = document.getElementById('contactSuccess');
-  const openMail   = document.getElementById('openMail');
+  const openMail   = document.getElementById('openMail'); // kann fehlen
 
   f.addEventListener('submit', function(e){
     e.preventDefault();
+
     const data = new FormData(f);
-
-    /* Honeypot check */
-    if((data.get('website')||'').trim()!==''){ return; }
-
-    /* Basic E-Mail Check */
-    const email=(data.get('email')||'').trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Bitte gültige E-Mail eingeben.'); return; }
-
-    /* Mailto (optional, nicht automatisch) */
     const to = 'info@conceptpartner.de';
     const subject = 'Neue Nachricht von der Website';
     const body =
-`Name: ${data.get('name')||''}
-E-Mail: ${email}
-Telefon: ${data.get('telefon')||''}
-Firma: ${data.get('firma')||''}
+      `Name: ${data.get('name')||''}\n`+
+      `E-Mail: ${data.get('email')||''}\n`+
+      `Telefon: ${data.get('telefon')||''}\n`+
+      `Firma: ${data.get('firma')||''}\n\n`+
+      `Nachricht:\n${data.get('nachricht')||''}`;
 
-Nachricht:
-${data.get('nachricht')||''}`;
+    // Optionalen Mailto-Link nur setzen, wenn vorhanden
     const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    openMail.setAttribute('href', mailto);
+    if (openMail) { openMail.setAttribute('href', mailto); }
 
-    /* Formular ausblenden, Erfolgsbox zeigen + animiert */
-    f.style.display='none';
+    // Erfolgsbox zeigen & Animation anstoßen
     successBox.hidden = false;
-    requestAnimationFrame(()=>{
-      successBox.classList.add('is-visible');
-      successBox.setAttribute('tabindex','-1');
-      successBox.focus();
-    });
+    requestAnimationFrame(()=> successBox.classList.add('is-visible'));
 
-    /* sanft zentrieren */
+    // Formular leeren & hin scrollen
+    f.reset();
     successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
 })();
