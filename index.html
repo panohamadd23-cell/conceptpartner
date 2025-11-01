@@ -1,181 +1,152 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>ConceptPartner – B2B-Leads & Recruiting</title>
+<meta name="description" content="Planbare B2B-Anfragen & Bewerbungen: Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking. Kurz, konkret, skalierbar.">
 
-  <title>ConceptPartner – B2B-Leads & Recruiting</title>
-  <meta name="description" content="Planbare B2B-Anfragen & Bewerbungen: Funnel + Google/Instagram/Facebook Ads inkl. sauberem Tracking. Kurz, konkret, skalierbar.">
-  <meta name="theme-color" content="#0A0D14">
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F5F7; --card:#fff; --text:#0A0D14; --muted:#5E6A7B; --line:#E6E8EE;
+  --blue:#2B6EF3; --blue-2:#51A1FF; --blue-3:#0D41C9;
+  --wrap:1200px; --radius:14px; --shadow:0 10px 24px rgba(16,24,40,.08);
+}
 
-  <style>
-  :root{
-    --bg:#F4F5F7;
-    --card:#ffffff;
-    --text:#0A0D14;
-    --muted:#5E6A7B;
-    --line:#E6E8EE;
+/* Base */
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg,video{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
 
-    --blue:#2B6EF3;
-    --blue-2:#51A1FF;
-    --blue-3:#0D41C9;
+/* Layout / Abstand */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+section{
+  padding:160px 0 !important;                 /* VIEL MEHR ABSTAND */
+  position:relative; isolation:isolate; scroll-margin-top:100px;
+}
+section + section{border-top:1px solid var(--line)} /* graue Linie */
 
-    --wrap:1200px;
-    --radius:14px;
-    --shadow:0 10px 24px rgba(16,24,40,.08);
-  }
+/* subtiler Maus-Glow (unter Content) */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(380px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.09), transparent 60%);
+}
+header,main,footer{position:relative; z-index:1}
 
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
-  body{
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-  }
-  img,svg,video{display:block;max-width:100%;height:auto}
-  a{color:inherit;text-decoration:none}
-  :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+/* Header */
+header{
+  position:sticky; top:0; z-index:1000;
+  background:rgba(244,245,247,.9);
+  -webkit-backdrop-filter:saturate(120%) blur(10px);
+  backdrop-filter:saturate(120%) blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-in{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.brand-dot{width:10px;height:10px;border-radius:999px;background:var(--blue)}
+nav a{margin-left:26px;font-weight:700;position:relative}
+nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
 
-  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
-  section{
-    padding:120px 0;                  /* MEHR ABSTAND */
-    position:relative; isolation:isolate;
-    scroll-margin-top:84px;
-  }
-  section + section{border-top:1px solid var(--line)} /* GRAUE LINIE */
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 22px;border-radius:12px;font-weight:800;border:2px solid transparent;
+  background:linear-gradient(180deg,var(--blue),var(--blue-3));color:#fff;
+  box-shadow:0 8px 24px rgba(43,110,243,.25);transition:.2s transform,.2s box-shadow;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(43,110,243,.3)}
 
-  /* subtiler Maus-Glow */
-  body::before{
-    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
-    background:radial-gradient(360px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%);
-  }
-  header,main,footer{position:relative; z-index:1}
+/* HERO */
+.hero h1{font-size:46px;line-height:1.08;margin:0 0 14px;font-weight:800}
+.hero p{font-size:18px;color:var(--muted);max-width:720px}
 
-  /* Header */
-  header{
-    position:sticky; top:0; z-index:1000;
-    background:rgba(244,245,247,.9);
-    -webkit-backdrop-filter:saturate(120%) blur(10px);
-    backdrop-filter:saturate(120%) blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .header-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-  .brand-dot{width:10px;height:10px;border-radius:999px;background:var(--blue)}
-  nav a{margin-left:26px;font-weight:700;position:relative}
-  nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
-  nav a:hover{color:var(--blue)}
+/* ==== FLOW – 100% smooth, reines CSS (keine JS-Ruckler) ==== */
+@property --flow { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+.flow{
+  background-image:
+    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
+    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
+  background-size:200% 100%, 200% 100%;
+  background-repeat:repeat-x, repeat-x;
+  background-position:var(--flow) 0, calc(var(--flow) + 100%) 0;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+  animation:flowMove 16s linear infinite;
+  will-change:background-position;
+}
+@keyframes flowMove { to { --flow:-100%; } }
+@media (prefers-reduced-motion:reduce){ .flow{animation:none;background-position:0 0, 100% 0} }
 
-  /* Buttons */
-  .btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:14px 22px;border-radius:12px;font-weight:800;border:2px solid transparent;
-    background:linear-gradient(180deg,var(--blue),var(--blue-3));
-    color:#fff; box-shadow:0 8px 24px rgba(43,110,243,.25);
-    transition:.2s transform ease, .2s box-shadow ease;
-    user-select:none;
-  }
-  .btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(43,110,243,.30)}
-  .btn:focus-visible{transform:none}
+/* Branchen-Marquee */
+.tags{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tag-track{display:flex;gap:18px;white-space:nowrap;will-change:transform}
+.tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.tag i{width:8px;height:8px;border-radius:999px;background:var(--blue)}
 
-  /* HERO */
-  .hero h1{font-size:46px;line-height:1.08;margin:0 0 14px;font-weight:800}
-  .hero p{font-size:18px;color:var(--muted);max-width:720px}
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.kpi .num{font-weight:900;font-size:28px;line-height:1}
+.kpi .sub{color:var(--muted);font-size:14px;margin-top:8px}
+.kpi .minus{margin-right:8px;font-weight:900}
 
-  /* FLOW – nahtlos, kein Ruckeln (JS treibt Position) */
-  .flow{
-    background-image:
-      linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
-      linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
-    background-size:200% 100%, 200% 100%;
-    background-repeat:repeat-x, repeat-x;
-    background-position:var(--flowX,0%) 0, calc(var(--flowX,0%) + 100%) 0;
-    -webkit-background-clip:text; background-clip:text;
-    -webkit-text-fill-color:transparent; color:transparent;
-    will-change:background-position;
-  }
-  @media (prefers-reduced-motion:reduce){
-    .flow{background-position:0 0, 100% 0}
-  }
+/* Content Blocks */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px}
+h2{font-size:34px;line-height:1.12;margin:0 0 20px;font-weight:800}
+h3{font-size:20px;margin:0 0 10px}
+.lead{color:var(--muted)}
+.center{text-align:center}
 
-  /* Branchen-Marquee */
-  .tags{margin-top:22px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-  .tag-track{display:flex;gap:18px;white-space:nowrap;will-change:transform}
-  .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
-  .tag i{width:8px;height:8px;border-radius:999px;background:var(--blue)}
+/* FAQ */
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
+summary{cursor:pointer;font-weight:700}
+details[open]{border-color:#C9D7FF}
 
-  /* KPI */
-  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
-  .kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
-  .kpi .num{font-weight:900;font-size:28px;line-height:1}
-  .kpi .sub{color:var(--muted);font-size:14px;margin-top:6px}
-  .kpi .minus{margin-right:8px;font-weight:900}
+/* Footer */
+footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
-  /* Content Blocks */
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-  h2{font-size:34px;line-height:1.12;margin:0 0 18px;font-weight:800}
-  h3{font-size:20px;margin:0 0 8px}
-  .lead{color:var(--muted)}
-  .center{text-align:center}
+/* Cookie Banner – ganz oben, klickbar */
+.cookie{
+  position:fixed;left:20px;right:20px;bottom:20px;z-index:99999;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;
+  box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.cookie p{margin:0;color:var(--muted)}
+.cookie .row{display:flex;gap:10px}
 
-  .points{display:flex;flex-direction:column;gap:18px}
-  .point h4{margin:0 0 6px;font-size:18px}
-  .point p{margin:0;color:var(--muted)}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s, transform .6s}
+.reveal.show{opacity:1;transform:none}
 
-  .features{max-width:880px;margin:0 auto}
-  .features h3{font-size:22px;margin-top:22px}
-  .features ul{margin:10px 0 22px 0;padding:0;list-style:none;color:var(--muted)}
-  .features li{margin:10px 0;display:flex;gap:10px;align-items:flex-start;line-height:1.55}
-  .features li::before{content:"";flex:0 0 8px;height:8px;border-radius:999px;background:var(--blue);margin-top:8px}
-
-  .benefits .item{padding:22px;text-align:center}
-  .benefits .icon{width:48px;height:48px;margin:0 auto 12px;border-radius:12px;background:linear-gradient(180deg,#fff,#EEF4FF);border:1px solid var(--line);display:grid;place-items:center;color:var(--blue);font-weight:900}
-
-  /* FAQ */
-  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}
-  summary{cursor:pointer;font-weight:700}
-  details[open]{border-color:#C9D7FF}
-
-  /* Footer */
-  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}
-
-  /* Cookie Banner */
-  .cookie{position:fixed;left:20px;right:20px;bottom:20px;z-index:1200;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .cookie p{margin:0;color:var(--muted)}
-  .cookie .row{display:flex;gap:10px}
-
-  /* Reveal */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;will-change:opacity,transform}
-  .reveal.show{opacity:1;transform:none}
-  .hide-up{opacity:0;transform:translateY(24px)}
-
-  /* Responsive */
-  @media(max-width:960px){
-    .grid-2{grid-template-columns:1fr}
-    .kpis{grid-template-columns:1fr 1fr}
-  }
-  @media(max-width:600px){
-    .hero h1{font-size:36px}
-    .kpis{grid-template-columns:1fr}
-  }
-  </style>
+/* Responsive */
+@media(max-width:960px){
+  .grid-2{grid-template-columns:1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .hero h1{font-size:36px}
+  .kpis{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
+
 <header role="banner">
   <div class="wrap header-in">
-    <div class="brand" aria-label="ConceptPartner Startseite"><span class="brand-dot" aria-hidden="true"></span>ConceptPartner</div>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span>ConceptPartner</div>
     <nav aria-label="Hauptnavigation">
       <a href="#start">Start</a>
       <a href="#lieferung">Leistungen</a>
@@ -194,7 +165,7 @@
       <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Kostenloses Erstgespräch buchen</a>
     </div>
 
-    <!-- Branchen-Laufband (endlos, ohne Ruckeln) -->
+    <!-- Branchen-Laufband -->
     <div class="tags" aria-hidden="true">
       <div class="tag-track" id="tagTrack">
         <span class="tag"><i></i> SaaS</span>
@@ -217,48 +188,22 @@
   </section>
 
   <!-- Vorteile -->
-  <section class="wrap section-tight reveal benefits" id="benefits">
-    <div class="grid-3" role="list" aria-label="Vorteile">
-      <div class="card item" role="listitem">
+  <section class="wrap reveal" id="benefits">
+    <div class="grid-3">
+      <div class="card">
         <div class="icon" aria-hidden="true">✓</div>
         <h3>Playbooks, die funktionieren</h3>
         <p class="lead">Kurz, konkret, sofort umsetzbar – für Vertrieb & Recruiting.</p>
       </div>
-      <div class="card item" role="listitem">
+      <div class="card">
         <div class="icon" aria-hidden="true">★</div>
         <h3>Tracking mit Antworten</h3>
         <p class="lead">KPIs statt Bauchgefühl: CPL, CPA, ROAS, LTV – live im Dashboard.</p>
       </div>
-      <div class="card item" role="listitem">
+      <div class="card">
         <div class="icon" aria-hidden="true">↗︎</div>
         <h3>Skalierung, die mitwächst</h3>
         <p class="lead">Iterationen mit System – Creatives, Funnel, Retargeting.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Beyond -->
-  <section class="wrap reveal" id="beyond">
-    <h2 class="center flow">Weit über Zahlen hinaus</h2>
-    <div class="grid-2" style="margin-top:26px">
-      <div class="points">
-        <div class="point">
-          <h4>Terminfluss statt Zufall</h4>
-          <p>Klare Positionierung + sauberer Funnel bringen Entscheider planbar in deine Gespräche.</p>
-        </div>
-        <div class="point">
-          <h4>Entlastung im Alltag</h4>
-          <p>Standardisierte Abläufe & Tracking liefern Antworten statt Rauschen – du triffst bessere Entscheidungen.</p>
-        </div>
-        <div class="point">
-          <h4>Wachstum mit System</h4>
-          <p>Kampagnen, die iterieren. Inhalte, die performen. Budgets, die nach ROAS/LTV gesteuert werden.</p>
-        </div>
-      </div>
-
-      <div class="card cta-bar" aria-label="Call to Action">
-        <strong>Bereit für planbares Wachstum?</strong>
-        <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
       </div>
     </div>
   </section>
@@ -274,7 +219,6 @@
         <li>Google & Meta Ads inkl. Retargeting.</li>
         <li>GA4 / Tag-Manager · UTM-Standards.</li>
       </ul>
-
       <h3>Recruiting-Funnel</h3>
       <ul>
         <li>Karriereseite & One-Click-Formulare.</li>
@@ -282,14 +226,12 @@
         <li>ATS/CRM-Anbindung · Datenschutz ready.</li>
         <li>KPIs: Cost-per-Apply, Time-to-Hire.</li>
       </ul>
-
       <h3>Werkzeuge & Reporting</h3>
       <ul>
         <li>Live-Dashboards (CPL, CPA, ROAS, LTV).</li>
         <li>Heatmaps & Session-Review · A/B-Testing.</li>
         <li>Standards für Naming & Tracking.</li>
       </ul>
-
       <h3>Digitale Skalierung</h3>
       <ul>
         <li>Budgetsteuerung nach ROAS/LTV.</li>
@@ -297,7 +239,6 @@
         <li>Outbound/Retargeting-Playbooks.</li>
         <li>Prozesse, die mitwachsen.</li>
       </ul>
-      <!-- ab hier KEIN CTA mehr -->
     </div>
   </section>
 
@@ -305,88 +246,47 @@
   <section class="wrap reveal" id="faq">
     <h2 class="center">FAQ · Kurz & knackig</h2>
     <div class="wrap-narrow" style="max-width:900px;margin:0 auto">
-      <details>
-        <summary>Für wen ist ConceptPartner geeignet?</summary>
-        <p>Für B2B-KMU, die planbar <strong>Entscheider</strong> erreichen wollen – z. B. Industrie, Maschinenbau, IT/Software, Logistik, Consulting. Wir bauen Systeme, keine einmaligen Kampagnen.</p>
-      </details>
-      <details>
-        <summary>Wie schnell sehe ich Ergebnisse?</summary>
-        <p>Erste belastbare Daten i. d. R. in <strong>2–4 Wochen</strong> (abhängig von Traffic/Ticketgröße). Parallel härten wir Angebot, Funnel und Tracking, damit du sauber skalieren kannst.</p>
-      </details>
-      <details>
-        <summary>Welche Kanäle nutzt ihr?</summary>
-        <p>Google (Search/PMax), Instagram/Facebook (Paid & Retargeting) sowie CRO & Tracking (GA4, Tag-Manager). Kanäle wählen wir datenbasiert pro ICP.</p>
-      </details>
-      <details>
-        <summary>Wie messt ihr Erfolg?</summary>
-        <p>Transparente KPIs im Live-Dashboard: <strong>CPL/CPA</strong>, <strong>Time-to-Hire</strong>, <strong>ROAS/LTV</strong>. Entscheidungen treffen wir auf Basis von Tests & Zahlen – nicht aus dem Bauch.</p>
-      </details>
+      <details><summary>Für wen ist ConceptPartner geeignet?</summary><p>Für B2B-KMU, die planbar <strong>Entscheider</strong> erreichen wollen – z. B. Industrie, Maschinenbau, IT/Software, Logistik, Consulting. Wir bauen Systeme, keine einmaligen Kampagnen.</p></details>
+      <details><summary>Wie schnell sehe ich Ergebnisse?</summary><p>Erste belastbare Daten in <strong>2–4 Wochen</strong> (abhängig von Traffic/Ticketgröße). Parallel härten wir Angebot, Funnel und Tracking.</p></details>
+      <details><summary>Welche Kanäle nutzt ihr?</summary><p>Google (Search/PMax), Instagram/Facebook (Paid & Retargeting) sowie CRO & Tracking (GA4, Tag-Manager). Kanäle wählen wir datenbasiert pro ICP.</p></details>
+      <details><summary>Wie messt ihr Erfolg?</summary><p>Transparente KPIs im Live-Dashboard: <strong>CPL/CPA</strong>, <strong>Time-to-Hire</strong>, <strong>ROAS/LTV</strong>.</p></details>
     </div>
   </section>
 
-  <!-- Zahlen & Fakten -->
-  <section class="wrap reveal" id="facts">
-    <h2 class="center flow">Zahlen & Fakten</h2>
-    <div class="kpis" style="margin-top:22px">
-      <div class="kpi"><div class="num flow">10+ Jahre</div><div class="sub">Erfahrung in B2B-Growth</div></div>
-      <div class="kpi"><div class="num flow">600+</div><div class="sub">erfolgreiche Kundenprojekte</div></div>
-      <div class="kpi"><div class="num flow">↗︎ ROAS/LTV</div><div class="sub">Budgetsteuerung nach ROAS/LTV</div></div>
-      <div class="kpi"><div class="num flow">4,9★</div><div class="sub">Ø Zufriedenheit</div></div>
-    </div>
-  </section>
-
-  <!-- Karriere (mehr Inhalt) -->
+  <!-- Karriere -->
   <section class="wrap reveal" id="karriere">
     <h2 class="center">Karriere bei ConceptPartner</h2>
     <div class="grid-2" style="margin-top:10px">
       <div class="card">
         <h3>Wen wir suchen</h3>
-        <p>Performance-Marketer, Creative-Strategen, Growth-Ops und Web Analysts. Menschen, die Zahlen lieben, Verantwortung übernehmen und gern pragmatisch liefern.</p>
+        <p>Performance-Marketer, Creative-Strategen, Growth-Ops und Web Analysts.</p>
         <ul class="lead">
-          <li>Meta/Google Kampagnen sicher aufsetzen & skalieren</li>
-          <li>Sauberes Tracking (GA4, GTM, UTM-Standards)</li>
+          <li>Meta/Google sicher aufsetzen & skalieren</li>
+          <li>Tracking (GA4, GTM, UTM-Standards)</li>
           <li>Funnel-Denken: Geschwindigkeit, Trust, CRO</li>
         </ul>
       </div>
       <div class="card">
         <h3>Was dich erwartet</h3>
-        <p>Arbeite in fokussierten Sprints mit klaren KPIs. Ehrliches Feedback, kurze Wege, viel Ownership. Remote-freundlich, mit regelmäßigen Team-Days.</p>
+        <p>Sprints mit klaren KPIs. Ehrliches Feedback, kurze Wege, viel Ownership.</p>
         <ul class="lead">
-          <li>Transparente Ziele & klare Playbooks</li>
+          <li>Transparente Ziele & Playbooks</li>
           <li>Eigenes Test-Budget & Sandbox</li>
-          <li>Weiterbildung mit Mentoring</li>
+          <li>Weiterbildung & Mentoring</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Mehr über ConceptPartner – MEHR LEBEN -->
+  <!-- Über uns -->
   <section class="wrap reveal" id="about">
     <h2 class="center">Mehr über ConceptPartner GmbH</h2>
     <div class="grid-2" style="margin-top:10px">
-      <div class="card">
-        <h3>Mission</h3>
-        <p>Digitale Systeme, mit denen B2B-Unternehmen planbar Neukunden & Mitarbeiter gewinnen – messbar, transparent, skalierbar. Wir bauen kein Strohfeuer, sondern wiederholbare Ergebnisse.</p>
-      </div>
-      <div class="card">
-        <h3>Werte</h3>
-        <p>Klarheit, Tempo, Qualität. Wir liefern harte Zahlen statt heißer Luft: Dashboards mit Antworten, nicht mit Rauschen. Entscheidungen basieren auf Tests, nicht auf Meinungen.</p>
-      </div>
-      <div class="card">
-        <h3>So arbeiten wir</h3>
-        <p>Kurze Iterationen, klare Hypothesen, sauberes Tracking. ICP schärfen → Funnel fit machen → Kampagnen starten → lernen → skalieren. Immer mit Blick auf ROAS & LTV.</p>
-      </div>
-      <div class="card">
-        <h3>Warum wir anders sind</h3>
-        <p>Wir kombinieren Strategie, Kreation, Media und Analytics in einem System. Keine Silos, kein Ping-Pong. Ein Team, ein Dashboard, ein Ziel: planbares Wachstum.</p>
-      </div>
+      <div class="card"><h3>Mission</h3><p>Planbares Wachstum: Systeme statt Zufall. Messbar, transparent, skalierbar.</p></div>
+      <div class="card"><h3>Werte</h3><p>Klarheit, Tempo, Qualität. Zahlen vor Meinungen. Dashboards mit Antworten.</p></div>
+      <div class="card"><h3>So arbeiten wir</h3><p>ICP schärfen → Funnel fit → Kampagnen → testen → skalieren. Fokus auf ROAS/LTV.</p></div>
+      <div class="card"><h3>Warum wir anders sind</h3><p>Strategie, Kreation, Media, Analytics aus einem Guss. Keine Silos, keine Ping-Pong-Loops.</p></div>
     </div>
-  </section>
-
-  <!-- Abschluss ohne CTA -->
-  <section class="wrap reveal center" id="closing">
-    <h2 class="flow">Let’s make growth boring (because it’s predictable).</h2>
-    <p class="lead" style="margin:10px 0 0">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
   </section>
 </main>
 
@@ -400,8 +300,8 @@
   </div>
 </footer>
 
-<!-- Cookie Banner -->
-<div id="cookie" class="cookie" role="region" aria-live="polite" aria-label="Cookie Hinweis" hidden>
+<!-- Cookie Banner (klickbar, verschwindet) -->
+<div id="cookie" class="cookie" role="dialog" aria-live="polite" aria-modal="true" hidden>
   <p>Wir nutzen Cookies für ein besseres Erlebnis. Speicherdauer: 90 Tage.</p>
   <div class="row">
     <button class="btn" id="accept" type="button">Annehmen</button>
@@ -410,107 +310,80 @@
 </div>
 
 <script>
-/* ===== Helpers ===== */
-const $ = (s,ctx=document)=>ctx.querySelector(s);
-const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
+/* Warten bis DOM fertig, damit Buttons sicher existieren */
+document.addEventListener('DOMContentLoaded', () => {
 
-/* ===== Reveal on Scroll ===== */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add('show'); e.target.classList.remove('hide-up'); }
-    else { e.target.classList.remove('show'); e.target.classList.add('hide-up'); }
-  });
-},{threshold:.12});
-$$('.reveal').forEach(el=>io.observe(el));
+  /* Reveal on Scroll */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ===== Cookie mit 90 Tagen TTL ===== */
-const cookieBox = $('#cookie');
-function setCookieDecision(val){
-  const exp = Date.now() + 90*24*60*60*1000;
-  localStorage.setItem('cp_cookie', JSON.stringify({v:val, exp}));
-  cookieBox.hidden = true;
-}
-function checkCookie(){
-  const raw = localStorage.getItem('cp_cookie');
-  if(!raw){ cookieBox.hidden = false; return; }
-  try{
-    const obj = JSON.parse(raw);
-    if(Date.now() > obj.exp){ localStorage.removeItem('cp_cookie'); cookieBox.hidden = false; }
-    else cookieBox.hidden = true;
-  }catch{ cookieBox.hidden = false; }
-}
-$('#accept').addEventListener('click',()=>setCookieDecision('yes'));
-$('#decline').addEventListener('click',()=>setCookieDecision('no'));
-checkCookie();
-
-/* ===== Aktiver Nav-Link beim Scrollen ===== */
-const sections = ['start','lieferung','faq','facts','karriere','about','kontakt'];
-const links = sections.map(id=>({id, el: document.querySelector(`nav a[href="#${id}"]`)})).filter(x=>x.el);
-const spy = new IntersectionObserver((entries)=>{
-  entries.forEach(({isIntersecting, target})=>{
-    if(isIntersecting){ links.forEach(l=>l.el.classList.toggle('active', l.id===target.id)); }
-  });
-},{rootMargin:'-40% 0px -55% 0px', threshold:0});
-sections.forEach(id=>{ const sec = document.getElementById(id); if(sec) spy.observe(sec); });
-
-/* ===== FLOW – ruckelfrei per RAF (endlose Kassette) ===== */
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!prefersReduced){
-  let flowX = 0, last = null;
-  const els = $$('.flow');
-  function step(ts){
-    if(last==null) last = ts;
-    const dt = ts - last; last = ts;
-    // 0.015% pro ms ~ 15s pro Loop
-    flowX = (flowX + dt*0.015) % 100;
-    const x = flowX + '%';
-    els.forEach(el=> el.style.setProperty('--flowX', x));
-    requestAnimationFrame(step);
+  /* Cookie */
+  const cookieBox = document.getElementById('cookie');
+  function setCookieDecision(val){
+    const exp = Date.now() + 90*24*60*60*1000;
+    localStorage.setItem('cp_cookie', JSON.stringify({v:val, exp}));
+    cookieBox.hidden = true;
   }
-  requestAnimationFrame(step);
-}
+  function checkCookie(){
+    const raw = localStorage.getItem('cp_cookie');
+    if(!raw){ cookieBox.hidden = false; return; }
+    try{
+      const obj = JSON.parse(raw);
+      if(Date.now() > obj.exp){ localStorage.removeItem('cp_cookie'); cookieBox.hidden = false; }
+      else cookieBox.hidden = true;
+    }catch{ cookieBox.hidden = false; }
+  }
+  document.getElementById('accept').addEventListener('click',()=>setCookieDecision('yes'));
+  document.getElementById('decline').addEventListener('click',()=>setCookieDecision('no'));
+  checkCookie();
 
-/* ===== Branchen-Marquee – ruckelfrei per RAF ===== */
-(function(){
-  const container = $('#tagTrack');
-  if(!container) return;
-  const base = Array.from(container.children).map(n=>n.cloneNode(true));
-  // Dupliziere bis Breite >= 2x Viewport für nahtlosen Loop
-  function fill(){
-    const min = window.innerWidth*2;
-    while(container.scrollWidth < min){
-      base.forEach(n=>container.appendChild(n.cloneNode(true)));
+  /* Aktiver Nav-Link */
+  const sections = ['start','lieferung','faq','karriere','about','kontakt'];
+  const links = sections.map(id=>({id, el: document.querySelector(`nav a[href="#${id}"]`)})).filter(x=>x.el);
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(({isIntersecting, target})=>{
+      if(isIntersecting){ links.forEach(l=>l.el.classList.toggle('active', l.id===target.id)); }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(id=>{ const sec=document.getElementById(id); if(sec) spy.observe(sec); });
+
+  /* Branchen-Marquee: smooth & endlos */
+  const track = document.getElementById('tagTrack');
+  if(track){
+    const base = [...track.children].map(n=>n.cloneNode(true));
+    function fill(){
+      // doppelte Breite = sauberer Loop
+      const minWidth = track.parentElement.offsetWidth * 2;
+      while(track.scrollWidth < minWidth){ base.forEach(n=>track.appendChild(n.cloneNode(true))); }
     }
+    fill(); window.addEventListener('resize', fill);
+    track.style.willChange = 'transform';
+    track.addEventListener('mouseenter', ()=>track.style.animationPlayState='paused');
+    track.addEventListener('mouseleave', ()=>track.style.animationPlayState='running');
+    // reine CSS-Animation (ruckelfrei)
+    track.style.animation = 'marq 28s linear infinite';
   }
-  fill(); window.addEventListener('resize', fill);
+});
 
-  let x = 0, last=null, paused=false;
-  container.addEventListener('mouseenter', ()=>paused=true);
-  container.addEventListener('mouseleave', ()=>paused=false);
-
-  function tick(ts){
-    if(last==null) last = ts;
-    const dt = ts - last; last = ts;
-    if(!paused){
-      x -= dt*0.08; // Geschwindigkeit
-      // Reset ohne Sprung: sobald zu weit links, wieder nach rechts schieben
-      const width = container.scrollWidth;
-      if(Math.abs(x) > width/2) x += width/2;
-      container.style.transform = `translateX(${x}px)`;
-    }
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-})();
-
-/* ===== Mausposition für Glow ===== */
-document.addEventListener('mousemove', (e)=>{
+/* Mausposition für Glow */
+document.addEventListener('mousemove', e=>{
   document.documentElement.style.setProperty('--mx', e.clientX + 'px');
   document.documentElement.style.setProperty('--my', e.clientY + 'px');
 },{passive:true});
 
-/* ===== Verhindere extremes Rauszoomen (Ctrl+Wheel) ===== */
+/* Ctrl+Wheel Zoom blocken (optional) */
 document.addEventListener('wheel', (e)=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
+
+/* Keyframes für Marquee nach dem DOM (damit CSS oben sauber bleibt) */
+const style = document.createElement('style');
+style.textContent = `
+@keyframes marq { 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
+`;
+document.head.appendChild(style);
 </script>
 </body>
 </html>
