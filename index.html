@@ -30,15 +30,20 @@ a{color:inherit;text-decoration:none}
 /* Abstand & Layout */
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
 
-/* >>> ONLY CHANGE: mehr Abstand + klare Linie <<< */
+<style>
 section{
-  padding:280px 0;                 /* fetter Innenabstand */
-  margin-top:180px;                /* zusätzlicher Abstand zwischen Sektionen */
-  position:relative; isolation:isolate; scroll-margin-top:140px;
+  padding:280px 0;           /* noch mehr Innenabstand */
+  margin-top:180px;          /* zusätzlicher Abstand zwischen Sections */
+  position:relative;
+  isolation:isolate;
+  scroll-margin-top:140px;
 }
-section:first-of-type{ margin-top:0 }          /* oben kein Extra-Abstand */
-section + section{ border-top:2px solid var(--line) }  /* gut sichtbare graue Linie */
-/* <<< END CHANGE */
+section:first-of-type{margin-top:0}
+section + section{
+  border-top:2px solid var(--line);
+}
+</style>
+
 
 /* dezenter Maus-Glow (liegt UNTER allem) */
 body::before{
