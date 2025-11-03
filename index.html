@@ -497,7 +497,7 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
     successBox.hidden = false;
     requestAnimationFrame(()=> successBox.classList.add('is-visible'));
 
-    // Formular leeren & hin scrollen
+    // Formular leeren & hin scrolle
     f.reset();
     successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
