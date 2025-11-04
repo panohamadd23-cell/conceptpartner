@@ -37,9 +37,9 @@ section{
 section:first-of-type{margin-top:0}
 section + section{border-top:2px solid var(--line)}
 
-/* Maus-Glow */
+/* Maus-Glow (unter alle Layer schieben, damit Bubbles sichtbar sind) */
 body::before{
-  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
   background:radial-gradient(420px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%);
 }
 header,main,footer{position:relative; z-index:1}
@@ -136,7 +136,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   opacity:0; transform:translateY(8px);
   transition:opacity .45s ease, transform .45s ease;
 }
-.form-ok.is-visible{ opacity:1; transform:none; }
+.form-ok.is-visible{opacity:1; transform:none;}
 .ok-badge{
   display:inline-grid;place-items:center;
   width:22px;height:22px;margin-right:8px;border-radius:999px;
@@ -144,45 +144,31 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   opacity:0; transform:scale(.85);
   transition:opacity .35s ease .12s, transform .35s ease .12s;
 }
-.form-ok.is-visible .ok-badge{ opacity:1; transform:scale(1); }
+.form-ok.is-visible .ok-badge{opacity:1; transform:scale(1);}
 
-/* City Banner (Düsseldorf) */
-.city-banner{ position:relative; isolation:isolate; padding:0; border-top:2px solid var(--line); border-bottom:2px solid var(--line); }
-.city-hero{ position:relative; min-height:52vh; max-height:720px; width:100%; overflow:clip; }
-.city-hero img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(105%) contrast(105%); transform:scale(1.02); }
-.city-hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,13,20,.20), rgba(10,13,20,.25)); pointer-events:none; }
-.city-credit{ position:absolute; right:14px; bottom:12px; background:rgba(255,255,255,.78); color:#111; padding:6px 10px; border-radius:8px; font-size:12px; line-height:1; border:1px solid var(--line); backdrop-filter:blur(4px); }
-.city-msg{ text-align:center; padding:34px 20px; }
-.city-msg .lead{ margin-top:8px; }
-
-/* Bubble Layer – weniger & transparenter */
-#bubbleLayer{ position:fixed; inset:-10% -10% -10% -10%; z-index:0; pointer-events:none; overflow:hidden; }
+/* --------- BUBBLES (global, dezent, verteilt) --------- */
+.bubbles{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
 .bubble{
-  position:absolute; bottom:-20vh; border-radius:9999px;
-  background:radial-gradient(circle at 30% 30%,
-    rgba(43,110,243,.18),
-    rgba(43,110,243,.10) 40%,
-    rgba(43,110,243,.05) 70%,
-    rgba(43,110,243,0) 85%);
-  opacity: .22;                   /* transparenter als vorher */
-  filter: blur(.4px);
-  animation: rise var(--dur) linear infinite;
-  will-change: transform;
-  mix-blend-mode: normal;
+  position:absolute; bottom:-12vh; border-radius:999px; background:radial-gradient(circle at 30% 30%, rgba(81,161,255,.35), rgba(43,110,243,.22));
+  filter:blur(.2px);
+  animation:floatUp linear infinite;
 }
-@keyframes rise{
-  from{ transform: translate3d(0, 110vh, 0) scale(var(--sc,1)); }
-  to  { transform: translate3d(0, -120vh, 0) scale(var(--sc,1)); }
+@keyframes floatUp{
+  from{ transform:translateY(0) scale(1); opacity:.65; }
+  to  { transform:translateY(-120vh) scale(1.05); opacity:.0; }
 }
 
-/* Responsive */
-@media(max-width:960px){
-  .grid-2{grid-template-columns:1fr}
-  .kpis{grid-template-columns:1fr 1fr}
+/* Full-bleed helper für das Düsseldorf-Foto */
+.fullbleed{
+  width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+  border-top:2px solid var(--line);
 }
-@media(max-width:600px){
-  .hero h1{font-size:36px}
-  .kpis{grid-template-columns:1fr}
+.fullbleed img{ width:100%; height:52vh; object-fit:cover; display:block; }
+
+/* Mobile spacing softer */
+@media (max-width: 640px){
+  section{ padding-top:120px; padding-bottom:120px; margin-top:84px; }
+  .fullbleed img{ height:36vh; }
 }
 </style>
 </head>
@@ -200,8 +186,8 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   </div>
 </header>
 
-<!-- Bubble-Layer (hinter allem) -->
-<div id="bubbleLayer" aria-hidden="true"></div>
+<!-- Bubbles-Layer -->
+<div class="bubbles" id="bubbles"></div>
 
 <main id="start" role="main">
 
@@ -247,26 +233,10 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <section class="wrap reveal benefits" id="benefits">
     <h2 class="center flow">Warum ConceptPartner</h2>
     <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:24px">
-      <div class="card item">
-        <div class="icon" aria-hidden="true">✓</div>
-        <h3 class="flow">Strategie, die wirkt</h3>
-        <p class="lead">Erprobte Frameworks, präzise ICPs, klare Value Proposition und messbare KPIs.</p>
-      </div>
-      <div class="card item">
-        <div class="icon" aria-hidden="true">★</div>
-        <h3 class="flow">Daten mit Antworten</h3>
-        <p class="lead">Transparenz in Google, Meta und GA4: Leads, Kosten und Pfade klar sichtbar.</p>
-      </div>
-      <div class="card item">
-        <div class="icon" aria-hidden="true">↗︎</div>
-        <h3 class="flow">Skalierung mit System</h3>
-        <p class="lead">Testen, messen, iterieren – Prozesse, die sich mit Ihrem Unternehmen mitentwickeln.</p>
-      </div>
-      <div class="card item">
-        <div class="icon" aria-hidden="true">🤝</div>
-        <h3 class="flow">Betreuung auf Augenhöhe</h3>
-        <p class="lead">Persönliche Ansprechpartner, klare Kommunikation, Ziele statt Versprechen.</p>
-      </div>
+      <div class="card item"><div class="icon" aria-hidden="true">✓</div><h3 class="flow">Strategie, die wirkt</h3><p class="lead">Erprobte Frameworks, präzise ICPs, klare Value Proposition und messbare KPIs.</p></div>
+      <div class="card item"><div class="icon" aria-hidden="true">★</div><h3 class="flow">Daten mit Antworten</h3><p class="lead">Transparenz in Google, Meta und GA4: Leads, Kosten und Pfade klar sichtbar.</p></div>
+      <div class="card item"><div class="icon" aria-hidden="true">↗︎</div><h3 class="flow">Skalierung mit System</h3><p class="lead">Testen, messen, iterieren – Prozesse, die sich mit Ihrem Unternehmen mitentwickeln.</p></div>
+      <div class="card item"><div class="icon" aria-hidden="true">🤝</div><h3 class="flow">Betreuung auf Augenhöhe</h3><p class="lead">Persönliche Ansprechpartner, klare Kommunikation, Ziele statt Versprechen.</p></div>
     </div>
   </section>
 
@@ -278,7 +248,6 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <div class="card"><h3 class="flow">Entlastung im Alltag</h3><p>Standardisierte Abläufe & Tracking liefern Antworten statt Rauschen.</p></div>
       <div class="card"><h3 class="flow">Wachstum mit System</h3><p>Kampagnen, die iterieren. Inhalte, die performen. Budgets nach ROAS/LTV gesteuert.</p></div>
       <div class="card"><h3 class="flow">Transparenz im Reporting</h3><p>Dashboards mit klaren KPIs – jeder Schritt nachvollziehbar und entscheidungsfähig.</p></div>
-
       <div class="card" style="grid-column:1/-1;display:flex;gap:18px;align-items:center;justify-content:center;margin-top:18px">
         <strong>Bereit für planbares Wachstum?</strong>
         <a class="btn" href="https://calendly.com/your-calendly/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
@@ -289,47 +258,11 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <!-- WAS WIR LIEFERN -->
   <section class="wrap reveal" id="lieferung">
     <h2 class="center flow">Was wir liefern</h2>
-
     <div class="feature-grid" style="margin-top:14px">
-      <div class="feature-card">
-        <h3 class="flow">Neukunden-Systeme (B2B)</h3>
-        <ul>
-          <li>ICP & Value Proposition schärfen – klare Botschaft & Angebot.</li>
-          <li>Funnel & Landingpages mit Fokus auf Speed, Trust, CRO.</li>
-          <li>Google & Meta Ads inkl. Retargeting – performanceorientiert.</li>
-          <li>Standards für Naming, UTM & saubere Datenerfassung.</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3 class="flow">Recruiting-Funnel</h3>
-        <ul>
-          <li>Karriereseite & One-Click-Bewerbung – mobil optimiert.</li>
-          <li>Creatives & Hooks für Fachkräfte in Engpass-Märkten.</li>
-          <li>ATS/CRM-Anbindung · Datenschutz ready.</li>
-          <li>KPIs: Cost-per-Apply, Time-to-Hire, Funnel-Qualität.</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3 class="flow">Tracking & Analytics</h3>
-        <ul>
-          <li>GA4 & Tag-Manager: belastbare Datengrundlage.</li>
-          <li>Dashboards für CPL, CPA, ROAS, LTV – live & nachvollziehbar.</li>
-          <li>Heatmaps & Session-Review für qualitative Insights.</li>
-          <li>Testing-Routinen und Dokumentation für Klarheit.</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3 class="flow">Performance & Skalierung</h3>
-        <ul>
-          <li>Budgetsteuerung nach ROAS/LTV – effizient und kontrolliert.</li>
-          <li>Kreativ-Iterationen mit System (Hooks, Formate, Offers).</li>
-          <li>Retargeting & Outbound-Playbooks entlang des Funnels.</li>
-          <li>Skalierungsschritte mit klaren Meilensteinen.</li>
-        </ul>
-      </div>
+      <div class="feature-card"><h3 class="flow">Neukunden-Systeme (B2B)</h3><ul><li>ICP & Value Proposition schärfen – klare Botschaft & Angebot.</li><li>Funnel & Landingpages mit Fokus auf Speed, Trust, CRO.</li><li>Google & Meta Ads inkl. Retargeting – performanceorientiert.</li><li>Standards für Naming, UTM & saubere Datenerfassung.</li></ul></div>
+      <div class="feature-card"><h3 class="flow">Recruiting-Funnel</h3><ul><li>Karriereseite & One-Click-Bewerbung – mobil optimiert.</li><li>Creatives & Hooks für Fachkräfte in Engpass-Märkten.</li><li>ATS/CRM-Anbindung · Datenschutz ready.</li><li>KPIs: Cost-per-Apply, Time-to-Hire, Funnel-Qualität.</li></ul></div>
+      <div class="feature-card"><h3 class="flow">Tracking & Analytics</h3><ul><li>GA4 & Tag-Manager: belastbare Datengrundlage.</li><li>Dashboards für CPL, CPA, ROAS, LTV – live & nachvollziehbar.</li><li>Heatmaps & Session-Review für qualitative Insights.</li><li>Testing-Routinen und Dokumentation für Klarheit.</li></ul></div>
+      <div class="feature-card"><h3 class="flow">Performance & Skalierung</h3><ul><li>Budgetsteuerung nach ROAS/LTV – effizient und kontrolliert.</li><li>Kreativ-Iterationen mit System (Hooks, Formate, Offers).</li><li>Retargeting & Outbound-Playbooks entlang des Funnels.</li><li>Skalierungsschritte mit klaren Meilensteinen.</li></ul></div>
     </div>
   </section>
 
@@ -355,6 +288,8 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       Sie möchten wissen, welches Potenzial in Ihrem Unternehmen steckt? Wir zeigen Ihnen, wie Sie planbare Anfragen und Bewerbungen mit System erreichen.
     </p>
     <form id="contactForm" style="max-width:600px;margin:0 auto;display:grid;gap:18px">
+      <!-- Honeypot (unsichtbar) -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
       <input type="text" name="name" placeholder="Name" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <input type="email" name="email" placeholder="E-Mail" required style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
       <input type="tel" name="telefon" placeholder="Telefon (optional)" style="padding:14px 16px;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px">
@@ -363,7 +298,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
 
-    <!-- Erfolgsbox -->
+    <!-- Erfolgsbox (ersetzt das Formular nach Submit) -->
     <div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
       <div style="display:flex;align-items:flex-start;gap:10px">
         <span class="ok-badge" aria-hidden="true">✓</span>
@@ -371,24 +306,13 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
           <strong>Danke! Ihre Nachricht wurde vollständig übermittelt.</strong><br>
           ConceptPartner meldet sich in Kürze bei Ihnen.
           <div style="margin-top:8px;font-size:14px;color:#276749">
-            📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a> ·
-            ✉️ <span>info@conceptpartner.de</span><br>
+            Falls Sie uns direkt erreichen möchten:<br>
+            📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a><br>
+            ✉️ <a href="mailto:info@conceptpartner.de" style="text-decoration:underline;color:#276749">info@conceptpartner.de</a><br>
             📍 Düsselthaler Straße 65, 40211 Düsseldorf
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="wrap reveal" id="faq">
-    <h2 class="center">FAQ · Häufige Fragen</h2>
-    <div class="wrap-narrow" style="max-width:900px;margin:0 auto">
-      <details><summary>Für wen ist ConceptPartner geeignet?</summary><p>Für kleine und mittlere B2B-Unternehmen, die planbar wachsen wollen – besonders in Industrie, Maschinenbau, IT, Logistik und Beratung.</p></details>
-      <details><summary>Wie schnell sehe ich Ergebnisse?</summary><p>Erste belastbare Daten liefern wir meist innerhalb von 2–4 Wochen. Danach beginnt die systematische Optimierung von Funnel, Creatives und Kampagnen.</p></details>
-      <details><summary>Welche Kanäle nutzt ihr?</summary><p>Google Ads, Meta Ads (Facebook & Instagram) sowie Performance-Landingpages mit sauberem Tracking. Jeder Kanal wird datenbasiert bewertet.</p></details>
-      <details><summary>Wie messt ihr Erfolg?</summary><p>Transparente KPIs im Live-Dashboard: CPL, CPA, ROAS, LTV und Time-to-Hire. So sehen Sie jederzeit, was funktioniert – und was wir verbessern.</p></details>
-      <details><summary>Was kostet die Zusammenarbeit?</summary><p>Wir arbeiten projektbasiert oder als Retainer-Partner. Entscheidend ist der messbare Return – nicht die Stundenzahl.</p></details>
     </div>
   </section>
 
@@ -399,22 +323,10 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       ConceptPartner steht für planbares Wachstum im B2B-Marketing. Wir kombinieren strategische Beratung, datengetriebene Umsetzung und technische Exzellenz zu einem System, das nachhaltig Ergebnisse liefert.
     </p>
     <div class="grid-2" style="margin-top:10px">
-      <div class="card">
-        <h3 class="flow">Mission</h3>
-        <p>Wachstum ist kein Zufall. Unser Ziel: Unternehmen befähigen, planbar zu skalieren – mit klaren Prozessen, präzisem Tracking und kreativen Kampagnen, die Ergebnisse messbar machen.</p>
-      </div>
-      <div class="card">
-        <h3 class="flow">Werte</h3>
-        <p>Klarheit, Qualität, Geschwindigkeit. Strukturen, die Entscheidungen vereinfachen, Budgets effizient einsetzen und Potenziale sichtbar machen.</p>
-      </div>
-      <div class="card">
-        <h3 class="flow">So arbeiten wir</h3>
-        <p>Analyse → Struktur → Umsetzung → Iteration. Von ICP über Funnel bis Kampagnensteuerung – Schritt für Schritt, datenbasiert und transparent.</p>
-      </div>
-      <div class="card">
-        <h3 class="flow">Warum wir anders sind</h3>
-        <p>Strategie, Kreation, Media und Analytics aus einem Guss. Keine Silos – ein Team, das Verantwortung für das Ergebnis übernimmt.</p>
-      </div>
+      <div class="card"><h3 class="flow">Mission</h3><p>Wachstum ist kein Zufall. Unser Ziel: Unternehmen befähigen, planbar zu skalieren – mit klaren Prozessen, präzisem Tracking und kreativen Kampagnen, die Ergebnisse messbar machen.</p></div>
+      <div class="card"><h3 class="flow">Werte</h3><p>Klarheit, Qualität, Geschwindigkeit. Strukturen, die Entscheidungen vereinfachen, Budgets effizient einsetzen und Potenziale sichtbar machen.</p></div>
+      <div class="card"><h3 class="flow">So arbeiten wir</h3><p>Analyse → Struktur → Umsetzung → Iteration. Von ICP über Funnel bis Kampagnensteuerung – Schritt für Schritt, datenbasiert und transparent.</p></div>
+      <div class="card"><h3 class="flow">Warum wir anders sind</h3><p>Strategie, Kreation, Media und Analytics aus einem Guss. Keine Silos – ein Team, das Verantwortung für das Ergebnis übernimmt.</p></div>
     </div>
   </section>
 
@@ -424,15 +336,14 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
   </section>
 
-  <!-- DÜSSELDORF BANNER UNTER DEM ABSCHLUSS -->
-  <section class="city-banner wrap reveal" id="duesseldorf">
-    <div class="city-hero">
-      <img src="/assets/duesseldorf.jpg" alt="Düsseldorf Skyline – Rheinturm und Medienhafen" loading="lazy" decoding="async">
-      <span class="city-credit">Düsseldorf – Medienhafen</span>
-    </div>
-    <div class="city-msg">
-      <h2 class="flow">Liebe Grüße aus Düsseldorf</h2>
-      <p class="lead">Liebe Grüße<br>ConceptPartner</p>
+  <!-- DÜSSELDORF – FULL BLEED IMAGE + GRUSS -->
+  <section class="wrap" id="duesseldorf">
+    <figure class="fullbleed" style="margin:0">
+      <img src="assets/duesseldorf.jpg" alt="Düsseldorf – Skyline & Medienhafen">
+    </figure>
+    <div class="wrap" style="text-align:center;margin-top:18px">
+      <h2 class="flow" style="margin:0 0 6px">Liebe Grüße aus Düsseldorf</h2>
+      <div style="color:var(--muted)">ConceptPartner GmbH</div>
     </div>
   </section>
 
@@ -499,10 +410,10 @@ document.addEventListener('mousemove', e=>{
 /* Ctrl+Wheel Zoom blocken (optional) */
 document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
 
-/* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
+/* Entfernt Schlusspunkte bei H1/H2/H3 */
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
-/* Kontaktformular: Submit -> Erfolgsbox einblenden */
+/* Kontaktformular: Submit → Formular ausblenden, Erfolgsbox einblenden */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
@@ -510,42 +421,50 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
 
   f.addEventListener('submit', function(e){
     e.preventDefault();
-    successBox.hidden = false;
-    requestAnimationFrame(()=> successBox.classList.add('is-visible'));
-    f.reset();
+    const data = new FormData(f);
+    if((data.get('website')||'').trim()!==''){ return; } // Honeypot
+
+    const email=(data.get('email')||'').trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Bitte gültige E-Mail eingeben.'); return; }
+
+    f.style.display='none';
+    successBox.hidden=false;
+    requestAnimationFrame(()=>successBox.classList.add('is-visible'));
     successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
 })();
 
-/* BUBBLES: weniger & transparenter */
+/* --------- BUBBLES: erzeugen & zufällig verteilen --------- */
 (function(){
-  const layer = document.getElementById('bubbleLayer');
-  if(!layer) return;
+  const root = document.getElementById('bubbles');
+  if(!root) return;
+  const COUNT = 18; // weniger Bubbles (dezent)
+  const vw = () => Math.max(document.documentElement.clientWidth, window.innerWidth||0);
 
-  const count = 16; // weniger Bubbles
-  const vw = () => Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-
-  for(let i=0;i<count;i++){
-    const b=document.createElement('div');
-    b.className='bubble';
-    const size = Math.floor(60 + Math.random()*180);           // 60–240px
-    const left = Math.random()*100;                             // 0–100%
-    const dur  = (24 + Math.random()*32).toFixed(1) + 's';      // 24–56s
-    const delay= (-Math.random()*dur.replace('s','')).toFixed(1)+'s'; // negative Delay für verteilten Start
-    const scale= (0.9 + Math.random()*0.6).toFixed(2);          // 0.9–1.5
-
-    b.style.width = size+'px';
-    b.style.height= size+'px';
-    b.style.left  = left+'%';
-    b.style.setProperty('--dur', dur);
-    b.style.setProperty('--sc', scale);
-    b.style.animationDelay = delay;
-
-    layer.appendChild(b);
+  function spawn(){
+    for(let i=0;i<COUNT;i++){
+      const b = document.createElement('div');
+      b.className='bubble';
+      const size = Math.random()*80 + 40; // 40–120px
+      const left = Math.random()*vw();
+      const dur  = Math.random()*18 + 16; // 16–34s
+      const delay= Math.random()*-dur;    // verteilt starten
+      const op   = Math.random()*0.25 + 0.15; // 0.15–0.4
+      b.style.width = size+'px';
+      b.style.height= size+'px';
+      b.style.left = left+'px';
+      b.style.animationDuration = dur+'s';
+      b.style.animationDelay = delay+'s';
+      b.style.opacity = op;
+      root.appendChild(b);
+    }
   }
-
-  // bei Resize die Fläche beibehalten (optional, leicht)
-  let t; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(()=>{},150); });
+  spawn();
+  window.addEventListener('resize', ()=>{
+    // bei sehr schmal/breit neu verteilen
+    root.querySelectorAll('.bubble').forEach(n=>n.remove());
+    spawn();
+  });
 })();
 </script>
 
