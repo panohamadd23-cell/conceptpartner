@@ -44,11 +44,14 @@ body::before{
 }
 header,main,footer{position:relative; z-index:1}
 
-/* ===== BUBBLES (fixiert, nur oberhalb von #about sichtbar) ===== */
+/* Bubbles – fixiert, sichtbar bis #about */
 #bubbleCanvas{
-  position:fixed; left:0; top:0; width:100vw; height:0;  /* Höhe steuert JS bis #about */
-  pointer-events:none; z-index:0; opacity:.5; mix-blend-mode:normal;
-  /* leichte Weichzeichnung für edleren Look */
+  position:fixed; left:0; top:0;
+  width:100vw; height:0;           /* Höhe setzt das JS bis #about */
+  pointer-events:none;
+  z-index:0;                        /* unter Header/Main (die haben z-index:1) */
+  opacity:.6;
+  mix-blend-mode:normal;
   filter:blur(0.3px);
 }
 
@@ -141,18 +144,26 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   max-width:600px;margin:18px auto 0;padding:14px 16px;
   border:1px solid #C6F6D5;border-radius:10px;background:#F0FFF4;color:#22543D;
   box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:15px;line-height:1.45;
+
+  /* Animation */
   opacity:0; transform:translateY(8px);
   transition:opacity .45s ease, transform .45s ease;
 }
-.form-ok.is-visible{ opacity:1; transform:none; }
+.form-ok.is-visible{
+  opacity:1; transform:none;
+}
 .ok-badge{
   display:inline-grid;place-items:center;
   width:22px;height:22px;margin-right:8px;border-radius:999px;
   background:#38A169;color:#fff;font-weight:800;vertical-align:middle;
+
+  /* leichtes Pop-in, zeitversetzt */
   opacity:0; transform:scale(.85);
   transition:opacity .35s ease .12s, transform .35s ease .12s;
 }
-.form-ok.is-visible .ok-badge{ opacity:1; transform:scale(1); }
+.form-ok.is-visible .ok-badge{
+  opacity:1; transform:scale(1);
+}
 
 /* Responsive */
 @media(max-width:960px){
@@ -179,7 +190,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   </div>
 </header>
 
-<!-- BUBBLE CANVAS -->
+<!-- Canvas für Bubbles -->
 <canvas id="bubbleCanvas" aria-hidden="true"></canvas>
 
 <main id="start" role="main">
@@ -497,10 +508,7 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
   });
 })();
 
-/* ===== BUBBLE-ANIMATION =====
-   - Canvas-Höhe = Distanz von Seite oben bis #about (Mehr über ConceptPartner)
-   - Bubbles treiben langsam nach oben, leichtes Wabern
-*/
+/* BUBBLES: laufen von Seite oben bis Beginn #about */
 (function(){
   const canvas = document.getElementById('bubbleCanvas');
   if(!canvas) return;
@@ -508,19 +516,17 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
 
   let dpr = Math.max(1, window.devicePixelRatio || 1);
   let W = 0, H = 0, bubbles = [];
-  const MAX = 60; // Anzahl Bubbles (Performance-schonend)
-  const COLORS = ['#2B6EF330','#51A1FF26','#0D41C922']; // blaue Töne, transparent
+  const MAX = 60;
+  const COLORS = ['#2B6EF330','#51A1FF26','#0D41C922'];
 
   function resize(){
-    // Höhe nur bis zum Anfang von #about
     const about = document.getElementById('about');
-    const rect = about ? about.getBoundingClientRect() : {top: window.innerHeight*0.6};
-    const scrollY = window.scrollY || window.pageYOffset;
-    const topToAbout = (about ? rect.top + scrollY : window.innerHeight*0.6);
-    canvas.style.height = Math.max(0, topToAbout) + 'px';
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const rect = about ? about.getBoundingClientRect() : { top: window.innerHeight * 0.6 };
+    const topToAbout = (rect.top + scrollY);
 
-    W = canvas.clientWidth;
-    H = canvas.clientHeight;
+    canvas.style.height = Math.max(0, topToAbout) + 'px';
+    W = canvas.clientWidth; H = canvas.clientHeight;
 
     canvas.width  = Math.floor(W * dpr);
     canvas.height = Math.floor(H * dpr);
@@ -528,14 +534,14 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
   }
 
   function spawn(){
-    bubbles = [];
+    bubbles.length = 0;
     for(let i=0;i<MAX;i++){
       bubbles.push({
         x: Math.random()*W,
-        y: H + Math.random()*H*0.5,     // startet leicht unterhalb
-        r: 6 + Math.random()*22,        // radius
-        vy: 0.2 + Math.random()*0.6,    // aufwärts
-        vx: (Math.random()*0.4-0.2),    // leicht seitlich
+        y: H + Math.random()*H*0.5,
+        r: 6 + Math.random()*22,
+        vy: 0.2 + Math.random()*0.6,
+        vx: (Math.random()*0.4-0.2),
         wobble: Math.random()*Math.PI*2,
         wobbleSpeed: 0.01 + Math.random()*0.02,
         color: COLORS[Math.floor(Math.random()*COLORS.length)]
@@ -550,17 +556,13 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
       b.x += b.vx + Math.sin(b.wobble)*0.2;
       b.y -= b.vy;
 
-      // Re-Spawn wenn oben raus
       if(b.y + b.r < -20){
         b.x = Math.random()*W;
         b.y = H + 40;
         b.r = 6 + Math.random()*22;
       }
-
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
-      ctx.fillStyle = b.color;
-      ctx.fill();
+      ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+      ctx.fillStyle = b.color; ctx.fill();
     }
     requestAnimationFrame(tick);
   }
@@ -569,6 +571,7 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
   ro.observe(document.body);
   window.addEventListener('scroll', resize, {passive:true});
   window.addEventListener('resize', resize);
+
   resize(); spawn(); tick();
 })();
 </script>
