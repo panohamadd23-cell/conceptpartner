@@ -44,24 +44,6 @@ body::before{
 }
 header,main,footer{position:relative; z-index:1}
 
-/* ===== BUBBLE LAYER (über die ganze Seite, dezent) ===== */
-#bubbleLayer{
-  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-}
-.bubble{
-  position:absolute; bottom:-20vh; border-radius:999px;
-  background: radial-gradient(circle at 30% 30%, rgba(111,177,255,.55), rgba(43,110,243,.45) 60%, rgba(13,65,201,.35) 100%);
-  box-shadow: 0 0 60px rgba(43,110,243,.25), 0 0 120px rgba(43,110,243,.18);
-  animation: rise linear infinite;
-  will-change: transform, opacity;
-  opacity:.22;           /* Grund-Transparenz – wird per JS leicht variiert */
-  filter:saturate(115%);
-}
-@keyframes rise{
-  from{ transform:translateY(110vh) translateZ(0); }
-  to  { transform:translateY(-120vh) translateZ(0); }
-}
-
 /* Header */
 header{
   position:sticky; top:0; z-index:1000;
@@ -91,8 +73,8 @@ nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;heig
 /* Blauer Flow – nahtlos */
 .flow{
   background-image:
-    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, #6FB1FF 75%, #111 100%),
-    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, #6FB1FF 75%, #111 100%);
+    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
+    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
   background-size:200% 100%, 200% 100%;
   background-repeat:repeat-x, repeat-x;
   background-position:0% 0, 100% 0;
@@ -125,7 +107,7 @@ h3{font-size:20px;margin:0 0 10px}
 .lead{color:var(--muted)}
 .center{text-align:center}
 
-/* Features */
+/* Features: PRO-Karten für 'Was wir liefern' */
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;margin:0 auto}
 .feature-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
 .feature-card h3{margin:0 0 10px}
@@ -146,7 +128,7 @@ details[open]{border-color:#C9D7FF}
 /* Footer */
 footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
-/* Erfolgsbox (grün) */
+/* Erfolgsbox (grün) – mit Fade-in + kleinem Pop */
 .form-ok{
   max-width:600px;margin:18px auto 0;padding:14px 16px;
   border:1px solid #C6F6D5;border-radius:10px;background:#F0FFF4;color:#22543D;
@@ -164,6 +146,35 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 }
 .form-ok.is-visible .ok-badge{ opacity:1; transform:scale(1); }
 
+/* City Banner (Düsseldorf) */
+.city-banner{ position:relative; isolation:isolate; padding:0; border-top:2px solid var(--line); border-bottom:2px solid var(--line); }
+.city-hero{ position:relative; min-height:52vh; max-height:720px; width:100%; overflow:clip; }
+.city-hero img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(105%) contrast(105%); transform:scale(1.02); }
+.city-hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,13,20,.20), rgba(10,13,20,.25)); pointer-events:none; }
+.city-credit{ position:absolute; right:14px; bottom:12px; background:rgba(255,255,255,.78); color:#111; padding:6px 10px; border-radius:8px; font-size:12px; line-height:1; border:1px solid var(--line); backdrop-filter:blur(4px); }
+.city-msg{ text-align:center; padding:34px 20px; }
+.city-msg .lead{ margin-top:8px; }
+
+/* Bubble Layer – weniger & transparenter */
+#bubbleLayer{ position:fixed; inset:-10% -10% -10% -10%; z-index:0; pointer-events:none; overflow:hidden; }
+.bubble{
+  position:absolute; bottom:-20vh; border-radius:9999px;
+  background:radial-gradient(circle at 30% 30%,
+    rgba(43,110,243,.18),
+    rgba(43,110,243,.10) 40%,
+    rgba(43,110,243,.05) 70%,
+    rgba(43,110,243,0) 85%);
+  opacity: .22;                   /* transparenter als vorher */
+  filter: blur(.4px);
+  animation: rise var(--dur) linear infinite;
+  will-change: transform;
+  mix-blend-mode: normal;
+}
+@keyframes rise{
+  from{ transform: translate3d(0, 110vh, 0) scale(var(--sc,1)); }
+  to  { transform: translate3d(0, -120vh, 0) scale(var(--sc,1)); }
+}
+
 /* Responsive */
 @media(max-width:960px){
   .grid-2{grid-template-columns:1fr}
@@ -177,9 +188,6 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 </head>
 <body>
 
-<!-- ===== Bubble Layer (leer – wird per JS befüllt) ===== -->
-<div id="bubbleLayer" aria-hidden="true"></div>
-
 <header role="banner">
   <div class="wrap header-in">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span>ConceptPartner</div>
@@ -191,6 +199,9 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     </nav>
   </div>
 </header>
+
+<!-- Bubble-Layer (hinter allem) -->
+<div id="bubbleLayer" aria-hidden="true"></div>
 
 <main id="start" role="main">
 
@@ -352,12 +363,20 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
 
-    <!-- Erfolgsbox (unter dem Formular) -->
-    <div id="contactSuccess" class="form-ok" hidden>
-      <span class="ok-badge" aria-hidden="true">✓</span>
-      <strong>Danke! Ihre Nachricht wurde übertragen.</strong><br>
-      Wir melden uns in Kürze.
-      <a id="openMail" href="#" style="margin-left:8px;white-space:nowrap">(Optional: E-Mail-Programm öffnen)</a>
+    <!-- Erfolgsbox -->
+    <div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <span class="ok-badge" aria-hidden="true">✓</span>
+        <div>
+          <strong>Danke! Ihre Nachricht wurde vollständig übermittelt.</strong><br>
+          ConceptPartner meldet sich in Kürze bei Ihnen.
+          <div style="margin-top:8px;font-size:14px;color:#276749">
+            📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a> ·
+            ✉️ <span>info@conceptpartner.de</span><br>
+            📍 Düsselthaler Straße 65, 40211 Düsseldorf
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -403,7 +422,18 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <section class="wrap reveal center" id="closing">
     <h2 class="flow">Let’s make growth boring (because it’s predictable)</h2>
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
-    <a class="btn" href="https://calendly.com/your-calendly/erstgespräech" target="_blank" rel="noopener">Erstgespräch buchen</a>
+  </section>
+
+  <!-- DÜSSELDORF BANNER UNTER DEM ABSCHLUSS -->
+  <section class="city-banner wrap reveal" id="duesseldorf">
+    <div class="city-hero">
+      <img src="/assets/duesseldorf.jpg" alt="Düsseldorf Skyline – Rheinturm und Medienhafen" loading="lazy" decoding="async">
+      <span class="city-credit">Düsseldorf – Medienhafen</span>
+    </div>
+    <div class="city-msg">
+      <h2 class="flow">Liebe Grüße aus Düsseldorf</h2>
+      <p class="lead">Liebe Grüße<br>ConceptPartner</p>
+    </div>
   </section>
 
 </main>
@@ -469,29 +499,17 @@ document.addEventListener('mousemove', e=>{
 /* Ctrl+Wheel Zoom blocken (optional) */
 document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
 
-/* Entfernt Schlusspunkte bei H1/H2/H3 */
+/* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
-/* Submit: In-Page-Bestätigung */
+/* Kontaktformular: Submit -> Erfolgsbox einblenden */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
   const successBox = document.getElementById('contactSuccess');
-  const openMail   = document.getElementById('openMail');
 
   f.addEventListener('submit', function(e){
     e.preventDefault();
-    const data = new FormData(f);
-    const to = 'info@conceptpartner.de';
-    const subject = 'Neue Nachricht von der Website';
-    const body =
-      `Name: ${data.get('name')||''}\n`+
-      `E-Mail: ${data.get('email')||''}\n`+
-      `Telefon: ${data.get('telefon')||''}\n`+
-      `Firma: ${data.get('firma')||''}\n\n`+
-      `Nachricht:\n${data.get('nachricht')||''}`;
-    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    if(openMail) openMail.setAttribute('href', mailto);
     successBox.hidden = false;
     requestAnimationFrame(()=> successBox.classList.add('is-visible'));
     f.reset();
@@ -499,42 +517,35 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
   });
 })();
 
-/* ===== Bubbles: verteilt spawnen & endlos hochfloaten ===== */
+/* BUBBLES: weniger & transparenter */
 (function(){
   const layer = document.getElementById('bubbleLayer');
   if(!layer) return;
 
-  const COUNT = 28;              // Anzahl Bubbles
-  const minSize = 90;            // px
-  const maxSize = 320;           // px
-  const minDur = 18;             // Sekunden
-  const maxDur = 34;             // Sekunden
+  const count = 16; // weniger Bubbles
+  const vw = () => Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
-  function rand(a,b){ return Math.random()*(b-a)+a; }
-
-  for(let i=0;i<COUNT;i++){
-    const b = document.createElement('div');
-    b.className = 'bubble';
-
-    const size = rand(minSize, maxSize);
-    const left = rand(-5, 100);                 // leicht über Rand für Natürlichkeit
-    const delay = rand(0, maxDur);              // verteilt starten
-    const dur = rand(minDur, maxDur);
-    const extraOpacity = rand(.18,.42);         // transparenter / variabel
+  for(let i=0;i<count;i++){
+    const b=document.createElement('div');
+    b.className='bubble';
+    const size = Math.floor(60 + Math.random()*180);           // 60–240px
+    const left = Math.random()*100;                             // 0–100%
+    const dur  = (24 + Math.random()*32).toFixed(1) + 's';      // 24–56s
+    const delay= (-Math.random()*dur.replace('s','')).toFixed(1)+'s'; // negative Delay für verteilten Start
+    const scale= (0.9 + Math.random()*0.6).toFixed(2);          // 0.9–1.5
 
     b.style.width = size+'px';
-    b.style.height = size+'px';
-    b.style.left = left+'%';
-    b.style.animationDuration = dur+'s';
-    b.style.animationDelay = (-delay)+'s';      // negative Delay = schon „unterwegs“
-    b.style.opacity = extraOpacity;
-
-    // leichte horizontale Drift
-    const drift = rand(-20,20);
-    b.style.transform = `translateX(${drift}px)`;
+    b.style.height= size+'px';
+    b.style.left  = left+'%';
+    b.style.setProperty('--dur', dur);
+    b.style.setProperty('--sc', scale);
+    b.style.animationDelay = delay;
 
     layer.appendChild(b);
   }
+
+  // bei Resize die Fläche beibehalten (optional, leicht)
+  let t; window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(()=>{},150); });
 })();
 </script>
 
