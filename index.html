@@ -37,22 +37,38 @@ section{
 section:first-of-type{margin-top:0}
 section + section{border-top:2px solid var(--line)}
 
-/* Maus-Glow */
+/* Maus-Glow (dezent) */
 body::before{
   content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
   background:radial-gradient(420px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%);
 }
 header,main,footer{position:relative; z-index:1}
 
-/* Bubbles – fixiert, sichtbar bis #about */
-#bubbleCanvas{
-  position:fixed; left:0; top:0;
-  width:100vw; height:0;           /* Höhe setzt das JS bis #about */
-  pointer-events:none;
-  z-index:0;                        /* unter Header/Main (die haben z-index:1) */
-  opacity:.12;
-  mix-blend-mode:normal;
-  filter:blur(0.3px);
+/* VISIBLE BLUE BUBBLES (neu) */
+.bubbles{
+  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.85;
+  --c1: rgba(43,110,243,.12);
+  --c2: rgba(81,161,255,.10);
+  --c3: rgba(13,65,201,.10);
+  background:
+    radial-gradient(900px 900px at 15% 120%, var(--c1), transparent 60%),
+    radial-gradient(1100px 1100px at 85% 115%, var(--c2), transparent 62%),
+    radial-gradient(700px 700px at 50% 125%, var(--c3), transparent 58%),
+    radial-gradient(520px 520px at 10% 95%, var(--c2), transparent 60%),
+    radial-gradient(640px 640px at 90% 92%, var(--c1), transparent 62%);
+  transform:translateY(20vh);
+  filter: blur(6px);
+  transition: opacity .8s ease, transform 1.2s ease;
+  animation: bubblesFloat 32s linear infinite;
+}
+@keyframes bubblesFloat{
+  0%   { transform:translateY(20vh); }
+  50%  { transform:translateY(0); }
+  100% { transform:translateY(20vh); }
+}
+/* Bubbles erst zeigen, wenn #about einmal sichtbar war */
+body.show-bubbles .bubbles{
+  opacity:1;
 }
 
 /* Header */
@@ -139,31 +155,23 @@ details[open]{border-color:#C9D7FF}
 /* Footer */
 footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-size:14px}
 
-/* Erfolgsbox (grün) – mit Fade-in + kleinem Pop */
+/* Erfolgsbox (grün) */
 .form-ok{
   max-width:600px;margin:18px auto 0;padding:14px 16px;
   border:1px solid #C6F6D5;border-radius:10px;background:#F0FFF4;color:#22543D;
   box-shadow:0 4px 10px rgba(0,0,0,.04);font-size:15px;line-height:1.45;
-
-  /* Animation */
   opacity:0; transform:translateY(8px);
   transition:opacity .45s ease, transform .45s ease;
 }
-.form-ok.is-visible{
-  opacity:1; transform:none;
-}
+.form-ok.is-visible{ opacity:1; transform:none; }
 .ok-badge{
   display:inline-grid;place-items:center;
   width:22px;height:22px;margin-right:8px;border-radius:999px;
   background:#38A169;color:#fff;font-weight:800;vertical-align:middle;
-
-  /* leichtes Pop-in, zeitversetzt */
   opacity:0; transform:scale(.85);
   transition:opacity .35s ease .12s, transform .35s ease .12s;
 }
-.form-ok.is-visible .ok-badge{
-  opacity:1; transform:scale(1);
-}
+.form-ok.is-visible .ok-badge{ opacity:1; transform:scale(1); }
 
 /* Responsive */
 @media(max-width:960px){
@@ -178,6 +186,9 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 </head>
 <body>
 
+<!-- Bubbles Layer (neu) -->
+<div class="bubbles" aria-hidden="true"></div>
+
 <header role="banner">
   <div class="wrap header-in">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span>ConceptPartner</div>
@@ -189,9 +200,6 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     </nav>
   </div>
 </header>
-
-<!-- Canvas für Bubbles -->
-<canvas id="bubbleCanvas" aria-hidden="true"></canvas>
 
 <main id="start" role="main">
 
@@ -353,12 +361,16 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
 
-    <!-- ✅ Erfolgsbox direkt unter dem Formular -->
-    <div id="contactSuccess" class="form-ok" hidden>
+    <!-- Erfolgsbox -->
+    <div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
       <span class="ok-badge" aria-hidden="true">✓</span>
       <strong>Danke! Ihre Nachricht wurde übertragen.</strong><br>
       Wir melden uns in Kürze.
-      <a id="openMail" href="#" style="margin-left:8px;white-space:nowrap">(Optional: E-Mail-Programm öffnen)</a>
+      <span style="display:block;margin-top:8px;color:#276749">
+        📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a> ·
+        ✉️ info@conceptpartner.de ·
+        📍 Düsselthaler Straße 65, 40211 Düsseldorf
+      </span>
     </div>
   </section>
 
@@ -458,6 +470,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('accept').addEventListener('click',()=>setCookieDecision('yes'));
   document.getElementById('decline').addEventListener('click',()=>setCookieDecision('no'));
   checkCookie();
+
+  /* Bubbles erst aktivieren, wenn #about einmal im Viewport war */
+  const about = document.getElementById('about');
+  if(about){
+    const ob = new IntersectionObserver((es)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ document.body.classList.add('show-bubbles'); } });
+    }, {threshold:.2});
+    ob.observe(about);
+  }
 });
 
 /* Maus-Glow */
@@ -472,106 +493,18 @@ document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {pa
 /* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
-/* Submit mit In-Page-Bestätigung (kein Auto-Mailto, kein neuer Tab) */
+/* Kontaktformular: In-Page-Bestätigung */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
-
   const successBox = document.getElementById('contactSuccess');
-  const openMail   = document.getElementById('openMail');
-
   f.addEventListener('submit', function(e){
     e.preventDefault();
-
-    const data = new FormData(f);
-    const to = 'info@conceptpartner.de'; // Platzhalter – echte Adresse später
-    const subject = 'Neue Nachricht von der Website';
-    const body =
-      `Name: ${data.get('name')||''}\n`+
-      `E-Mail: ${data.get('email')||''}\n`+
-      `Telefon: ${data.get('telefon')||''}\n`+
-      `Firma: ${data.get('firma')||''}\n\n`+
-      `Nachricht:\n${data.get('nachricht')||''}`;
-
-    // Optionalen Mailto-Link anbieten (aber NICHT automatisch öffnen)
-    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    openMail.setAttribute('href', mailto);
-
-    // Erfolgsbox zeigen & Animation anstoßen
+    f.reset();
     successBox.hidden = false;
     requestAnimationFrame(()=> successBox.classList.add('is-visible'));
-
-    // Formular leeren & hin scrollen
-    f.reset();
     successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
-})();
-
-/* BUBBLES: laufen von Seite oben bis Beginn #about */
-(function(){
-  const canvas = document.getElementById('bubbleCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let dpr = Math.max(1, window.devicePixelRatio || 1);
-  let W = 0, H = 0, bubbles = [];
-  const MAX = 60;
-  const COLORS = ['#2B6EF330','#51A1FF26','#0D41C922'];
-
-  function resize(){
-    const about = document.getElementById('about');
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    const rect = about ? about.getBoundingClientRect() : { top: window.innerHeight * 0.6 };
-    const topToAbout = (rect.top + scrollY);
-
-    canvas.style.height = Math.max(0, topToAbout) + 'px';
-    W = canvas.clientWidth; H = canvas.clientHeight;
-
-    canvas.width  = Math.floor(W * dpr);
-    canvas.height = Math.floor(H * dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-
-  function spawn(){
-    bubbles.length = 0;
-    for(let i=0;i<MAX;i++){
-      bubbles.push({
-        x: Math.random()*W,
-        y: H + Math.random()*H*0.5,
-        r: 6 + Math.random()*22,
-        vy: 0.2 + Math.random()*0.6,
-        vx: (Math.random()*0.4-0.2),
-        wobble: Math.random()*Math.PI*2,
-        wobbleSpeed: 0.01 + Math.random()*0.02,
-        color: COLORS[Math.floor(Math.random()*COLORS.length)]
-      });
-    }
-  }
-
-  function tick(){
-    ctx.clearRect(0,0,W,H);
-    for(const b of bubbles){
-      b.wobble += b.wobbleSpeed;
-      b.x += b.vx + Math.sin(b.wobble)*0.2;
-      b.y -= b.vy;
-
-      if(b.y + b.r < -20){
-        b.x = Math.random()*W;
-        b.y = H + 40;
-        b.r = 6 + Math.random()*22;
-      }
-      ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
-      ctx.fillStyle = b.color; ctx.fill();
-    }
-    requestAnimationFrame(tick);
-  }
-
-  const ro = new ResizeObserver(()=>{ resize(); spawn(); });
-  ro.observe(document.body);
-  window.addEventListener('scroll', resize, {passive:true});
-  window.addEventListener('resize', resize);
-
-  resize(); spawn(); tick();
 })();
 </script>
 
