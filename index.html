@@ -14,8 +14,7 @@
 :root{
   --bg:#F4F5F7; --card:#fff; --text:#0A0D14; --muted:#5E6A7B; --line:#E6E8EE;
   --blue:#2B6EF3; --blue-2:#51A1FF; --blue-3:#0D41C9;
-  --wrap:980px;  /* schlankere Content-Breite */
-  --radius:14px; --shadow:0 10px 24px rgba(16,24,40,.08);
+  --wrap:980px; --radius:14px; --shadow:0 10px 24px rgba(16,24,40,.08);
 }
 
 /* Base */
@@ -139,39 +138,40 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 .form-ok.is-visible{ opacity:1; transform:none; }
 .ok-badge{
   display:inline-grid;place-items:center; width:22px;height:22px;margin-right:8px;border-radius:999px;
-  background:#38A169;color:#fff;font-weight:800; opacity:0; transform:scale(.85);
+  background:#38A169;color:#fff;font-weight:800; opacity:.95; transform:scale(.85);
   transition:opacity .35s ease .12s, transform .35s ease .12s;
 }
-.form-ok.is-visible .ok-badge{ opacity:1; transform:scale(1); }
+.form-ok.is-visible .ok-badge{ transform:scale(1); }
 
-/* --- BUBBLES Hintergrund --- */
+/* --- BUBBLES Hintergrund (CSS-only) --- */
 .bubbles{ position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
-.bubble{
+.bubbles span{
   position:absolute; bottom:-14vh; border-radius:999px;
-  background:radial-gradient(circle at 30% 30%, rgba(81,161,255,.30), rgba(43,110,243,.18));
-  filter:blur(.5px);
-  animation:rise var(--dur) linear var(--delay) infinite;
-  will-change:transform;
-  opacity:.5;
+  background:radial-gradient(circle at 30% 30%, rgba(81,161,255,.28), rgba(43,110,243,.14));
+  filter:blur(.4px); opacity:.55;
+  animation:rise linear infinite;
 }
 @keyframes rise{
-  from { transform:translateY(0) scale(var(--scale)); }
-  to   { transform:translateY(-120vh) scale(var(--scale)); }
+  from { transform:translateY(0) }
+  to   { transform:translateY(-120vh) }
 }
-
-/* Full-bleed helper for image section */
-.fullbleed{
-  padding:0; border-top:none;
-}
-.fullbleed .bleed-wrap{
-  width:100vw; position:relative; left:50%; right:50%;
-  margin-left:-50vw; margin-right:-50vw;
-  background:#0b1220;
-}
-.city-img{
-  width:100%; height:46vh; min-height:300px; object-fit:cover; display:block;
-  background:linear-gradient(180deg,#0b1220,#0b1220); /* falls Bild fehlt */
-}
+/* 16 Bubbles – unterschiedliche Größe/Ort/Dauer/Delay */
+.bubbles span:nth-child(1){ width:180px;height:180px;left:5vw;  animation-duration:28s; animation-delay:-4s;}
+.bubbles span:nth-child(2){ width:120px;height:120px;left:15vw; animation-duration:24s; animation-delay:-10s;}
+.bubbles span:nth-child(3){ width:220px;height:220px;left:27vw; animation-duration:32s; animation-delay:-2s;}
+.bubbles span:nth-child(4){ width:140px;height:140px;left:36vw; animation-duration:26s; animation-delay:-14s;}
+.bubbles span:nth-child(5){ width:260px;height:260px;left:44vw; animation-duration:34s; animation-delay:-6s;}
+.bubbles span:nth-child(6){ width:110px;height:110px;left:52vw; animation-duration:22s; animation-delay:-18s;}
+.bubbles span:nth-child(7){ width:190px;height:190px;left:60vw; animation-duration:30s; animation-delay:-8s;}
+.bubbles span:nth-child(8){ width:150px;height:150px;left:68vw; animation-duration:25s; animation-delay:-20s;}
+.bubbles span:nth-child(9){ width:230px;height:230px;left:76vw; animation-duration:33s; animation-delay:-12s;}
+.bubbles span:nth-child(10){width:100px;height:100px;left:84vw; animation-duration:21s; animation-delay:-16s;}
+.bubbles span:nth-child(11){width:200px;height:200px;left:10vw; animation-duration:29s; animation-delay:-1s;}
+.bubbles span:nth-child(12){width:160px;height:160px;left:22vw; animation-duration:27s; animation-delay:-7s;}
+.bubbles span:nth-child(13){width:210px;height:210px;left:34vw; animation-duration:31s; animation-delay:-11s;}
+.bubbles span:nth-child(14){width:130px;height:130px;left:58vw; animation-duration:23s; animation-delay:-3s;}
+.bubbles span:nth-child(15){width:240px;height:240px;left:72vw; animation-duration:35s; animation-delay:-9s;}
+.bubbles span:nth-child(16){width:170px;height:170px;left:88vw; animation-duration:28s; animation-delay:-5s;}
 
 @media(max-width:960px){
   .grid-2{grid-template-columns:1fr}
@@ -186,7 +186,12 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 <body>
 
 <!-- BUBBLES Layer -->
-<div class="bubbles" aria-hidden="true"></div>
+<div class="bubbles" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
 
 <header role="banner">
   <div class="wrap header-in">
@@ -411,17 +416,6 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
   </section>
 
-  <!-- DÜSSELDORF – FULL-BLEED GRÜSSE -->
-  <section class="reveal fullbleed" id="duesseldorf">
-    <div class="bleed-wrap">
-      <img class="city-img" src="assets/duesseldorf.jpg" alt="Düsseldorf Skyline">
-    </div>
-    <div class="wrap" style="padding:26px 20px 70px">
-      <h3 class="center flow" style="margin:0 0 6px">Liebe Grüße aus Düsseldorf</h3>
-      <p class="center" style="color:var(--muted); margin:0">ConceptPartner</p>
-    </div>
-  </section>
-
 </main>
 
 <footer id="kontakt" role="contentinfo">
@@ -519,30 +513,6 @@ ${data.get('nachricht')||''}`;
       successBox.scrollIntoView({behavior:'smooth', block:'center'});
     });
   });
-})();
-
-/* BUBBLES erzeugen – kontinuierlich steigend, zufällig verteilt */
-(function(){
-  const root=document.querySelector('.bubbles');
-  if(!root) return;
-  const COUNT=16; // dezent
-  function addOne(){
-    const b=document.createElement('span');
-    b.className='bubble';
-    const size = 70 + Math.random()*200;      // 70–270px
-    const left = Math.random()*window.innerWidth;
-    const delay = (Math.random()*-10).toFixed(2)+'s';
-    const dur   = (20 + Math.random()*20).toFixed(1)+'s';
-    const scale = (0.8 + Math.random()*0.9).toFixed(2);
-    Object.assign(b.style,{
-      width:size+'px', height:size+'px', left:left+'px',
-      '--delay':delay, '--dur':dur, '--scale':scale
-    });
-    root.appendChild(b);
-    // Wenn eine Blase oben raus ist, entfernen und neue hinzufügen
-    setTimeout(()=>{ b.remove(); addOne(); }, (parseFloat(dur)*1000));
-  }
-  for(let i=0;i<COUNT;i++) addOne();
 })();
 </script>
 
