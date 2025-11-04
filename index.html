@@ -44,41 +44,22 @@ body::before{
 }
 header,main,footer{position:relative; z-index:1}
 
-/* ===== BUBBLE LAYER (NEU) ===== */
+/* ===== BUBBLE LAYER (über die ganze Seite, dezent) ===== */
 #bubbleLayer{
-  position:absolute; left:0; right:0; top:0; height:0;  /* Höhe setzt JS */
-  pointer-events:none; z-index:0; overflow:hidden;
+  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
 }
 .bubble{
-  position:absolute; bottom:-140px; border-radius:999px;
-  background: radial-gradient(circle at 30% 30%, #6fb1ff, #2b6ef3 60%, #0d41c9 100%);
-  box-shadow: 0 0 40px rgba(43,110,243,.55), 0 0 90px rgba(43,110,243,.35);
-  opacity:.95; filter:saturate(120%);
+  position:absolute; bottom:-20vh; border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, rgba(111,177,255,.55), rgba(43,110,243,.45) 60%, rgba(13,65,201,.35) 100%);
+  box-shadow: 0 0 60px rgba(43,110,243,.25), 0 0 120px rgba(43,110,243,.18);
   animation: rise linear infinite;
+  will-change: transform, opacity;
+  opacity:.28;           /* Grund-Transparenz – wird per JS leicht variiert */
+  filter:saturate(115%);
 }
 @keyframes rise{
-  from{ transform:translateY(0) translateZ(0); }
-  to  { transform:translateY(-140vh) translateZ(0); }
-}
-/* Größen, Positionen, Delays – kräftig & sichtbar */
-.bubble:nth-child(1){ width:180px; height:180px; left:8%;  animation-duration:24s; animation-delay:0s;}
-.bubble:nth-child(2){ width:260px; height:260px; left:24%; animation-duration:28s; animation-delay:4s;}
-.bubble:nth-child(3){ width:220px; height:220px; left:44%; animation-duration:26s; animation-delay:8s;}
-.bubble:nth-child(4){ width:300px; height:300px; left:66%; animation-duration:30s; animation-delay:2s;}
-.bubble:nth-child(5){ width:160px; height:160px; left:82%; animation-duration:22s; animation-delay:6s;}
-.bubble:nth-child(6){ width:120px; height:120px; left:12%; animation-duration:18s; animation-delay:10s;}
-.bubble:nth-child(7){ width:200px; height:200px; left:56%; animation-duration:25s; animation-delay:12s;}
-.bubble:nth-child(8){ width:140px; height:140px; left:74%; animation-duration:20s; animation-delay:14s;}
-.bubble:nth-child(9){ width:240px; height:240px; left:34%; animation-duration:27s; animation-delay:16s;}
-.bubble:nth-child(10){width:180px; height:180px; left:90%; animation-duration:24s; animation-delay:18s;}
-
-@media (max-width: 640px){
-  .bubble{ opacity:.9 }
-  .bubble:nth-child(1){width:120px;height:120px}
-  .bubble:nth-child(2){width:160px;height:160px}
-  .bubble:nth-child(3){width:140px;height:140px}
-  .bubble:nth-child(4){width:180px;height:180px}
-  .bubble:nth-child(5){width:120px;height:120px}
+  from{ transform:translateY(110vh) translateZ(0); }
+  to  { transform:translateY(-120vh) translateZ(0); }
 }
 
 /* Header */
@@ -144,7 +125,7 @@ h3{font-size:20px;margin:0 0 10px}
 .lead{color:var(--muted)}
 .center{text-align:center}
 
-/* Features: PRO-Karten für 'Was wir liefern' */
+/* Features */
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;margin:0 auto}
 .feature-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
 .feature-card h3{margin:0 0 10px}
@@ -196,11 +177,8 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 </head>
 <body>
 
-<!-- ===== Bubble Layer (NEU) ===== -->
-<div id="bubbleLayer" aria-hidden="true">
-  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
-  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
-</div>
+<!-- ===== Bubble Layer (leer – wird per JS befüllt) ===== -->
+<div id="bubbleLayer" aria-hidden="true"></div>
 
 <header role="banner">
   <div class="wrap header-in">
@@ -521,18 +499,42 @@ document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textCo
   });
 })();
 
-/* ===== Bubble-Layer Höhe auf Bereich TOP bis #about setzen ===== */
+/* ===== Bubbles: verteilt spawnen & endlos hochfloaten ===== */
 (function(){
   const layer = document.getElementById('bubbleLayer');
-  function setBubbleHeight(){
-    const about = document.getElementById('about');
-    if(!layer || !about) return;
-    const y = Math.max(about.offsetTop, 0);   // ab Beginn #about nach oben sichtbar
-    layer.style.height = y + 'px';
+  if(!layer) return;
+
+  const COUNT = 28;              // Anzahl Bubbles
+  const minSize = 90;            // px
+  const maxSize = 320;           // px
+  const minDur = 18;             // Sekunden
+  const maxDur = 34;             // Sekunden
+
+  function rand(a,b){ return Math.random()*(b-a)+a; }
+
+  for(let i=0;i<COUNT;i++){
+    const b = document.createElement('div');
+    b.className = 'bubble';
+
+    const size = rand(minSize, maxSize);
+    const left = rand(-5, 100);                 // leicht über Rand für Natürlichkeit
+    const delay = rand(0, maxDur);              // verteilt starten
+    const dur = rand(minDur, maxDur);
+    const extraOpacity = rand(.18,.42);         // transparenter / variabel
+
+    b.style.width = size+'px';
+    b.style.height = size+'px';
+    b.style.left = left+'%';
+    b.style.animationDuration = dur+'s';
+    b.style.animationDelay = (-delay)+'s';      // negative Delay = schon „unterwegs“
+    b.style.opacity = extraOpacity;
+
+    // leichte horizontale Drift
+    const drift = rand(-20,20);
+    b.style.transform = `translateX(${drift}px)`;
+
+    layer.appendChild(b);
   }
-  setBubbleHeight();
-  window.addEventListener('resize', setBubbleHeight);
-  window.addEventListener('load', setBubbleHeight);
 })();
 </script>
 
