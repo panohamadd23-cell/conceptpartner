@@ -37,38 +37,48 @@ section{
 section:first-of-type{margin-top:0}
 section + section{border-top:2px solid var(--line)}
 
-/* Maus-Glow (dezent) */
+/* Maus-Glow */
 body::before{
   content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
   background:radial-gradient(420px circle at var(--mx,-200px) var(--my,-200px), rgba(43,110,243,.08), transparent 60%);
 }
 header,main,footer{position:relative; z-index:1}
 
-/* VISIBLE BLUE BUBBLES (neu) */
-.bubbles{
-  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.85;
-  --c1: rgba(43,110,243,.12);
-  --c2: rgba(81,161,255,.10);
-  --c3: rgba(13,65,201,.10);
-  background:
-    radial-gradient(900px 900px at 15% 120%, var(--c1), transparent 60%),
-    radial-gradient(1100px 1100px at 85% 115%, var(--c2), transparent 62%),
-    radial-gradient(700px 700px at 50% 125%, var(--c3), transparent 58%),
-    radial-gradient(520px 520px at 10% 95%, var(--c2), transparent 60%),
-    radial-gradient(640px 640px at 90% 92%, var(--c1), transparent 62%);
-  transform:translateY(20vh);
-  filter: blur(6px);
-  transition: opacity .8s ease, transform 1.2s ease;
-  animation: bubblesFloat 32s linear infinite;
+/* ===== BUBBLE LAYER (NEU) ===== */
+#bubbleLayer{
+  position:absolute; left:0; right:0; top:0; height:0;  /* Höhe setzt JS */
+  pointer-events:none; z-index:0; overflow:hidden;
 }
-@keyframes bubblesFloat{
-  0%   { transform:translateY(20vh); }
-  50%  { transform:translateY(0); }
-  100% { transform:translateY(20vh); }
+.bubble{
+  position:absolute; bottom:-140px; border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, #6fb1ff, #2b6ef3 60%, #0d41c9 100%);
+  box-shadow: 0 0 40px rgba(43,110,243,.55), 0 0 90px rgba(43,110,243,.35);
+  opacity:.95; filter:saturate(120%);
+  animation: rise linear infinite;
 }
-/* Bubbles erst zeigen, wenn #about einmal sichtbar war */
-body.show-bubbles .bubbles{
-  opacity:1;
+@keyframes rise{
+  from{ transform:translateY(0) translateZ(0); }
+  to  { transform:translateY(-140vh) translateZ(0); }
+}
+/* Größen, Positionen, Delays – kräftig & sichtbar */
+.bubble:nth-child(1){ width:180px; height:180px; left:8%;  animation-duration:24s; animation-delay:0s;}
+.bubble:nth-child(2){ width:260px; height:260px; left:24%; animation-duration:28s; animation-delay:4s;}
+.bubble:nth-child(3){ width:220px; height:220px; left:44%; animation-duration:26s; animation-delay:8s;}
+.bubble:nth-child(4){ width:300px; height:300px; left:66%; animation-duration:30s; animation-delay:2s;}
+.bubble:nth-child(5){ width:160px; height:160px; left:82%; animation-duration:22s; animation-delay:6s;}
+.bubble:nth-child(6){ width:120px; height:120px; left:12%; animation-duration:18s; animation-delay:10s;}
+.bubble:nth-child(7){ width:200px; height:200px; left:56%; animation-duration:25s; animation-delay:12s;}
+.bubble:nth-child(8){ width:140px; height:140px; left:74%; animation-duration:20s; animation-delay:14s;}
+.bubble:nth-child(9){ width:240px; height:240px; left:34%; animation-duration:27s; animation-delay:16s;}
+.bubble:nth-child(10){width:180px; height:180px; left:90%; animation-duration:24s; animation-delay:18s;}
+
+@media (max-width: 640px){
+  .bubble{ opacity:.9 }
+  .bubble:nth-child(1){width:120px;height:120px}
+  .bubble:nth-child(2){width:160px;height:160px}
+  .bubble:nth-child(3){width:140px;height:140px}
+  .bubble:nth-child(4){width:180px;height:180px}
+  .bubble:nth-child(5){width:120px;height:120px}
 }
 
 /* Header */
@@ -100,8 +110,8 @@ nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;heig
 /* Blauer Flow – nahtlos */
 .flow{
   background-image:
-    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%),
-    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, var(--blue-2) 75%, #111 100%);
+    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, #6FB1FF 75%, #111 100%),
+    linear-gradient(90deg,#111 0%, var(--blue) 25%, #111 50%, #6FB1FF 75%, #111 100%);
   background-size:200% 100%, 200% 100%;
   background-repeat:repeat-x, repeat-x;
   background-position:0% 0, 100% 0;
@@ -186,8 +196,11 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
 </head>
 <body>
 
-<!-- Bubbles Layer (neu) -->
-<div class="bubbles" aria-hidden="true"></div>
+<!-- ===== Bubble Layer (NEU) ===== -->
+<div id="bubbleLayer" aria-hidden="true">
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+</div>
 
 <header role="banner">
   <div class="wrap header-in">
@@ -361,16 +374,12 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
       <button type="submit" class="btn" style="width:max-content;margin:0 auto;">Nachricht senden</button>
     </form>
 
-    <!-- Erfolgsbox -->
-    <div id="contactSuccess" class="form-ok" hidden aria-live="polite" role="status">
+    <!-- Erfolgsbox (unter dem Formular) -->
+    <div id="contactSuccess" class="form-ok" hidden>
       <span class="ok-badge" aria-hidden="true">✓</span>
       <strong>Danke! Ihre Nachricht wurde übertragen.</strong><br>
       Wir melden uns in Kürze.
-      <span style="display:block;margin-top:8px;color:#276749">
-        📞 <a href="tel:+4921117549502" style="text-decoration:underline;color:#276749">+49 211 17549502</a> ·
-        ✉️ info@conceptpartner.de ·
-        📍 Düsselthaler Straße 65, 40211 Düsseldorf
-      </span>
+      <a id="openMail" href="#" style="margin-left:8px;white-space:nowrap">(Optional: E-Mail-Programm öffnen)</a>
     </div>
   </section>
 
@@ -416,6 +425,7 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted);font-s
   <section class="wrap reveal center" id="closing">
     <h2 class="flow">Let’s make growth boring (because it’s predictable)</h2>
     <p class="lead" style="margin:10px 0 18px">Wenn Systeme funktionieren, ist Wachstum kein Zufall mehr – sondern Routine.</p>
+    <a class="btn" href="https://calendly.com/your-calendly/erstgespräech" target="_blank" rel="noopener">Erstgespräch buchen</a>
   </section>
 
 </main>
@@ -470,15 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('accept').addEventListener('click',()=>setCookieDecision('yes'));
   document.getElementById('decline').addEventListener('click',()=>setCookieDecision('no'));
   checkCookie();
-
-  /* Bubbles erst aktivieren, wenn #about einmal im Viewport war */
-  const about = document.getElementById('about');
-  if(about){
-    const ob = new IntersectionObserver((es)=>{
-      es.forEach(e=>{ if(e.isIntersecting){ document.body.classList.add('show-bubbles'); } });
-    }, {threshold:.2});
-    ob.observe(about);
-  }
 });
 
 /* Maus-Glow */
@@ -490,21 +491,48 @@ document.addEventListener('mousemove', e=>{
 /* Ctrl+Wheel Zoom blocken (optional) */
 document.addEventListener('wheel', e=>{ if(e.ctrlKey) e.preventDefault(); }, {passive:false});
 
-/* Entfernt Schlusspunkte bei H1/H2/H3 – Effekte bleiben unberührt */
+/* Entfernt Schlusspunkte bei H1/H2/H3 */
 document.querySelectorAll('h1,h2,h3').forEach(el => { el.textContent = el.textContent.replace(/\.\s*$/,''); });
 
-/* Kontaktformular: In-Page-Bestätigung */
+/* Submit: In-Page-Bestätigung */
 (function(){
   const f = document.getElementById('contactForm');
   if(!f) return;
   const successBox = document.getElementById('contactSuccess');
+  const openMail   = document.getElementById('openMail');
+
   f.addEventListener('submit', function(e){
     e.preventDefault();
-    f.reset();
+    const data = new FormData(f);
+    const to = 'info@conceptpartner.de';
+    const subject = 'Neue Nachricht von der Website';
+    const body =
+      `Name: ${data.get('name')||''}\n`+
+      `E-Mail: ${data.get('email')||''}\n`+
+      `Telefon: ${data.get('telefon')||''}\n`+
+      `Firma: ${data.get('firma')||''}\n\n`+
+      `Nachricht:\n${data.get('nachricht')||''}`;
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if(openMail) openMail.setAttribute('href', mailto);
     successBox.hidden = false;
     requestAnimationFrame(()=> successBox.classList.add('is-visible'));
+    f.reset();
     successBox.scrollIntoView({behavior:'smooth', block:'center'});
   });
+})();
+
+/* ===== Bubble-Layer Höhe auf Bereich TOP bis #about setzen ===== */
+(function(){
+  const layer = document.getElementById('bubbleLayer');
+  function setBubbleHeight(){
+    const about = document.getElementById('about');
+    if(!layer || !about) return;
+    const y = Math.max(about.offsetTop, 0);   // ab Beginn #about nach oben sichtbar
+    layer.style.height = y + 'px';
+  }
+  setBubbleHeight();
+  window.addEventListener('resize', setBubbleHeight);
+  window.addEventListener('load', setBubbleHeight);
 })();
 </script>
 
